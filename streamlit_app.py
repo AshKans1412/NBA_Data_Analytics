@@ -1,11 +1,19 @@
-import pandas as pd
+import nba_api
 import streamlit as st
+import pandas as pd
 import requests
 import plotly.graph_objs as go
 from plotly.subplots import make_subplots
 import seaborn as sns
 import matplotlib.pyplot as plt
+import numpy as np
+import matplotlib as mpl
+from io import BytesIO
+from nba_api.stats.endpoints import shotchartdetail, playercareerstats
+from nba_api.stats.static import players, teams
 import plotly.express as px
+from PIL import Image, UnidentifiedImageError
+
 
 # Function to fetch data from the API
 def fetch_data(api_url):
@@ -222,90 +230,419 @@ def generate_top_performers_plots(df, category):
     return plt.gcf()
 
 
+# NbaScraper Class
+class NbaScraper:
+    """ Class to scrape data from the NBA official website.
+    """
+    @staticmethod
+    def get_json_from_name(name: str, is_player=True) -> int:
+        """ Get the json of a player or team from his name
+        """
+        from nba_api.stats.static import players, teams
+        if is_player:
+            nba_players = players.get_players()
+            return [player for player in nba_players 
+                    if player['full_name'] == name][0]
+        else:
+            nba_teams = teams.get_teams()
+            return [team for team in nba_teams 
+                    if team['full_name'] == name][0]
+    
+    @staticmethod
+    def get_player_career(player_id: int) -> list:
+        """ Get the career of a player from his id
+        """
+        from nba_api.stats.endpoints import playercareerstats
+        career = playercareerstats.PlayerCareerStats(player_id=player_id)
+        return career.get_data_frames()[0]
+    
+    @staticmethod
+    def get_shot_data(id: int, team_ids: list, seasons: list) -> list:
+        """ Get the shot data of a player from his id and seasons
+        """
+        from nba_api.stats.endpoints import shotchartdetail
+        df = pd.DataFrame()
+        for season in seasons:
+            for team in team_ids:
+                shot_data = shotchartdetail.ShotChartDetail(
+                    team_id=team,
+                    player_id=id,
+                    context_measure_simple='FGA',
+                    season_nullable=season
+                )
+                df = pd.concat([df, shot_data.get_data_frames()[0]])
+        
+        return df
+    
+    @staticmethod
+    def get_all_ids(only_active=True) -> list:
+        """ Get all the ids of the players
+        """
+        from nba_api.stats.static import players
+        nba_players = players.get_players()
+        if only_active:
+            return [player['id'] for player in nba_players 
+                    if player['is_active']]
+        return [player['id'] for player in nba_players]
+    
+    @staticmethod
+    def get_player_headshot(id: int) -> str:
+            """ Get the headshot of a player from his id
+            """
+            from nba_api.stats.static import players
+            import requests
+            import shutil
+            
+            url = f'https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/{id}.png'
+            output_path = f'../data/nba/transient/headshots/{id}.png'
+            r = requests.get(url, stream=True)
+            if r.status_code == 200:
+                with open(output_path, 'wb') as f:
+                    r.raw.decode_content = True
+                    shutil.copyfileobj(r.raw, f)
+    
+    @staticmethod                                    
+    def get_all_nba_headshots(only_active=False) -> None:
+        """ Get the headshots of all the players
+        """
+        ids = NbaScraper.get_all_ids(only_active=only_active)
+        for id in ids:
+            NbaScraper.get_player_headshot(id)
+
+
+class ShotCharts:
+        def __init__(self) -> None:
+                pass
+        
+        def create_court(ax: mpl.axes, color="white") -> mpl.axes:
+                """ Create a basketball court in a matplotlib axes
+                """
+                # Short corner 3PT lines
+                ax.plot([-220, -220], [0, 140], linewidth=2, color=color)
+                ax.plot([220, 220], [0, 140], linewidth=2, color=color)
+                # 3PT Arc
+                ax.add_artist(mpl.patches.Arc((0, 140), 440, 315, theta1=0, theta2=180, facecolor='none', edgecolor=color, lw=2))
+                # Lane and Key
+                ax.plot([-80, -80], [0, 190], linewidth=2, color=color)
+                ax.plot([80, 80], [0, 190], linewidth=2, color=color)
+                ax.plot([-60, -60], [0, 190], linewidth=2, color=color)
+                ax.plot([60, 60], [0, 190], linewidth=2, color=color)
+                ax.plot([-80, 80], [190, 190], linewidth=2, color=color)
+                ax.add_artist(mpl.patches.Circle((0, 190), 60, facecolor='none', edgecolor=color, lw=2))
+                ax.plot([-250, 250], [0, 0], linewidth=4, color='white')
+                # Rim
+                ax.add_artist(mpl.patches.Circle((0, 60), 15, facecolor='none', edgecolor=color, lw=2))
+                # Backboard
+                ax.plot([-30, 30], [40, 40], linewidth=2, color=color)
+                # Remove ticks
+                ax.set_xticks([])
+                ax.set_yticks([])
+                # Set axis limits
+                ax.set_xlim(-250, 250)
+                ax.set_ylim(0, 470)
+                return ax
+        
+        def add_headshot(fig: plt.figure, id: int) -> plt.figure:
+        # Using GitHub's raw content URL for the image
+            headshot_url = f"https://raw.githubusercontent.com/ubiratanfilho/HotShot/main/data/nba/raw/headshots/{id}.png"
+            
+            try:
+                response = requests.get(headshot_url)
+                
+                # Check if the request was successful and the content type is an image
+                if response.status_code == 200 and response.headers['Content-Type'].startswith('image/'):
+                    img = Image.open(BytesIO(response.content))
+                    ax = fig.add_axes([0.06, 0.01, 0.3, 0.3], anchor='SW')
+                    ax.imshow(img)
+                    ax.axis('off')
+                else:
+                    print(f"The response did not contain an image. Status Code: {response.status_code}")
+            except UnidentifiedImageError:
+                print(f"Cannot identify image file from {headshot_url}. The file may be corrupted or the URL is incorrect.")
+            except Exception as e:
+                print(f"An error occurred: {e}")
+
+            return fig
+                
+        #def add_headshot(fig: plt.figure, id: int) -> plt.figure:
+                #headshot_path = "https://github.com/ubiratanfilho/HotShot/blob/main/data/nba/raw/headshots/"+ str(id) +".png?raw=true" 
+                #im = plt.imread(headshot_path)
+                #ax = fig.add_axes([0.06, 0.01, 0.3, 0.3], anchor='SW')
+                #ax.imshow(im)
+                #ax.axis('off')
+                #return fig
+        
+        def frequency_chart(df: pd.DataFrame, name: str, season=None, extent=(-250, 250, 422.5, -47.5),
+                                gridsize=25, cmap="inferno"):
+                """ Create a shot chart of a player's shot frequency and accuracy
+                """ 
+                # create frequency of shots per hexbin zone
+                shots_hex = plt.hexbin(
+                df.LOC_X, df.LOC_Y + 60,
+                extent=extent, cmap=cmap, gridsize=gridsize)
+                plt.close()
+                shots_hex_array = shots_hex.get_array()
+                freq_by_hex = shots_hex_array / sum(shots_hex_array)
+                
+                # create field goal % per hexbin zone
+                makes_df = df[df.SHOT_MADE_FLAG == 1] # filter dataframe for made shots
+                makes_hex = plt.hexbin(makes_df.LOC_X, makes_df.LOC_Y + 60, cmap=cmap,
+                                gridsize=gridsize, extent=extent) # create hexbins
+                plt.close()
+                pcts_by_hex = makes_hex.get_array() / shots_hex.get_array()
+                pcts_by_hex[np.isnan(pcts_by_hex)] = 0  # convert NAN values to 0
+                
+                # filter data for zone with at least 5 shots made
+                sample_sizes = shots_hex.get_array()
+                filter_threshold = 5
+                for i in range(len(pcts_by_hex)):
+                        if sample_sizes[i] < filter_threshold:
+                                pcts_by_hex[i] = 0
+                x = [i[0] for i in shots_hex.get_offsets()]
+                y = [i[1] for i in shots_hex.get_offsets()]
+                z = pcts_by_hex
+                sizes = freq_by_hex * 1000
+                
+                # Create figure and axes
+                fig = plt.figure(figsize=(3.6, 3.6), facecolor='black', edgecolor='black', dpi=100)
+                ax = fig.add_axes([0, 0, 1, 1], facecolor='black')
+                plt.xlim(250, -250)
+                plt.ylim(-47.5, 422.5)
+                # Plot hexbins
+                scatter = ax.scatter(x, y, c=z, cmap=cmap, marker='h', s=sizes)
+                # Draw court
+                ax = ShotCharts.create_court(ax)
+                # Add legends
+                max_freq = max(freq_by_hex)
+                max_size = max(sizes)
+                legend_acc = plt.legend(
+                *scatter.legend_elements(num=5, fmt="{x:.0f}%",
+                                        func=lambda x: x * 100),
+                loc=[0.85,0.785], title='Shot %', fontsize=6)
+                legend_freq = plt.legend(
+                *scatter.legend_elements(
+                        'sizes', num=5, alpha=0.8, fmt="{x:.1f}%"
+                        , func=lambda s: s / max_size * max_freq * 100
+                ),
+                loc=[0.68,0.785], title='Freq %', fontsize=6)
+                plt.gca().add_artist(legend_acc)
+                # Add title
+                plt.text(-250, 450, f"{name}", fontsize=21, color='white',
+                        fontname='Arial')
+                plt.text(-250, 420, "Frequency and FG%", fontsize=12, color='white',
+                        fontname='Arial')
+                season = f"{season[0][:4]}-{season[-1][-2:]}"
+                plt.text(-250, -20, season, fontsize=8, color='white')
+                #plt.text(110, -20, '@hotshot_nba', fontsize=8, color='white')
+                
+                # add headshot
+                fig = ShotCharts.add_headshot(fig, df.PLAYER_ID.iloc[0])
+
+                return fig
+        
+        def volume_chart(df: pd.DataFrame, name: str, season=None, 
+                        RA=True,
+                        extent=(-250, 250, 422.5, -47.5),
+                        gridsize=25, cmap="plasma"):
+                fig = plt.figure(figsize=(3.6, 3.6), facecolor='black', edgecolor='black', dpi=100)
+                ax = fig.add_axes([0, 0, 1, 1], facecolor='black')
+
+                # Plot hexbin of shots
+                if RA == True:
+                        x = df.LOC_X
+                        y = df.LOC_Y + 60
+                        # Annotate player name and season
+                        plt.text(-250, 440, f"{name}", fontsize=21, color='white',
+                                fontname='Arial')
+                        plt.text(-250, 410, "Shot Volume", fontsize=12, color='white',
+                                fontname='Arial')
+                        season = f"{season[0][:4]}-{season[-1][-2:]}"
+                        plt.text(-250, -20, season, fontsize=8, color='white')
+                        #plt.text(110, -20, '@hotshot_nba', fontsize=8, color='white')
+                else:
+                        cond = ~((-45 < df.LOC_X) & (df.LOC_X < 45) & (-40 < df.LOC_Y) & (df.LOC_Y < 45))
+                        x = df.LOC_X[cond]
+                        y = df.LOC_Y[cond] + 60
+                        # Annotate player name and season
+                        plt.text(-250, 440, f"{name}", fontsize=21, color='white',
+                                fontname='Arial')
+                        plt.text(-250, 410, "Shot Volume", fontsize=12, color='white',
+                                fontname='Arial')
+                        plt.text(-250, 385, "(w/o restricted area)", fontsize=10, color='red')
+                        season = f"{season[0][:4]}-{season[-1][-2:]}"
+                        plt.text(-250, -20, season, fontsize=8, color='white')
+                        #plt.text(110, -20, '@hotshot_nba', fontsize=8, color='white')
+                        
+                hexbin = ax.hexbin(x, y, cmap=cmap,
+                        bins="log", gridsize=25, mincnt=2, extent=(-250, 250, 422.5, -47.5))
+
+                # Draw court
+                ax = ShotCharts.create_court(ax, 'white')
+
+                # add colorbar
+                #im = plt.imread("https://github.com/ubiratanfilho/HotShot/blob/main/images/Colorbar%20Shotcharts.png?raw=true")
+                #newax = fig.add_axes([0.56, 0.6, 0.45, 0.4], anchor='NE', zorder=1)
+                #newax.xaxis.set_visible(False)
+                #newax.yaxis.set_visible(False)
+                #newax.imshow(im)
+                url = "https://github.com/ubiratanfilho/HotShot/blob/main/images/Colorbar%20Shotcharts.png?raw=true"
+                response = requests.get(url)
+                img = Image.open(BytesIO(response.content))
+                colorbar_data = np.array(img)
+                
+                
+                # add colorbar
+                newax = fig.add_axes([0.56, 0.6, 0.45, 0.4], anchor='NE', zorder=1)
+                newax.xaxis.set_visible(False)
+                newax.yaxis.set_visible(False)
+                newax.imshow(colorbar_data)
+                
+                
+                # add headshot
+                fig = ShotCharts.add_headshot(fig, df.PLAYER_ID.iloc[0])
+
+                return fig
+        
+        def makes_misses_chart(df: pd.DataFrame, name: str, season=None):
+                # Create figure and axes
+                fig = plt.figure(figsize=(3.6, 3.6), facecolor='black', edgecolor='black', dpi=100)
+                ax = fig.add_axes([0, 0, 1, 1], facecolor='black')
+
+                plt.text(-250, 450, f"{name}", fontsize=21, color='white',
+                        fontname='Arial')
+                plt.text(-250, 425, "Misses", fontsize=12, color='red',
+                        fontname='Arial')
+                plt.text(-170, 425, "&", fontsize=12, color='white',
+                        fontname='Arial')
+                plt.text(-150, 425, "Buckets", fontsize=12, color='green',
+                        fontname='Arial')
+                season = f"{season[0][:4]}-{season[-1][-2:]}"
+                plt.text(-250, -20, season, fontsize=8, color='white')
+                #plt.text(110, -20, '@hotshot_nba', fontsize=8, color='white')
+
+                ax = ShotCharts.create_court(ax, 'white')
+                sc = ax.scatter(df.LOC_X, df.LOC_Y + 60, c=df.SHOT_MADE_FLAG, cmap='RdYlGn', s=12)
+                
+                # add headshot
+                fig = ShotCharts.add_headshot(fig, df.PLAYER_ID.iloc[0])
+
+                return fig
+
+
+
+
+# New function for the NBA Stats Page
+def nba_stats_page():
+    st.title("SHOT Charts Analysis")
+
+    player_name = st.text_input("Enter the player's name:", '')
+
+    if player_name:
+        player_info = NbaScraper.get_json_from_name(player_name)
+        if player_info:
+            player_id = player_info['id']
+            career = NbaScraper.get_player_career(player_id)
+            team_ids = list(set(career['TEAM_ID']))
+            seasons = list(set(career['SEASON_ID']))
+            shot_data = NbaScraper.get_shot_data(player_id, team_ids, seasons)
+
+            if not shot_data.empty:
+                st.write(f"Shot chart for {player_name}")
+                chart1 = ShotCharts.volume_chart(shot_data, player_name, seasons)
+                st.pyplot(chart1.figure)
+
+                chart2 = ShotCharts.volume_chart(shot_data, player_name, seasons, RA=False)
+                st.pyplot(chart2.figure)
+
+                chart3 = ShotCharts.frequency_chart(shot_data, player_name, seasons)
+                st.pyplot(chart3.figure)
+
+                chart4 = ShotCharts.makes_misses_chart(shot_data, player_name, seasons)
+                st.pyplot(chart4.figure)
+            else:
+                st.write("No shot data available for the selected player and season.")
+        else:
+            st.write(f"Player '{player_name}' not found.")
+
+
+
+
 def home_page():
-    st.title("NBA Data Analysis App")
-
-                    # JSONPlaceholder API URL for NBA data
+    st.title("Welcome to the World of NBA Analytics")
+    # Fetch and preprocess data
     api_url = 'https://nba-api-ash-1-fc1674476d71.herokuapp.com/dataset' 
-
-                    # Fetch data from the API and directly convert to DataFrame
     nba_data = fetch_data(api_url)
-                    
-                    # Initialize preprocessed_data
     preprocessed_data = preprocess_data(nba_data)
 
-                    # Sidebar options
-    display_df = st.sidebar.selectbox("Display DataFrame", ["Select an option", "Orginal_dataframe", "pre_processed_data"], index=0, key='display_df')
-    st.empty()
+    st.write("## DataFrames")
+    if st.button('Show Original DataFrame'):
+        st.write("### Original DataFrame")
+        st.dataframe(nba_data)  # This will automatically adjust the height
 
-                    # Display dataframes or plots based on user selection
-    if display_df == "Orginal_dataframe":
-        st.empty()  # Clear previous content
-        st.write("## Original DataFrame")
-        st.write(nba_data)
-    elif display_df == "pre_processed_data":
-        st.empty()  # Clear previous content
-        st.write("## Preprocessed DataFrame")
-        st.write(preprocessed_data)
+    if st.button('Show Preprocessed DataFrame'):
+        st.write("### Preprocessed DataFrame")
+        st.dataframe(preprocessed_data) 
 
-    st.sidebar.header("Top Performers Categories")
-    selected_category = st.sidebar.selectbox("Select a category:", ["Points", "Assists", "Rebounds", "Steals", "Blocks", "FG Percentage", "3P Percentage", "FT Percentage"])
-                    
-                    # Button to generate and display the plot
-    generate_plot_button = st.sidebar.button("Generate Top Performers Plot")
+    # Top Performers Section
+    st.header("Top Performers in Different Categories")
+    st.write("Please Choose any One Category")
+    categories = ["Points", "Assists", "Rebounds", "Steals", "Blocks", "FG Percentage", "3P Percentage", "FT Percentage"]
 
-    if generate_plot_button:
-        st.sidebar.empty()
-        top_performers_plot = generate_top_performers_plots(nba_data, selected_category)
-        st.pyplot(top_performers_plot)
+    for category in categories:
+        if st.button(category):
+            top_performers_plot = generate_top_performers_plots(nba_data, category)
+            st.pyplot(top_performers_plot, use_container_width=True)  # Adjusting for full width
 
-    option = st.sidebar.selectbox("Plots:", ["Select an option", "Points", "Assists", "Scatter Plot"], index=0)
-    st.empty()
+    # Scatter Plot Section
+    st.subheader("Top NBA Players as Per Different Positions :")
+    scatter_plot(preprocessed_data)
 
-                    # Display the selected information
-    if option == "Points":
-        st.empty()  # Clear previous content
-        st.subheader(f"Top 10 Players by Points:")
-        plot_pts(preprocessed_data)
-    elif option == "Assists":
-        st.empty()  # Clear previous content
-        st.subheader(f"Top 10 Players by Assists:")
-        plot_ast(preprocessed_data)
-    elif option == "Scatter Plot":
-        st.empty()  # Clear previous content
-        st.subheader("Scatter Plot of AST vs PTS:")
-        scatter_plot(preprocessed_data)
+    # Player Comparison Section
+    st.header("Player Comparison")
+    col1, col2 = st.columns(2)
+    player1 = col1.selectbox("Please select the first player:", preprocessed_data['Player'].unique(), key='player1')
+    player2 = col2.selectbox("Please select the second player:", preprocessed_data['Player'].unique(), key='player2')
 
-                    
-    player1 = st.sidebar.selectbox("Select the first player:", preprocessed_data['Player'].unique())
-    player2 = st.sidebar.selectbox("Select the second player:", preprocessed_data['Player'].unique())
-
-    display_chart = st.sidebar.button("Compare Player Stats")
-    st.empty() 
-
-    if display_chart:
-        st.sidebar.empty()
+    if st.button("Compare Player Stats"):
         generate_player_comparison_plots(preprocessed_data, player1, player2)
 
 
 
 
-def main():
-    st.sidebar.title("Navigation")
-    page = st.sidebar.radio("Go to", ('Home', 'Stats', 'Live Score'))
 
+def main():
+    st.title("NBA")
+    
+    # Custom CSS to align the radio buttons to the right
+    st.markdown("""
+        <style>
+            div.row-widget.stRadio > div{flex-direction:row;}
+            label{display:block;}
+        </style>
+        """, unsafe_allow_html=True)
+
+    # Place the radio buttons in a line
+    page = st.radio("", ('Home', 'Stats', 'Live Score'), horizontal=True)
+
+    # Content based on page selection
     if page == 'Home':
         home_page()
+        nba_stats_page()
     elif page == 'Stats':
-        st.write("NBA Game STATS")
+        st.write('Player Stats')  # Calling the NBA stats page function
     elif page == 'Live Score':
         st.write("Live Score")
 
-
-
-
 if __name__ == "__main__":
     main()
+
+
+
+
+
+
+
+
 
 
 
