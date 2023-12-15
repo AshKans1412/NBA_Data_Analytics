@@ -5,6 +5,7 @@ import plotly.graph_objs as go
 from plotly.subplots import make_subplots
 import seaborn as sns
 import matplotlib.pyplot as plt
+import plotly.express as px
 
 # Function to fetch data from the API
 def fetch_data(api_url):
@@ -35,6 +36,7 @@ def preprocess_data(df):
     df = df.loc[(~df.Player.isin(traded_players)) | (df.Player.isin(traded_players) & (df.Tm == 'TOT'))]
 
     return df
+
 
 def plot_pts(df):
     # Create subplots with two columns
@@ -181,6 +183,7 @@ def generate_player_comparison_plots(df, player1, player2):
     fig3.update_layout(title_text=title)
     st.plotly_chart(fig3)
 
+
 def generate_top_performers_plots(df, category):
     # Mapping categories to columns
     category_mapping = {
@@ -219,25 +222,23 @@ def generate_top_performers_plots(df, category):
     return plt.gcf()
 
 
-
-
-def main():
+def home_page():
     st.title("NBA Data Analysis App")
 
-    # JSONPlaceholder API URL for NBA data
-    api_url = 'https://ash-nba-api-ea2ef5de0ea1.herokuapp.com/dataset' 
+                    # JSONPlaceholder API URL for NBA data
+    api_url = 'https://nba-api-ash-1-fc1674476d71.herokuapp.com/dataset' 
 
-    # Fetch data from the API and directly convert to DataFrame
+                    # Fetch data from the API and directly convert to DataFrame
     nba_data = fetch_data(api_url)
-    
-    # Initialize preprocessed_data
+                    
+                    # Initialize preprocessed_data
     preprocessed_data = preprocess_data(nba_data)
 
-    # Sidebar options
+                    # Sidebar options
     display_df = st.sidebar.selectbox("Display DataFrame", ["Select an option", "Orginal_dataframe", "pre_processed_data"], index=0, key='display_df')
     st.empty()
 
-    # Display dataframes or plots based on user selection
+                    # Display dataframes or plots based on user selection
     if display_df == "Orginal_dataframe":
         st.empty()  # Clear previous content
         st.write("## Original DataFrame")
@@ -249,23 +250,19 @@ def main():
 
     st.sidebar.header("Top Performers Categories")
     selected_category = st.sidebar.selectbox("Select a category:", ["Points", "Assists", "Rebounds", "Steals", "Blocks", "FG Percentage", "3P Percentage", "FT Percentage"])
-    
-    # Button to generate and display the plot
+                    
+                    # Button to generate and display the plot
     generate_plot_button = st.sidebar.button("Generate Top Performers Plot")
 
     if generate_plot_button:
-        st.sidebar.empty()  # Clear previous content
-        
-        # Generate the plot
+        st.sidebar.empty()
         top_performers_plot = generate_top_performers_plots(nba_data, selected_category)
-        
-        # Display the plot using st.pyplot
         st.pyplot(top_performers_plot)
 
     option = st.sidebar.selectbox("Plots:", ["Select an option", "Points", "Assists", "Scatter Plot"], index=0)
     st.empty()
 
-    # Display the selected information
+                    # Display the selected information
     if option == "Points":
         st.empty()  # Clear previous content
         st.subheader(f"Top 10 Players by Points:")
@@ -279,7 +276,7 @@ def main():
         st.subheader("Scatter Plot of AST vs PTS:")
         scatter_plot(preprocessed_data)
 
-    
+                    
     player1 = st.sidebar.selectbox("Select the first player:", preprocessed_data['Player'].unique())
     player2 = st.sidebar.selectbox("Select the second player:", preprocessed_data['Player'].unique())
 
@@ -287,12 +284,34 @@ def main():
     st.empty() 
 
     if display_chart:
-        st.sidebar.empty()  # Clear previous content
+        st.sidebar.empty()
         generate_player_comparison_plots(preprocessed_data, player1, player2)
+
+
+
+
+def main():
+    st.sidebar.title("Navigation")
+    page = st.sidebar.radio("Go to", ('Home', 'Stats', 'Live Score'))
+
+    if page == 'Home':
+        home_page()
+    elif page == 'Stats':
+        st.write("NBA Game STATS")
+    elif page == 'Live Score':
+        st.write("Live Score")
+
+
 
 
 if __name__ == "__main__":
     main()
+
+
+
+
+
+
 
 
 
