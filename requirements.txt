@@ -4,3 +4,4 @@ requests
 plotly
 seaborn
 matplotlib
+nba_api
