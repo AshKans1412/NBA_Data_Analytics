@@ -28,19 +28,18 @@ def live_page():
         obj = s3.get_object(Bucket=bucket_name, Key=file_key)
         match_data = json.loads(obj['Body'].read().decode('utf-8'))
     
-        # Display match details (assuming each file contains one match)
-        with st.container():
-            st.subheader(f"Match ID: {match_data['gameId']} - {match_data['gameCode']}")
+        # Use an expander for each match
+        with st.expander(f"Match ID: {match_data['gameId']} - {match_data['gameCode']}", expanded=False):
             col1, col2 = st.columns(2)
     
             with col1:
                 st.header("Home Team")
                 st.write(f"Team Name: {match_data['homeTeam']['teamName']}")
                 st.write(f"Score: {match_data['homeTeam']['score']}")
+                # Add more details as needed
     
             with col2:
                 st.header("Away Team")
                 st.write(f"Team Name: {match_data['awayTeam']['teamName']}")
                 st.write(f"Score: {match_data['awayTeam']['score']}")
-    
-            st.markdown("---")  # Separator line
+                # Add more details as needed
