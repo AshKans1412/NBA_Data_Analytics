@@ -49,7 +49,7 @@ def live_page():
             game_status, color = get_game_status(match_data['gameTimeUTC'])
     
             # Use markdown with custom styling for countdown or status message
-            st.markdown(f"<p style='color: {color};'>{game_status}</p>", unsafe_allow_html=True)
+            st.write(f"<p style='color: {color};'>{game_status}</p>", unsafe_allow_html=True)
     
             col1, col2 = st.columns(2)
     
