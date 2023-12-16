@@ -43,7 +43,8 @@ def live_page():
     
     # Initialize Streamlit app
     st.title('Game Details')
-    
+    if st.button('Refresh'):
+        st.experimental_rerun()
     # Process each JSON file
 
     for file_key in files:
