@@ -531,38 +531,49 @@ class ShotCharts:
 
 
 
-# New function for the NBA Stats Page
+
 def nba_stats_page():
     st.title("SHOT Charts Analysis")
 
     player_name = st.text_input("Enter the player's name:", '')
+    st.write("Here are some Players names: 'LeBron James', 'Luka Doncic'..")
 
     if player_name:
         player_info = NbaScraper.get_json_from_name(player_name)
         if player_info:
             player_id = player_info['id']
+            # Assume the format of the season identifier is 'Year-Year'
+            current_season = '2022-23'  # Set the season you're interested in
             career = NbaScraper.get_player_career(player_id)
+            
+            # Filter the career DataFrame for the current season
+            career = career[career['SEASON_ID'] == current_season]
+            
+            if career.empty:
+                st.write(f"No data available for {player_name} for the 2022-2023 season.")
+                return
+            
             team_ids = list(set(career['TEAM_ID']))
-            seasons = list(set(career['SEASON_ID']))
-            shot_data = NbaScraper.get_shot_data(player_id, team_ids, seasons)
+            shot_data = NbaScraper.get_shot_data(player_id, team_ids, [current_season])
 
             if not shot_data.empty:
-                st.write(f"Shot chart for {player_name}")
-                chart1 = ShotCharts.volume_chart(shot_data, player_name, seasons)
+                st.write(f"Shot chart for {player_name} for the 2022-2023 season")
+                chart1 = ShotCharts.volume_chart(shot_data, player_name, [current_season])
                 st.pyplot(chart1.figure)
 
-                chart2 = ShotCharts.volume_chart(shot_data, player_name, seasons, RA=False)
+                chart2 = ShotCharts.volume_chart(shot_data, player_name, [current_season], RA=False)
                 st.pyplot(chart2.figure)
 
-                chart3 = ShotCharts.frequency_chart(shot_data, player_name, seasons)
+                chart3 = ShotCharts.frequency_chart(shot_data, player_name, [current_season])
                 st.pyplot(chart3.figure)
 
-                chart4 = ShotCharts.makes_misses_chart(shot_data, player_name, seasons)
+                chart4 = ShotCharts.makes_misses_chart(shot_data, player_name, [current_season])
                 st.pyplot(chart4.figure)
             else:
-                st.write("No shot data available for the selected player and season.")
+                st.write("No shot data available for the selected player for the 2022-2023 season.")
         else:
             st.write(f"Player '{player_name}' not found.")
+
 
 
 
