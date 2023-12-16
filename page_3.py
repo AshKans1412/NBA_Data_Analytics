@@ -52,7 +52,7 @@ def live_page():
         match_data = json.loads(obj['Body'].read().decode('utf-8'))
     
         with st.expander(f"Match ID: {match_data['gameId']} - {match_data['gameCode']}", expanded=False):
-            game_status, color = get_game_status(match_data['gameTimeUTC'])
+            game_status, color = get_game_status(match_data['gameTimeUTC'],match_data['gameEt'])
     
             # Use markdown with custom styling for countdown or status message
             st.write(f"<p style='color: {color};'>{game_status}</p>", unsafe_allow_html=True)
