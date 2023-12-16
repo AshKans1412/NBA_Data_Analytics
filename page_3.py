@@ -4,17 +4,23 @@ import json
 from datetime import datetime, timezone
 
 # Function to calculate countdown or game status
-def get_game_status(game_time_utc):
-    current_time = datetime.now(timezone.utc)
+def get_game_status(game_time_utc, game_end_time_et):
+    current_time_utc = datetime.now(timezone.utc)
     game_time = datetime.fromisoformat(game_time_utc.replace("Z", "+00:00"))
-    if game_time > current_time:
-        time_diff = game_time - current_time
+    game_end_time = datetime.fromisoformat(game_end_time_et.replace("Z", "+00:00"))
+
+    if game_time > current_time_utc:
+        # Game has not started yet, calculate countdown
+        time_diff = game_time - current_time_utc
         hours, remainder = divmod(int(time_diff.total_seconds()), 3600)
         minutes, seconds = divmod(remainder, 60)
-        return f"Countdown: {hours}h {minutes}m {seconds}s", "green"
-    else:
+        return f"Countdown to Start: {hours}h {minutes}m {seconds}s", "blue"
+    elif game_end_time > current_time_utc:
+        # Game has started but not ended, indicate ongoing game
         return "Game is ongoing", "red"
-
+    else:
+        # Game has ended
+        return "Game has ended", "green"
 
 
 def live_page():
