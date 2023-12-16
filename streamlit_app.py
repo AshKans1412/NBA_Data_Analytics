@@ -344,7 +344,7 @@ class ShotCharts:
         
         def add_headshot(fig: plt.figure, id: int) -> plt.figure:
         # Using GitHub's raw content URL for the image
-            headshot_url = f"https://raw.githubusercontent.com/ubiratanfilho/HotShot/main/data/nba/raw/headshots/{id}.png"
+            headshot_url = f"https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/{id}.png"
             
             try:
                 response = requests.get(headshot_url)
@@ -579,13 +579,23 @@ def nba_stats_page():
 
 
 def home_page():
-    st.title("Welcome to the World of NBA Analytics")
-    # Fetch and preprocess data
+    st.title(" Welcome to the World of NBA Analytics ")
     api_url = 'https://nba-api-ash-1-fc1674476d71.herokuapp.com/dataset' 
     nba_data = fetch_data(api_url)
     preprocessed_data = preprocess_data(nba_data)
 
-    st.write("## DataFrames")
+    # Introduction section with text and image
+    st.write(
+        """
+        Explore in-depth player statistics, shot charts, and comparison analysis across various NBA Players & Seasons .
+        """
+    )
+    
+    # You can include some NBA related images using URLs or local files
+    st.image('https://static01.nyt.com/images/2017/07/12/sports/12SUMMERLEAGUE-web1/12SUMMERLEAGUE-web1-videoSixteenByNineJumbo1600.jpg', caption='NBA Analytics', use_column_width=True)
+
+    # Display buttons for showing original and preprocessed dataframes
+    st.write("## Explore DataFrames")
     if st.button('Show Original DataFrame'):
         st.write("### Original DataFrame")
         st.dataframe(nba_data)  # This will automatically adjust the height
@@ -594,31 +604,36 @@ def home_page():
         st.write("### Preprocessed DataFrame")
         st.dataframe(preprocessed_data) 
 
-    # Top Performers Section
-    st.header("Top Performers in Different Categories")
-    st.write("Please Choose any One Category")
+    # Section for Top Performers with dynamically generated buttons
+    st.write("## Top Performers in Different Categories")
+    st.write("Choose any one category to find out the top performers")
+    col1, col2, col3 = st.columns(3)
     categories = ["Points", "Assists", "Rebounds", "Steals", "Blocks", "FG Percentage", "3P Percentage", "FT Percentage"]
+    for i, category in enumerate(categories):
+        with col1 if i % 3 == 0 else col2 if i % 3 == 1 else col3:
+            if st.button(category):
+                top_performers_plot = generate_top_performers_plots(nba_data, category)
+                st.pyplot(top_performers_plot, use_container_width=True)
 
-    for category in categories:
-        if st.button(category):
-            top_performers_plot = generate_top_performers_plots(nba_data, category)
-            st.pyplot(top_performers_plot, use_container_width=True)  # Adjusting for full width
-
-    # Scatter Plot Section
-    st.subheader("Top NBA Players as Per Different Positions :")
+    # Section for Scatter Plot of Players
+    st.write("## Scatter Plot Analysis")
+    st.write("Top NBA Players as Per Different Positions:")
     scatter_plot(preprocessed_data)
 
     # Player Comparison Section
-    st.header("Player Comparison")
+    st.write("## Compare Players Performances")
     col1, col2 = st.columns(2)
-    player1 = col1.selectbox("Please select the first player:", preprocessed_data['Player'].unique(), key='player1')
-    player2 = col2.selectbox("Please select the second player:", preprocessed_data['Player'].unique(), key='player2')
+    with col1:
+        player1 = st.selectbox("Select the first player:", preprocessed_data['Player'].unique(), key='player1')
+    with col2:
+        player2 = st.selectbox("Select the second player:", preprocessed_data['Player'].unique(), key='player2')
 
-    if st.button("Compare Player Stats"):
+    if st.button("Run Player Comparison"):
         generate_player_comparison_plots(preprocessed_data, player1, player2)
 
-
-
+    # Footer with disclaimer
+    st.markdown("---")
+    
 
 
 def main():
@@ -645,23 +660,5 @@ def main():
         st.write("Live Score")
 
 if __name__ == "__main__":
+    st.set_page_config(layout="wide")
     main()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
