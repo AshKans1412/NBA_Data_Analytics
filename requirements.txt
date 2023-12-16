@@ -5,3 +5,4 @@ plotly
 seaborn
 matplotlib
 nba_api
+boto3
