@@ -13,7 +13,7 @@ from nba_api.stats.endpoints import shotchartdetail, playercareerstats
 from nba_api.stats.static import players, teams
 import plotly.express as px
 from PIL import Image, UnidentifiedImageError
-
+from page_3 import live_data
 
 # Function to fetch data from the API
 def fetch_data(api_url):
@@ -658,6 +658,7 @@ def main():
         st.write('Player Stats')  # Calling the NBA stats page function
     elif page == 'Live Score':
         st.write("Live Score")
+        live_data()
 
 if __name__ == "__main__":
     st.set_page_config(layout="wide")
