@@ -3,12 +3,15 @@ import requests
 import difflib
 import matplotlib.pyplot as plt
 import plotly.graph_objects as go
-
+from io import BytesIO
 import streamlit as st
 import boto3
 import json
 from datetime import datetime, timezone
 import plotly.express as px
+from PIL import Image
+import matplotlib.pyplot as plt
+
 
 # Function to calculate countdown or game status
 def get_game_status(game_time_utc, game_end_time_et):
@@ -85,20 +88,18 @@ def get_player_image(Name):
 
 
 def plot_image_from_url(image_url):
-    # Create a figure with Image trace
-    fig = go.Figure()
 
-    # Add Image trace
-    fig.add_trace(go.Image(source=image_url))
+    response = requests.get(image_url)
+    response.raise_for_status()  # Raise an error for bad status codes
 
-    # Update layout (you can adjust the layout as needed)
-    fig.update_layout(
-        xaxis_showgrid=False, yaxis_showgrid=False,
-        xaxis_zeroline=False, yaxis_zeroline=False,
-        xaxis_visible=False, yaxis_visible=False
-    )
+    image = Image.open(BytesIO(response.content))
 
+    # Plotting the image using Matplotlib
+    fig, ax = plt.subplots()
+    ax.imshow(image)
+    ax.axis('off')  # Hide the axis
     return fig
+
     
 def get_period_scores(team_data):
     return [period['score'] for period in team_data['periods']]
