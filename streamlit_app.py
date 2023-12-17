@@ -13,7 +13,10 @@ from nba_api.stats.endpoints import shotchartdetail, playercareerstats
 from nba_api.stats.static import players, teams
 import plotly.express as px
 from PIL import Image, UnidentifiedImageError
-from page_3 import live_page
+from requests.exceptions import RequestException
+from requests.adapters import HTTPAdapter
+from requests.packages.urllib3.util.retry import Retry
+
 
 # Function to fetch data from the API
 def fetch_data(api_url):
@@ -214,16 +217,15 @@ def generate_top_performers_plots(df, category):
     column_name = category_mapping[category]
     top_performers = df[['Player', column_name]].sort_values(by=column_name, ascending=False).head(10)
 
-    # Setting up the aesthetics for the plots
     sns.set_style("whitegrid")
-    plt.figure(figsize=(16, 12))
+    plt.figure(figsize=(20, 18))
 
     # Plotting the top performers
     plt.subplot(3, 3, 1)
     sns.barplot(x=column_name, y='Player', data=top_performers, palette='viridis')
-    plt.title(f'Top {category}')
-
-    plt.suptitle(f'Top Performers in {category}', fontsize=20)
+    
+    # Centering the title
+    plt.title(f'Top Performers in {category}', loc='center', fontsize=18)
     plt.tight_layout()
 
     # Return the Matplotlib figure
@@ -234,6 +236,14 @@ def generate_top_performers_plots(df, category):
 class NbaScraper:
     """ Class to scrape data from the NBA official website.
     """
+
+    @staticmethod
+    def requests_session():
+        session = requests.Session()
+        retries = Retry(total=5, backoff_factor=1, status_forcelist=[ 502, 503, 504 ])
+        session.mount('https://', HTTPAdapter(max_retries=retries))
+        return session
+
     @staticmethod
     def get_json_from_name(name: str, is_player=True) -> int:
         """ Get the json of a player or team from his name
@@ -250,28 +260,24 @@ class NbaScraper:
     
     @staticmethod
     def get_player_career(player_id: int) -> list:
-        """ Get the career of a player from his id
-        """
-        from nba_api.stats.endpoints import playercareerstats
+        """ Get the career of a player from his id. """
         career = playercareerstats.PlayerCareerStats(player_id=player_id)
         return career.get_data_frames()[0]
-    
+
     @staticmethod
     def get_shot_data(id: int, team_ids: list, seasons: list) -> list:
-        """ Get the shot data of a player from his id and seasons
-        """
-        from nba_api.stats.endpoints import shotchartdetail
+        """ Get the shot data of a player from his id and seasons. """
+        session = NbaScraper.requests_session()
         df = pd.DataFrame()
         for season in seasons:
             for team in team_ids:
                 shot_data = shotchartdetail.ShotChartDetail(
-                    team_id=team,
-                    player_id=id,
+                    team_id=team, player_id=id,
                     context_measure_simple='FGA',
-                    season_nullable=season
+                    season_nullable=season,
+                    timeout=10 
                 )
                 df = pd.concat([df, shot_data.get_data_frames()[0]])
-        
         return df
     
     @staticmethod
@@ -290,7 +296,6 @@ class NbaScraper:
             """ Get the headshot of a player from his id
             """
             from nba_api.stats.static import players
-            import requests
             import shutil
             
             url = f'https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/{id}.png'
@@ -308,6 +313,9 @@ class NbaScraper:
         ids = NbaScraper.get_all_ids(only_active=only_active)
         for id in ids:
             NbaScraper.get_player_headshot(id)
+
+
+
 
 
 class ShotCharts:
@@ -343,7 +351,7 @@ class ShotCharts:
                 return ax
         
         def add_headshot(fig: plt.figure, id: int) -> plt.figure:
-        # Using GitHub's raw content URL for the image
+       
             headshot_url = f"https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/{id}.png"
             
             try:
@@ -579,21 +587,10 @@ def nba_stats_page():
 
 
 def home_page():
-    st.title(" Welcome to the World of NBA Analytics ")
+    st.title(" NBA Visualizations ")
     api_url = 'https://nba-api-ash-1-fc1674476d71.herokuapp.com/dataset' 
     nba_data = fetch_data(api_url)
     preprocessed_data = preprocess_data(nba_data)
-
-    # Introduction section with text and image
-    st.write(
-        """
-        Explore in-depth player statistics, shot charts, and comparison analysis across various NBA Players & Seasons .
-        """
-    )
-    
-    # You can include some NBA related images using URLs or local files
-    st.image('https://static01.nyt.com/images/2017/07/12/sports/12SUMMERLEAGUE-web1/12SUMMERLEAGUE-web1-videoSixteenByNineJumbo1600.jpg', caption='NBA Analytics', use_column_width=True)
-
     # Display buttons for showing original and preprocessed dataframes
     st.write("## Explore DataFrames")
     if st.button('Show Original DataFrame'):
@@ -607,13 +604,12 @@ def home_page():
     # Section for Top Performers with dynamically generated buttons
     st.write("## Top Performers in Different Categories")
     st.write("Choose any one category to find out the top performers")
-    col1, col2, col3 = st.columns(3)
-    categories = ["Points", "Assists", "Rebounds", "Steals", "Blocks", "FG Percentage", "3P Percentage", "FT Percentage"]
-    for i, category in enumerate(categories):
-        with col1 if i % 3 == 0 else col2 if i % 3 == 1 else col3:
-            if st.button(category):
-                top_performers_plot = generate_top_performers_plots(nba_data, category)
-                st.pyplot(top_performers_plot, use_container_width=True)
+    selected_category = st.selectbox("Select a Category:", ["Points", "Assists", "Rebounds", "Steals", "Blocks", "FG Percentage", "3P Percentage", "FT Percentage"])
+
+    if st.button("Show Top Performers"):
+        top_performers_plot = generate_top_performers_plots(nba_data, selected_category)
+        st.pyplot(top_performers_plot, use_container_width=True)
+
 
     # Section for Scatter Plot of Players
     st.write("## Scatter Plot Analysis")
@@ -637,28 +633,27 @@ def home_page():
 
 
 def main():
-    st.title("NBA")
-    
-    # Custom CSS to align the radio buttons to the right
-    st.markdown("""
-        <style>
-            div.row-widget.stRadio > div{flex-direction:row;}
-            label{display:block;}
-        </style>
-        """, unsafe_allow_html=True)
-
-    # Place the radio buttons in a line
-    page = st.radio("", ('Home', 'Stats', 'Live Score'), horizontal=True)
+    page = st.sidebar.radio("Explore ", ['Home','Visualizations', 'Stats', 'Live Score'])
 
     # Content based on page selection
-    if page == 'Home':
+    if page =='Home':
+        st.title("Welcome to the World of NBA Analytics")
+        st.write(
+        """
+        Explore in-depth player statistics, shot charts, and comparison analysis across various NBA Players & Seasons.
+        """
+        )
+    
+         # Displaying an NBA image with reduced size
+        st.image('https://static01.nyt.com/images/2017/07/12/sports/12SUMMERLEAGUE-web1/12SUMMERLEAGUE-web1-videoSixteenByNineJumbo1600.jpg', width=800, caption='NBA Analytics') 
+        
+    elif page == 'Visualizations':
         home_page()
         nba_stats_page()
     elif page == 'Stats':
         st.write('Player Stats')  # Calling the NBA stats page function
     elif page == 'Live Score':
         st.write("Live Score")
-        live_page()
 
 if __name__ == "__main__":
     st.set_page_config(layout="wide")
