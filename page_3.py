@@ -71,17 +71,17 @@ def live_page(source='local'):
 
         home_team = match_data['homeTeam']
         away_team = match_data['awayTeam']
-        expander_title =  f"""
-    <div>
-        <span style='font-size: larger;'><strong>{home_team['teamName']}</strong></span><br>
-        <span style='font-size: smaller;'>{home_team['teamCity']}</span>
-    </div>
-    vs 
-    <div>
-        <span style='font-size: larger;'><strong>{away_team['teamName']}</strong></span><br>
-        <span style='font-size: smaller;'>{away_team['teamCity']}</span>
-    </div>
-    """
+        expander_title = f"""
+        <div>
+            <span style='font-size: larger;'><strong>{home_team['teamName']}</strong></span><br>
+            <span style='font-size: smaller;'>{home_team['teamCity']}</span>
+        </div>
+        vs 
+        <div>
+            <span style='font-size: larger;'><strong>{away_team['teamName']}</strong></span><br>
+            <span style='font-size: smaller;'>{away_team['teamCity']}</span>
+        </div>
+        """
         with st.expander(expander_title, expanded=False):    
             
             
