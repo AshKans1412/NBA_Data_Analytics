@@ -29,6 +29,31 @@ def get_game_status(game_time_utc, game_end_time_et):
         # Game has ended
         return "Game has ended", "green"
 
+def draw_radial_chart(leader_data, title):
+    categories = ['Points', 'Rebounds', 'Assists']
+    values = [leader_data['points'], leader_data['rebounds'], leader_data['assists']]
+
+    fig = go.Figure()
+
+    fig.add_trace(go.Scatterpolar(
+        r=values,
+        theta=categories,
+        fill='toself',
+        name=title
+    ))
+
+    fig.update_layout(
+        polar=dict(
+            radialaxis=dict(
+                visible=True,
+                range=[0, max(values) + 5]  # Adjust the range based on your data
+            )),
+        showlegend=False,
+        title=title
+    )
+
+    return fig
+
 def get_player_image(Name):
 # List of all players from the API
     api_player_names = requests.get("https://nba-api-ash-1-fc1674476d71.herokuapp.com/players").json()
@@ -52,7 +77,7 @@ def get_player_image(Name):
     # API endpoint
     api_url_2 = f"https://nba-api-ash-1-fc1674476d71.herokuapp.com/get_images/{player_name_encoded}"
     response_2 = requests.get(api_url_2)
-    image_url = response_2.json()   #["image"]
+    image_url = response_2.json()["image"]
 
     return image_url
 
@@ -156,9 +181,9 @@ def live_page(source='local'):
             col1, col2 = st.columns(2)
     
             with col1:
-                st.header("Home Team")
-                st.write(f"Team Name: {match_data['homeTeam']['teamName']}")
-                st.write(f"Score: {match_data['homeTeam']['score']}")
+                st.columns(3)[1].header("Home Team")
+                st.columns(3)[1].write(f"Team Name: {match_data['homeTeam']['teamName']}")
+                st.columns(3)[1].write(f"Score: {match_data['homeTeam']['score']}")
                 home_team_wins = home_team['wins']
                 home_team_losses = home_team['losses']
 
@@ -167,26 +192,27 @@ def live_page(source='local'):
                     st.plotly_chart(draw_pie_chart(home_team_wins, home_team_losses, home_team['teamName']))
                     Home_Leader = match_data["gameLeaders"]["homeLeaders"]["name"]
                     st.write(Home_Leader)
+                    
                     image_url = get_player_image(Home_Leader)
-
-
-                    st.write(image_url)
-                    #image_fig = plot_image_from_url(image_url)
+                    image_fig = plot_image_from_url(image_url)
 
                     # Display the plot in Streamlit
-                    #st.plotly_chart(image_fig)
+                    st.plotly_chart(image_fig)
 
 
                 with col1_2:
                     # Draw line charts
                     home_team_scores = get_period_scores(home_team)
                     st.plotly_chart(draw_line_chart(home_team_scores, home_team['teamName']))
+                    home_chart = draw_radial_chart(home_leader, f"Home Leader: {home_leader['name']}")
+                    st.plotly_chart(home_chart)
+
 
         
             with col2:
-                st.header("Away Team")
-                st.write(f"Team Name: {match_data['awayTeam']['teamName']}")
-                st.write(f"Score: {match_data['awayTeam']['score']}")
+                st.columns(3)[1].header("Away Team")
+                st.columns(3)[1].write(f"Team Name: {match_data['awayTeam']['teamName']}")
+                st.columns(3)[1].write(f"Score: {match_data['awayTeam']['score']}")
                 away_team_wins = away_team['wins']
                 away_team_losses = away_team['losses']
                 col2_1, col2_2 = st.columns(2)
@@ -195,19 +221,20 @@ def live_page(source='local'):
                     st.plotly_chart(draw_pie_chart(away_team_wins, away_team_losses, away_team['teamName']))
                     Away_Leader = match_data["gameLeaders"]["awayLeaders"]["name"]
                     st.write(Away_Leader)
+                    
                     image_url = get_player_image(Away_Leader)
-
-                    #st.write(image_url)
-
-                    #image_fig = plot_image_from_url(image_url)
+                    image_fig = plot_image_from_url(image_url)
 
                     # Display the plot in Streamlit
-                    #st.plotly_chart(image_fig)
+                    st.plotly_chart(image_fig)
 
                 with col2_2:
                     # Draw line charts
                     away_team_scores = get_period_scores(away_team)
                     st.plotly_chart(draw_line_chart(away_team_scores, away_team['teamName']))
+                    away_chart = draw_radial_chart(away_leader, f"Away Leader: {away_leader['name']}")
+                    st.plotly_chart(away_chart)
+
     
                 
 
