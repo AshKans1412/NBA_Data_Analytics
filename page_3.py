@@ -97,7 +97,7 @@ def plot_image_from_url(image_url):
     image = Image.open(BytesIO(response.content))
 
     # Plotting the image using Matplotlib
-    fig, ax = plt.subplots(figsize=(5, 3))    
+    fig, ax = plt.subplots(figsize=(3, 2))    
     ax.imshow(image)
     ax.axis('off')  # Hide the axis
     return fig
