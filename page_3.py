@@ -204,6 +204,7 @@ def live_page(source='local'):
                     # Draw line charts
                     home_team_scores = get_period_scores(home_team)
                     st.plotly_chart(draw_line_chart(home_team_scores, home_team['teamName']))
+                    home_leader = match_data["gameLeaders"]["homeLeaders"]
                     home_chart = draw_radial_chart(home_leader, f"Home Leader: {home_leader['name']}")
                     st.plotly_chart(home_chart)
 
@@ -232,6 +233,9 @@ def live_page(source='local'):
                     # Draw line charts
                     away_team_scores = get_period_scores(away_team)
                     st.plotly_chart(draw_line_chart(away_team_scores, away_team['teamName']))
+                    
+                    away_leader = match_data["gameLeaders"]["awayLeaders"]
+
                     away_chart = draw_radial_chart(away_leader, f"Away Leader: {away_leader['name']}")
                     st.plotly_chart(away_chart)
 
