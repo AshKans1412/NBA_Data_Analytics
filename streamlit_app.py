@@ -643,9 +643,7 @@ def main():
         Explore in-depth player statistics, shot charts, and comparison analysis across various NBA Players & Seasons.
         """
         )
-    
-         # Displaying an NBA image with reduced size
-        st.image('https://static01.nyt.com/images/2017/07/12/sports/12SUMMERLEAGUE-web1/12SUMMERLEAGUE-web1-videoSixteenByNineJumbo1600.jpg', width=800, caption='NBA Analytics') 
+        st.image('https://static01.nyt.com/images/2017/07/12/sports/12SUMMERLEAGUE-web1/12SUMMERLEAGUE-web1-videoSixteenByNineJumbo1600.jpg', use_column_width=True, caption='NBA Analytics') 
         
     elif page == 'Visualizations':
         home_page()
