@@ -200,7 +200,7 @@ def live_page(source='local'):
                     image_fig = plot_image_from_url(image_url)
 
                     # Display the plot in Streamlit
-                    st.plotly_chart(image_fig)
+                    st.pyplot(image_fig)
 
 
                 with col1_2:
@@ -209,7 +209,7 @@ def live_page(source='local'):
                     st.plotly_chart(draw_line_chart(home_team_scores, home_team['teamName']))
                     home_leader = match_data["gameLeaders"]["homeLeaders"]
                     home_chart = draw_radial_chart(home_leader, f"Home Leader: {home_leader['name']}")
-                    st.pyplot(home_chart)
+                    st.plotly_chart(home_chart)
 
 
         
