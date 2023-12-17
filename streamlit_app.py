@@ -16,7 +16,7 @@ from PIL import Image, UnidentifiedImageError
 from requests.exceptions import RequestException
 from requests.adapters import HTTPAdapter
 from requests.packages.urllib3.util.retry import Retry
-
+from page_3 import live_page
 
 # Function to fetch data from the API
 def fetch_data(api_url):
@@ -652,6 +652,7 @@ def main():
         st.write('Player Stats')  # Calling the NBA stats page function
     elif page == 'Live Score':
         st.write("Live Score")
+        live_page()
 
 if __name__ == "__main__":
     st.set_page_config(layout="wide")
