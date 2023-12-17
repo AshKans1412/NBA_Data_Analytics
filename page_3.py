@@ -70,7 +70,7 @@ def live_page(source='local'):
 
         home_team = match_data['homeTeam']
         away_team = match_data['awayTeam']
-        expander_title = f"{match_data['homeTeam']['teamName'].upper()} ({match_data['homeTeam']['teamCity'].lower()}) vs {match_data['awayTeam']['teamName'].upper()} ({match_data['awayTeam']['teamCity'].lower()})")
+        expander_title = f"{home_team['teamName'].upper()} ({home_team['teamCity'].lower()}) vs {away_team['teamName'].upper()} ({away_team['teamCity'].lower()})"
         with st.expander(expander_title, expanded=False):    
             
             
