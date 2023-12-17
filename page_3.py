@@ -186,6 +186,13 @@ def live_page(source='local'):
             col1, col2 = st.columns([2,2])
     
             with col1:
+                
+                team_abbreviation = home_team["teamTricode"]
+                github_url = f"https://raw.githubusercontent.com/Kaushiknb11/Basketball_Analytics/main/Teams/{team_abbreviation}.png"
+
+                image_fig = plot_image_from_url(github_url)
+                st.pyplot(image_fig)   
+                
                 st.columns(3)[1].header("Home Team")
                 st.columns(3)[1].write(f"Team Name: {match_data['homeTeam']['teamName']}")
                 st.columns(3)[1].write(f"Score: {match_data['homeTeam']['score']}")
@@ -194,6 +201,11 @@ def live_page(source='local'):
 
                 col1_1, col1_2 = st.columns(2)
                 with col1_1:
+                    team_abbreviation = home_team["teamTricode"]
+                    github_url = f"https://raw.githubusercontent.com/Kaushiknb11/Basketball_Analytics/main/Teams/{team_abbreviation}.png"
+                    
+                    image_fig = plot_image_from_url(github_url)
+                    st.pyplot(image_fig) 
                     st.plotly_chart(draw_pie_chart(home_team_wins, home_team_losses, home_team['teamName']))
                     Home_Leader = match_data["gameLeaders"]["homeLeaders"]["name"]
                     #st.write(Home_Leader)
@@ -206,6 +218,11 @@ def live_page(source='local'):
 
 
                 with col1_2:
+
+                    st.columns(3)[1].header("Home Team")
+                    st.columns(3)[1].write(f"Team Name: {match_data['homeTeam']['teamName']}")
+                    st.columns(3)[1].write(f"Score: {match_data['homeTeam']['score']}")
+                    
                     # Draw line charts
                     home_team_scores = get_period_scores(home_team)
                     st.plotly_chart(draw_line_chart(home_team_scores, home_team['teamName']))
