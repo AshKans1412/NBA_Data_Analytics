@@ -231,14 +231,16 @@ def live_page(source='local'):
 
         
             with col2:
-                st.columns(3)[1].header("Away Team")
-                st.columns(3)[1].write(f"Team Name: {match_data['awayTeam']['teamName']}")
-                st.columns(3)[1].write(f"Score: {match_data['awayTeam']['score']}")
+                team_abbreviation = away_team["teamTricode"]
+                github_url = f"https://raw.githubusercontent.com/Kaushiknb11/Basketball_Analytics/main/Teams/{team_abbreviation}.png"
                 away_team_wins = away_team['wins']
                 away_team_losses = away_team['losses']
                 col2_1, col2_2 = st.columns(2)
                 
                 with col2_1:
+                    
+                    image_fig = plot_image_from_url(github_url)
+                    st.pyplot(image_fig) 
                     st.plotly_chart(draw_pie_chart(away_team_wins, away_team_losses, away_team['teamName']))
                     Away_Leader = match_data["gameLeaders"]["awayLeaders"]["name"]
                     #st.write(Away_Leader)
@@ -250,6 +252,9 @@ def live_page(source='local'):
                     st.pyplot(image_fig)
 
                 with col2_2:
+                    st.header("Away Team")
+                    st.write(f"Team Name: {match_data['awayTeam']['teamName']}")
+                    st.write(f"Score: {match_data['awayTeam']['score']}")
                     # Draw line charts
                     away_team_scores = get_period_scores(away_team)
                     st.plotly_chart(draw_line_chart(away_team_scores, away_team['teamName']))
