@@ -34,23 +34,6 @@ def get_game_status(game_time_utc, game_end_time_et):
 
 
 
-def create_divider():
-    # Use markdown with custom CSS to create a divider
-    st.markdown(
-        """
-        <style>
-        .divider {
-            border-left: 2px solid #fff; 
-            height: 400px;  # Adjust the height as needed
-        }
-        </style>
-        <div class="divider"></div>
-        """, 
-        unsafe_allow_html=True
-    )
-
-
-
 def draw_radial_chart(leader_data, title):
     categories = ['Points', 'Rebounds', 'Assists']
     values = [leader_data['points'], leader_data['rebounds'], leader_data['assists']]
@@ -114,7 +97,7 @@ def plot_image_from_url(image_url):
     image = Image.open(BytesIO(response.content))
 
     # Plotting the image using Matplotlib
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(figsize=(5, 3))    
     ax.imshow(image)
     ax.axis('off')  # Hide the axis
     return fig
