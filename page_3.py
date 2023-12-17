@@ -69,37 +69,26 @@ def live_page(source='local'):
             with open(os.path.join(local_folder_path, file_key), 'r') as file:
                 match_data = json.load(file)
 
-        home_team = match_data['homeTeam']
-        away_team = match_data['awayTeam']
-        expander_title = f"""
-        <div>
-            <span style='font-size: larger;'><strong>{home_team['teamName']}</strong></span><br>
-            <span style='font-size: smaller;'>{home_team['teamCity']}</span>
-        </div>
-        vs 
-        <div>
-            <span style='font-size: larger;'><strong>{away_team['teamName']}</strong></span><br>
-            <span style='font-size: smaller;'>{away_team['teamCity']}</span>
-        </div>
-        """
-        with st.expander(expander_title, expanded=False):    
-            
-            
-            game_status, color = get_game_status(match_data['gameTimeUTC'], match_data['gameEt'])
-    
-            # Use markdown with custom styling for countdown or status message
-            st.write(f"<p style='color: {color};'>{game_status}</p>", unsafe_allow_html=True)
-    
-            col1, col2 = st.columns(2)
-    
-            with col1:
-                st.header("Home Team")
-                st.write(f"Team Name: {match_data['homeTeam']['teamName']}")
-                st.write(f"Score: {match_data['homeTeam']['score']}")
-    
-            with col2:
-                st.header("Away Team")
-                st.write(f"Team Name: {match_data['awayTeam']['teamName']}")
-                st.write(f"Score: {match_data['awayTeam']['score']}")
-    
-            st.markdown("---")  # Separator line
+    for i in range(0, len(match_data), num_columns):
+        cols = st.columns(num_columns)
+        for j in range(num_columns):
+            if i + j < len(match_data):
+                match = match_data[i + j]
+
+                with cols[j].expander(f"{match['homeTeam']['teamName']} vs {match['awayTeam']['teamName']}", expanded=False):
+                    game_status, color = get_game_status(match['gameTimeUTC'], match['gameEt'])
+
+                    st.markdown(f"<p style='color: {color};'>{game_status}</p>", unsafe_allow_html=True)
+
+                    col1, col2 = st.columns(2)
+                    with col1:
+                        st.header("Home Team")
+                        st.write(f"Team Name: {match['homeTeam']['teamName']}")
+                        st.write(f"Score: {match['homeTeam']['score']}")
+
+                    with col2:
+                        st.header("Away Team")
+                        st.write(f"Team Name: {match['awayTeam']['teamName']}")
+                        st.write(f"Score: {match['awayTeam']['score']}")
+
+                    st.markdown("---")  # Separator line
