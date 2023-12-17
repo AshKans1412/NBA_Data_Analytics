@@ -32,6 +32,25 @@ def get_game_status(game_time_utc, game_end_time_et):
         # Game has ended
         return "Game has ended", "green"
 
+
+
+def create_divider():
+    # Use markdown with custom CSS to create a divider
+    st.markdown(
+        """
+        <style>
+        .divider {
+            border-left: 2px solid #000; 
+            height: 100px;  # Adjust the height as needed
+        }
+        </style>
+        <div class="divider"></div>
+        """, 
+        unsafe_allow_html=True
+    )
+
+
+
 def draw_radial_chart(leader_data, title):
     categories = ['Points', 'Rebounds', 'Assists']
     values = [leader_data['points'], leader_data['rebounds'], leader_data['assists']]
@@ -194,7 +213,7 @@ def live_page(source='local'):
                 with col1_1:
                     st.plotly_chart(draw_pie_chart(home_team_wins, home_team_losses, home_team['teamName']))
                     Home_Leader = match_data["gameLeaders"]["homeLeaders"]["name"]
-                    st.write(Home_Leader)
+                    #st.write(Home_Leader)
                     
                     image_url = get_player_image(Home_Leader)
                     image_fig = plot_image_from_url(image_url)
@@ -211,6 +230,8 @@ def live_page(source='local'):
                     home_chart = draw_radial_chart(home_leader, f"Home Leader: {home_leader['name']}")
                     st.plotly_chart(home_chart)
 
+            create_divider()
+
 
         
             with col2:
@@ -224,7 +245,7 @@ def live_page(source='local'):
                 with col2_1:
                     st.plotly_chart(draw_pie_chart(away_team_wins, away_team_losses, away_team['teamName']))
                     Away_Leader = match_data["gameLeaders"]["awayLeaders"]["name"]
-                    st.write(Away_Leader)
+                    #st.write(Away_Leader)
                     
                     image_url = get_player_image(Away_Leader)
                     image_fig = plot_image_from_url(image_url)
