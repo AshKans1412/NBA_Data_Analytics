@@ -41,7 +41,7 @@ def create_divider():
         <style>
         .divider {
             border-left: 2px solid #fff; 
-            height: 100px;  # Adjust the height as needed
+            height: 400px;  # Adjust the height as needed
         }
         </style>
         <div class="divider"></div>
@@ -200,7 +200,7 @@ def live_page(source='local'):
             # Use markdown with custom styling for countdown or status message
             st.write(f"<p style='color: {color};'>{game_status}</p>", unsafe_allow_html=True)
     
-            col1, col2 = st.columns(2)
+            col1, col0, col2 = st.columns(3)
     
             with col1:
                 st.columns(3)[1].header("Home Team")
@@ -230,7 +230,8 @@ def live_page(source='local'):
                     home_chart = draw_radial_chart(home_leader, f"Home Leader: {home_leader['name']}")
                     st.plotly_chart(home_chart)
 
-            create_divider()
+            with col0:
+                create_divider()
 
 
         
