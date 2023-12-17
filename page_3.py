@@ -219,6 +219,9 @@ def live_page(source='local'):
                     st.write(f"Team Name: {match_data['homeTeam']['teamName']}")
                     st.write(f"Score: {match_data['homeTeam']['score']}")
                     
+                    st.text("")
+                    st.text("")
+                    
                     # Draw line charts
                     home_team_scores = get_period_scores(home_team)
                     st.plotly_chart(draw_line_chart(home_team_scores, home_team['teamName']))
