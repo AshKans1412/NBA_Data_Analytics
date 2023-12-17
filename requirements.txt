@@ -6,3 +6,6 @@ seaborn
 matplotlib
 nba_api
 boto3
+matplotlib
+Pillow 
+requests 
