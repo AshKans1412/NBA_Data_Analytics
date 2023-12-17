@@ -74,7 +74,7 @@ def live_page(source='local'):
 
         # Modify expander title to include game status
         expander_title = f"{home_team['teamName']} vs {away_team['teamName']} - {game_status}"
-         with st.expander(expander_title, expanded=False):    
+        with st.expander(expander_title, expanded=False):    
             
             
             #game_status, color = get_game_status(match_data['gameTimeUTC'], match_data['gameEt'])
