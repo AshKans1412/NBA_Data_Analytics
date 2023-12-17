@@ -69,7 +69,7 @@ def live_page(source='local'):
             with open(os.path.join(local_folder_path, file_key), 'r') as file:
                 match_data = json.load(file)
 
-        with st.expander(f"{match_data['homeTeam']['teamName'].upper()} ({match_data['homeTeam']['teamCity'].lower()}) vs {match_data['awayTeam']['teamName'].upper()} ({match_data['awayTeam']['teamCity'].lower()})", expanded=False):
+        with st.expander(f"{match_data['homeTeam']['teamName'].upper()} ({match_data['homeTeam']['teamCity'].lower()}) vs {match_data['awayTeam']['teamName'].upper()} ({match_data['awayTeam']['teamCity'].lower()})"):
             game_status, color = get_game_status(match_data['gameTimeUTC'], match_data['gameEt'])
     
             # Use markdown with custom styling for countdown or status message
