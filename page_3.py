@@ -1,4 +1,9 @@
 import os
+import requests
+import difflib
+import matplotlib.pyplot as plt
+import plotly.graph_objects as go
+
 import streamlit as st
 import boto3
 import json
@@ -24,6 +29,50 @@ def get_game_status(game_time_utc, game_end_time_et):
         # Game has ended
         return "Game has ended", "green"
 
+def get_player_image(Name):
+# List of all players from the API
+    api_player_names = requests.get("https://nba-api-ash-1-fc1674476d71.herokuapp.com/players").json()
+    
+    # Get player name from the user
+    user_input = Name
+    
+    # Function to find the closest match using difflib
+    def find_closest_match(user_input, candidate_list):
+        matches = difflib.get_close_matches(user_input, candidate_list)
+        if matches:
+            return matches[0]
+        else:
+            return None
+    
+    # Find the closest match in the API player names
+    closest_match = find_closest_match(user_input, api_player_names)
+    # Replace spaces with "%20" for URL encoding
+    player_name_encoded = closest_match.replace(" ", "%20") if closest_match else None
+    
+    # API endpoint
+    api_url_2 = f"https://nba-api-ash-1-fc1674476d71.herokuapp.com/get_images/{player_name_encoded}"
+    response_2 = requests.get(api_url_2)
+    image_url = response_2.json()["image"]
+
+    return image_url
+
+
+def plot_image_from_url(image_url):
+    # Create a figure with Image trace
+    fig = go.Figure()
+
+    # Add Image trace
+    fig.add_trace(go.Image(source=image_url))
+
+    # Update layout (you can adjust the layout as needed)
+    fig.update_layout(
+        xaxis_showgrid=False, yaxis_showgrid=False,
+        xaxis_zeroline=False, yaxis_zeroline=False,
+        xaxis_visible=False, yaxis_visible=False
+    )
+
+    return fig
+    
 def get_period_scores(team_data):
     return [period['score'] for period in team_data['periods']]
 
@@ -118,6 +167,12 @@ def live_page(source='local'):
                     st.plotly_chart(draw_pie_chart(home_team_wins, home_team_losses, home_team['teamName']))
                     Home_Leader = match_data["gameLeaders"]["homeLeaders"]["name"]
                     st.write(Home_Leader)
+                    image_url = get_player_image(Home_Leader)
+                    image_fig = plot_image_from_url(image_url)
+
+                    # Display the plot in Streamlit
+                    st.plotly_chart(image_fig)
+
 
                 with col1_2:
                     # Draw line charts
@@ -137,6 +192,11 @@ def live_page(source='local'):
                     st.plotly_chart(draw_pie_chart(away_team_wins, away_team_losses, away_team['teamName']))
                     Away_Leader = match_data["gameLeaders"]["awayLeaders"]["name"]
                     st.write(Away_Leader)
+                    image_url = get_player_image(Away_Leader)
+                    image_fig = plot_image_from_url(image_url)
+
+                    # Display the plot in Streamlit
+                    st.plotly_chart(image_fig)
 
                 with col2_2:
                     # Draw line charts
