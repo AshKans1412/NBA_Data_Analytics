@@ -197,7 +197,7 @@ def live_page(source='local'):
                     st.write(Away_Leader)
                     image_url = get_player_image(Away_Leader)
 
-                    st.write(image_url)
+                    #st.write(image_url)
 
                     #image_fig = plot_image_from_url(image_url)
 
