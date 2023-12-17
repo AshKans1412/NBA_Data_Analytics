@@ -31,7 +31,7 @@ def draw_line_chart(period_scores, team_name):
     # Create a line chart for the team's performance across periods
     periods = ['Period 1', 'Period 2', 'Period 3', 'Period 4']
     fig = px.line(x=periods, y=period_scores, markers=True, title=f'Performance Across Periods: {team_name}')
-    fig.update_layout(xaxis_title="Period", yaxis_title="Score")
+    fig.update_layout(xaxis_title="Period", yaxis_title="Score", width = 300, height = 300)
     return fig
     
 def draw_pie_chart(wins, losses, team_name):
@@ -40,6 +40,8 @@ def draw_pie_chart(wins, losses, team_name):
     values = [wins, losses]
 
     fig = px.pie(names=labels, values=values, title=f'Win/Loss Ratio for {team_name}')
+    fig.update_layout(width = 300, height = 300)
+
     return fig
 
 
