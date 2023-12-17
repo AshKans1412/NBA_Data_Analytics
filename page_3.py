@@ -40,7 +40,7 @@ def create_divider():
         """
         <style>
         .divider {
-            border-left: 2px solid #000; 
+            border-left: 2px solid #fff; 
             height: 100px;  # Adjust the height as needed
         }
         </style>
