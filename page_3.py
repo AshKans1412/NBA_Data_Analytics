@@ -49,7 +49,9 @@ def draw_radial_chart(leader_data, title):
                 range=[0, max(values) + 5]  # Adjust the range based on your data
             )),
         showlegend=False,
-        title=title
+        title=title,
+        width=200,
+        height=200
     )
 
     return fig
