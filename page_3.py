@@ -1,3 +1,4 @@
+import os
 import streamlit as st
 import boto3
 import json
@@ -22,10 +23,7 @@ def get_game_status(game_time_utc, game_end_time_et):
         # Game has ended
         return "Game has ended", "green"
 
-
-def live_page():
-    aws_access_key_id = st.secrets["AWS_Access_key"]
-    aws_secret_access_key = st.secrets["Secre_AK"]
+def read_files_from_s3(bucket_name, folder_path, aws_access_key_id, aws_secret_access_key):
     # Initialize Boto3 S3 client
     s3 = boto3.client(
         's3',
@@ -33,27 +31,46 @@ def live_page():
         aws_secret_access_key=aws_secret_access_key
     )
     
-    # Specify your bucket name and folder path
-    bucket_name = 'ash-dcsc-project'
-    folder_path = 'NBA_Live_Data/Current_Matches/'
-    
     # List files in the specified S3 bucket directory
     response = s3.list_objects_v2(Bucket=bucket_name, Prefix=folder_path)
     files = [item['Key'] for item in response.get('Contents', []) if item['Key'].endswith('.json')]
-    
+    return s3, files
+
+def read_files_from_local(local_folder_path):
+    # List files in the specified local directory
+    files = [f for f in os.listdir(local_folder_path) if f.endswith('.json')]
+    return None, files
+
+def live_page(source='local'):
+    if source == 'aws':
+        aws_access_key_id = st.secrets["AWS_Access_key"]
+        aws_secret_access_key = st.secrets["Secre_AK"]
+        bucket_name = 'ash-dcsc-project'
+        folder_path = 'NBA_Live_Data/Current_Matches/'
+        s3, files = read_files_from_s3(bucket_name, folder_path, aws_access_key_id, aws_secret_access_key)
+    elif source == 'local':
+        local_folder_path = 'Sample_Data'
+        s3, files = read_files_from_local(local_folder_path)
+    else:
+        st.error("Invalid source specified. Please choose 'aws' or 'local'.")
+        return
+
     # Initialize Streamlit app
     st.title('Game Details')
     if st.button('Refresh'):
         st.experimental_rerun()
-    # Process each JSON file
 
     for file_key in files:
         # Read file content
-        obj = s3.get_object(Bucket=bucket_name, Key=file_key)
-        match_data = json.loads(obj['Body'].read().decode('utf-8'))
-    
+        if source == 'aws':
+            obj = s3.get_object(Bucket=bucket_name, Key=file_key)
+            match_data = json.loads(obj['Body'].read().decode('utf-8'))
+        else:
+            with open(os.path.join(local_folder_path, file_key), 'r') as file:
+                match_data = json.load(file)
+
         with st.expander(f"Match ID: {match_data['gameId']} - {match_data['gameCode']}", expanded=False):
-            game_status, color = get_game_status(match_data['gameTimeUTC'],match_data['gameEt'])
+            game_status, color = get_game_status(match_data['gameTimeUTC'], match_data['gameEt'])
     
             # Use markdown with custom styling for countdown or status message
             st.write(f"<p style='color: {color};'>{game_status}</p>", unsafe_allow_html=True)
