@@ -229,6 +229,11 @@ def live_page(source='local'):
                     st.text("")
                     st.text("")
                     st.text("")
+
+                    st.text("")
+                    st.text("")
+                    st.text("")
+                    st.text("")
                     
                     # Draw line charts
                     home_team_scores = get_period_scores(home_team)
