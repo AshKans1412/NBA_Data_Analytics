@@ -54,7 +54,7 @@ def live_page(source='local'):
     else:
         st.error("Invalid source specified. Please choose 'aws' or 'local'.")
         return
-
+    num_columns = 2 
     # Initialize Streamlit app
     st.title('Game Details')
     if st.button('Refresh'):
