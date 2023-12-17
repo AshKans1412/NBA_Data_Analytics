@@ -1,0 +1,114 @@
+{
+    "gameId": "0022300335",
+    "gameCode": "20231216/PHICHA",
+    "gameStatus": 1,
+    "gameStatusText": "7:00 pm ET",
+    "period": 0,
+    "gameClock": "",
+    "gameTimeUTC": "2023-12-17T00:00:00Z",
+    "gameEt": "2023-12-16T19:00:00Z",
+    "regulationPeriods": 4,
+    "ifNecessary": false,
+    "seriesGameNumber": "",
+    "seriesText": "",
+    "seriesConference": "",
+    "poRoundDesc": "",
+    "gameSubtype": "",
+    "homeTeam": {
+        "teamId": 1610612766,
+        "teamName": "Hornets",
+        "teamCity": "Charlotte",
+        "teamTricode": "CHA",
+        "wins": 7,
+        "losses": 16,
+        "score": 0,
+        "seed": null,
+        "inBonus": null,
+        "timeoutsRemaining": 0,
+        "periods": [
+            {
+                "period": 1,
+                "periodType": "REGULAR",
+                "score": 0
+            },
+            {
+                "period": 2,
+                "periodType": "REGULAR",
+                "score": 0
+            },
+            {
+                "period": 3,
+                "periodType": "REGULAR",
+                "score": 0
+            },
+            {
+                "period": 4,
+                "periodType": "REGULAR",
+                "score": 0
+            }
+        ]
+    },
+    "awayTeam": {
+        "teamId": 1610612755,
+        "teamName": "76ers",
+        "teamCity": "Philadelphia",
+        "teamTricode": "PHI",
+        "wins": 17,
+        "losses": 7,
+        "score": 0,
+        "seed": null,
+        "inBonus": null,
+        "timeoutsRemaining": 0,
+        "periods": [
+            {
+                "period": 1,
+                "periodType": "REGULAR",
+                "score": 0
+            },
+            {
+                "period": 2,
+                "periodType": "REGULAR",
+                "score": 0
+            },
+            {
+                "period": 3,
+                "periodType": "REGULAR",
+                "score": 0
+            },
+            {
+                "period": 4,
+                "periodType": "REGULAR",
+                "score": 0
+            }
+        ]
+    },
+    "gameLeaders": {
+        "homeLeaders": {
+            "personId": 0,
+            "name": "",
+            "jerseyNum": "",
+            "position": "",
+            "teamTricode": "CHA",
+            "playerSlug": null,
+            "points": 0,
+            "rebounds": 0,
+            "assists": 0
+        },
+        "awayLeaders": {
+            "personId": 0,
+            "name": "",
+            "jerseyNum": "",
+            "position": "",
+            "teamTricode": "PHI",
+            "playerSlug": null,
+            "points": 0,
+            "rebounds": 0,
+            "assists": 0
+        }
+    },
+    "pbOdds": {
+        "team": null,
+        "odds": 0.0,
+        "suspended": 0
+    }
+}
