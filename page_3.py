@@ -200,7 +200,7 @@ def live_page(source='local'):
             # Use markdown with custom styling for countdown or status message
             st.write(f"<p style='color: {color};'>{game_status}</p>", unsafe_allow_html=True)
     
-            col1, col0, col2 = st.columns([2,0.5,2])
+            col1, col0, col2 = st.columns([2,0.25,2])
     
             with col1:
                 st.columns(3)[1].header("Home Team")
@@ -230,8 +230,7 @@ def live_page(source='local'):
                     home_chart = draw_radial_chart(home_leader, f"Home Leader: {home_leader['name']}")
                     st.plotly_chart(home_chart)
 
-            with col0:
-                create_divider()
+
 
 
         
