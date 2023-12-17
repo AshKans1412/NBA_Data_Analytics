@@ -53,8 +53,8 @@ def draw_radial_chart(leader_data, title):
             )),
         showlegend=False,
         title=title,
-        width=500,
-        height=500
+        width=300,
+        height=300
     )
 
     return fig
