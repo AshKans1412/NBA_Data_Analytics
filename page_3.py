@@ -40,7 +40,7 @@ def draw_pie_chart(wins, losses, team_name):
     values = [wins, losses]
 
     fig = px.pie(names=labels, values=values, title=f'Win/Loss Ratio for {team_name}')
-    fig.update_layout(width = 300, height = 300)
+    fig.update_layout(width = 200, height = 300)
 
     return fig
 
@@ -116,11 +116,14 @@ def live_page(source='local'):
                 col1_1, col1_2 = st.columns(2)
                 with col1_1:
                     st.plotly_chart(draw_pie_chart(home_team_wins, home_team_losses, home_team['teamName']))
+                    Home_Leader = match_data["gameLeaders"]["homeLeaders"]["name"]
+                    st.write(Home_Leader)
 
                 with col1_2:
                     # Draw line charts
                     home_team_scores = get_period_scores(home_team)
                     st.plotly_chart(draw_line_chart(home_team_scores, home_team['teamName']))
+
         
             with col2:
                 st.header("Away Team")
@@ -132,6 +135,8 @@ def live_page(source='local'):
                 
                 with col2_1:
                     st.plotly_chart(draw_pie_chart(away_team_wins, away_team_losses, away_team['teamName']))
+                    Away_Leader = match_data["gameLeaders"]["awayLeaders"]["name"]
+                    st.write(Away_Leader)
 
                 with col2_2:
                     # Draw line charts
