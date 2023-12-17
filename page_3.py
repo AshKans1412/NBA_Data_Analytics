@@ -3,6 +3,7 @@ import streamlit as st
 import boto3
 import json
 from datetime import datetime, timezone
+import plotly.express as px
 
 # Function to calculate countdown or game status
 def get_game_status(game_time_utc, game_end_time_et):
@@ -22,6 +23,25 @@ def get_game_status(game_time_utc, game_end_time_et):
     else:
         # Game has ended
         return "Game has ended", "green"
+
+def get_period_scores(team_data):
+    return [period['score'] for period in team_data['periods']]
+
+def draw_line_chart(period_scores, team_name):
+    # Create a line chart for the team's performance across periods
+    periods = ['Period 1', 'Period 2', 'Period 3', 'Period 4']
+    fig = px.line(x=periods, y=period_scores, markers=True, title=f'Performance Across Periods: {team_name}')
+    fig.update_layout(xaxis_title="Period", yaxis_title="Score")
+    return fig
+    
+def draw_pie_chart(wins, losses, team_name):
+    # Create a pie chart for wins and losses using Plotly
+    labels = ['Wins', 'Losses']
+    values = [wins, losses]
+
+    fig = px.pie(names=labels, values=values, title=f'Win/Loss Ratio for {team_name}')
+    return fig
+
 
 def read_files_from_s3(bucket_name, folder_path, aws_access_key_id, aws_secret_access_key):
     # Initialize Boto3 S3 client
@@ -73,14 +93,14 @@ def live_page(source='local'):
         away_team = match_data['awayTeam']
 
         # Modify expander title to include game status
-        expander_title = f"{home_team['teamName']} vs {away_team['teamName']} - {game_status}"
+        expander_title = f"{home_team['teamName']} vs {away_team['teamName']}"
         with st.expander(expander_title, expanded=False):    
             
             
-            #game_status, color = get_game_status(match_data['gameTimeUTC'], match_data['gameEt'])
+            game_status, color = get_game_status(match_data['gameTimeUTC'], match_data['gameEt'])
     
             # Use markdown with custom styling for countdown or status message
-            #st.write(f"<p style='color: {color};'>{game_status}</p>", unsafe_allow_html=True)
+            st.write(f"<p style='color: {color};'>{game_status}</p>", unsafe_allow_html=True)
     
             col1, col2 = st.columns(2)
     
@@ -88,10 +108,35 @@ def live_page(source='local'):
                 st.header("Home Team")
                 st.write(f"Team Name: {match_data['homeTeam']['teamName']}")
                 st.write(f"Score: {match_data['homeTeam']['score']}")
-    
+                home_team_wins = home_team['wins']
+                home_team_losses = home_team['losses']
+
+                col1_1, col1_2 = st.columns(2)
+                with col1_1:
+                    st.plotly_chart(draw_pie_chart(home_team_wins, home_team_losses, home_team['teamName']))
+
+                with col1_2:
+                    # Draw line charts
+                    home_team_scores = get_period_scores(home_team)
+                    st.plotly_chart(draw_line_chart(home_team_scores, home_team['teamName']))
+        
             with col2:
                 st.header("Away Team")
                 st.write(f"Team Name: {match_data['awayTeam']['teamName']}")
                 st.write(f"Score: {match_data['awayTeam']['score']}")
+                away_team_wins = away_team['wins']
+                away_team_losses = away_team['losses']
+                col2_1, col2_2 = st.columns(2)
+                
+                with col2_1:
+                    st.plotly_chart(draw_pie_chart(away_team_wins, away_team_losses, away_team['teamName']))
+
+                with col2_2:
+                    # Draw line charts
+                    away_team_scores = get_period_scores(away_team)
+                    st.plotly_chart(draw_line_chart(away_team_scores, away_team['teamName']))
+    
+                
+
     
             st.markdown("---")  # Separator line
