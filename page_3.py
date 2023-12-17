@@ -272,6 +272,23 @@ def live_page(source='local'):
                     st.write(f"Team Name: {match_data['awayTeam']['teamName']}")
                     st.write(f"Score: {match_data['awayTeam']['score']}")
                     st.write()
+
+                    st.text("")
+                    st.text("")
+                    st.text("")
+                    st.text("")
+                    st.text("")
+                    st.text("")
+                    st.text("")
+                    st.text("")
+                    st.text("")
+                    st.text("")
+
+                    st.text("")
+                    st.text("")
+                    st.text("")
+                    st.text("")
+                    
                     # Draw line charts
                     away_team_scores = get_period_scores(away_team)
                     st.plotly_chart(draw_line_chart(away_team_scores, away_team['teamName']))
