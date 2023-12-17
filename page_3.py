@@ -52,7 +52,7 @@ def get_player_image(Name):
     # API endpoint
     api_url_2 = f"https://nba-api-ash-1-fc1674476d71.herokuapp.com/get_images/{player_name_encoded}"
     response_2 = requests.get(api_url_2)
-    image_url = response_2.json()["image"]
+    image_url = response_2.json()   #["image"]
 
     return image_url
 
@@ -168,10 +168,13 @@ def live_page(source='local'):
                     Home_Leader = match_data["gameLeaders"]["homeLeaders"]["name"]
                     st.write(Home_Leader)
                     image_url = get_player_image(Home_Leader)
-                    image_fig = plot_image_from_url(image_url)
+
+
+                    st.write(image_url)
+                    #image_fig = plot_image_from_url(image_url)
 
                     # Display the plot in Streamlit
-                    st.plotly_chart(image_fig)
+                    #st.plotly_chart(image_fig)
 
 
                 with col1_2:
@@ -193,10 +196,13 @@ def live_page(source='local'):
                     Away_Leader = match_data["gameLeaders"]["awayLeaders"]["name"]
                     st.write(Away_Leader)
                     image_url = get_player_image(Away_Leader)
-                    image_fig = plot_image_from_url(image_url)
+
+                    st.write(image_url)
+
+                    #image_fig = plot_image_from_url(image_url)
 
                     # Display the plot in Streamlit
-                    st.plotly_chart(image_fig)
+                    #st.plotly_chart(image_fig)
 
                 with col2_2:
                     # Draw line charts
