@@ -370,9 +370,7 @@ def live_page(source='local'):
 
                 # Print the file name and its contents in Streamlit
                 st.write(f"### Post: {file_content_2["Title"]}")
-                st.text_area("Summary", file_content, height=250)
-                st.write(f"Upvotes: {file_content_2["Upvotes"]}")
-                st.write(f"Author: {file_content_2["Author"]}")
+
 
 
 
