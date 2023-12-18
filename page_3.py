@@ -355,13 +355,14 @@ def live_page(source='local'):
     bucket_name = 'ash-dcsc-project'
     folder_name = 'NBA_Live_Data/Reddit_Posts_Summarized/'
     response = s3.list_objects_v2(Bucket=bucket_name, Prefix=folder_name)
+    st.header("Top Discussion on NBA for this week")
     if 'Contents' in response:
         for item in response['Contents']:
             file_name = item['Key']
             if file_name != folder_name:  # To skip the folder itself if it's listed
                 # Read the content of the file
                 obj = s3.get_object(Bucket=bucket_name, Key=file_name)
-                file_content = obj['Body'].read().decode('utf-8')
+                file_content = json.loads(obj['Body'].read().decode('utf-8'))
                 
                 file_name_2 = file_name.replace("Reddit_Posts_Summarized","Reddit_Posts")
                 
@@ -369,8 +370,8 @@ def live_page(source='local'):
                 file_content_2 = json.loads(obj_2['Body'].read().decode('utf-8'))
 
                 # Print the file name and its contents in Streamlit
-                st.write(f"### Post: {file_content_2['Title']}")
-                st.text_area("Summary", file_content, height=250)
+                st.title(f" Post: {file_content_2['Title']}")
+                st.text_area("Summary", file_content['summary'], height=250)
                 st.write(f"Upvotes: {file_content_2['Upvotes']}")
                 st.write(f"Author: {file_content_2['Author']}")
 
