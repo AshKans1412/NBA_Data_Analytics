@@ -309,5 +309,5 @@ def live_page(source='local'):
             except:
                 request_pred_1 = "Dont know"
 
-            st.write(f"Predicted Winner: {request_pred}")
+            st.write(f"Predicted Winner: {request_pred_1}")
             st.markdown("---")  # Separator line
