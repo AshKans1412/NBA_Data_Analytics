@@ -628,7 +628,7 @@ def home_page():
 
     # Section for Scatter Plot of Players
     st.write("## Scatter Plot Analysis")
-    st.write("Top NBA Players as Per Different Positions:")
+    st.write("Top NBA Players by Position:")
     scatter_plot(preprocessed_data)
 
     # Player Comparison Section
