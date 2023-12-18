@@ -11,6 +11,7 @@ from datetime import datetime, timezone
 import plotly.express as px
 from PIL import Image
 import matplotlib.pyplot as plt
+from botocore.exceptions import NoCredentialsError
 
 
 # Function to calculate countdown or game status
@@ -354,27 +355,35 @@ def live_page(source='local'):
     st.markdown("---")
     bucket_name = 'ash-dcsc-project'
     folder_name = 'NBA_Live_Data/Reddit_Posts_Summarized/'
-    response = s3.list_objects_v2(Bucket=bucket_name, Prefix=folder_name)
-    st.header("Top Discussion on NBA for this week")
-    if 'Contents' in response:
-        for item in response['Contents']:
-            file_name = item['Key']
-            if file_name != folder_name:  # To skip the folder itself if it's listed
-                # Read the content of the file
-                obj = s3.get_object(Bucket=bucket_name, Key=file_name)
-                file_content = json.loads(obj['Body'].read().decode('utf-8'))
-                
-                file_name_2 = file_name.replace("Reddit_Posts_Summarized","Reddit_Posts")
-                
-                obj_2 = s3.get_object(Bucket=bucket_name, Key=file_name_2)
-                file_content_2 = json.loads(obj_2['Body'].read().decode('utf-8'))
-
-                # Print the file name and its contents in Streamlit
-                st.title(f" Post: {file_content_2['Title']}")
-                st.text_area("Summary", file_content['summary'], height=250)
-                st.write(f"Upvotes: {file_content_2['Upvotes']}")
-                st.write(f"Author: {file_content_2['Author']}")
-
+    s3 = boto3.client('s3')
+    
+    st.title("Top Discussion on NBA for this week")
+    
+    try:
+        response = s3.list_objects_v2(Bucket=bucket_name, Prefix=folder_name)
+        if 'Contents' in response:
+            for item in response['Contents']:
+                file_name = item['Key']
+                if file_name != folder_name:  # To skip the folder itself if it's listed
+                    # Read the content of the file
+                    obj = s3.get_object(Bucket=bucket_name, Key=file_name)
+                    file_content = json.loads(obj['Body'].read().decode('utf-8'))
+                    
+                    file_name_2 = file_name.replace("Reddit_Posts_Summarized", "Reddit_Posts")
+                    obj_2 = s3.get_object(Bucket=bucket_name, Key=file_name_2)
+                    file_content_2 = json.loads(obj_2['Body'].read().decode('utf-8'))
+    
+                    # Print the file name and its contents in Streamlit
+                    st.header(f"Post: {file_content_2['Title']}")
+                    st.text_area("Summary", file_content['summary'], height=250)
+    
+                    # Adding style to Upvotes and Author
+                    st.markdown(f"<b>Upvotes:</b> {file_content_2['Upvotes']}", unsafe_allow_html=True)
+                    st.markdown(f"<b>Author:</b> {file_content_2['Author']}", unsafe_allow_html=True)
+    except NoCredentialsError:
+        st.error("Credentials not available. Please check your AWS configuration.")
+    except Exception as e:
+        st.error(f"An error occurred: {e}")
 
         
 
