@@ -355,8 +355,24 @@ def live_page(source='local'):
     bucket_name = 'ash-dcsc-project'
     folder_path = 'NBA_Live_Data/Reddit_Posts/'
     s3, files = read_files_from_s3(bucket_name, folder_path, aws_access_key_id, aws_secret_access_key)
+    i = 0
+    st.header("Top Posts of Disscussion for this Week")
     for file_key in files:
-        st.write(file_key)
+        file_key_2 = file_key.replace("Reddit_Posts", "Reddit_Posts_Summarized")
+        obj = s3.get_object(Bucket=bucket_name, Key=file_key)
+        data_1 = json.loads(obj['Body'].read().decode('utf-8'))
+        obj2 = s3.get_object(Bucket=bucket_name, Key=file_key_2)
+        data_2 = json.loads(obj['Body'].read().decode('utf-8'))
+                
+        st.title(f"Post {i} : {data_1['Title']}")
+        st.write(f"Author: {data_2['Author']}")
+        st.write(f"Summarized Text: {data_2['summary']}")
+
+        st.write(f"Upvotes: {data_1['Upvotes']}")
+        
+        
+
+        
 
 
 
