@@ -354,7 +354,7 @@ def live_page(source='local'):
     st.markdown("---")
     bucket_name = 'ash-dcsc-project'
     folder_path = 'NBA_Live_Data/Reddit_Posts/'
-    s3, files = read_files_from_s3_aws_env(bucket_name, folder_path)
+    s3, files = read_files_from_s3(bucket_name, folder_path, aws_access_key_id, aws_secret_access_key)
     for file_key in files:
         st.write(file_key)
 
