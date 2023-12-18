@@ -324,7 +324,8 @@ def live_page(source='local'):
 
             st.markdown("---")  # Separator line
 
-                
+            tri_home = home_team["teamTricode"]
+            tri_away = away_team["teamTricode"]
             home_team = {"teamTricode": tri_home, "wins": home_team_wins}
             away_team = {"teamTricode": tri_away, "wins": away_team_wins}
             display_predicted_winner(home_team, away_team)
