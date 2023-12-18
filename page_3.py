@@ -31,8 +31,32 @@ def get_game_status(game_time_utc, game_end_time_et):
     else:
         # Game has ended
         return "Game has ended", "green"
+        
 
+def display_predicted_winner(home_team, away_team):
+    tri_home = home_team["teamTricode"]
+    tri_away = away_team["teamTricode"]
 
+    request_pred = f"https://nba-api-ash-1-fc1674476d71.herokuapp.com/predict?team1={tri_home}&team2={tri_away}"
+    try:
+        request_pred_1 = requests.get(request_pred).json()['Predicted Winner']
+    except:
+        # Fallback to a simple comparison if the request fails
+        if home_team['wins'] > away_team['wins']:
+            request_pred_1 = tri_home
+        else:
+            request_pred_1 = tri_away
+
+    # Custom styling for the predicted winner display
+    st.markdown(
+        f"""
+        <div style="background-color: lightblue; padding: 10px; border-radius: 5px; text-align: center;">
+            <h4 style="color: navy; margin: 0;">Predicted Winner: <strong>{request_pred_1}</strong></h4>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+    st.markdown("---")  # Separator line
 
 def draw_radial_chart(leader_data, title):
     categories = ['Points', 'Rebounds', 'Assists']
@@ -298,20 +322,15 @@ def live_page(source='local'):
                     away_chart = draw_radial_chart(away_leader, f"Away Leader: {away_leader['name']}")
                     st.plotly_chart(away_chart)
 
-    
-                
-            tri_home = home_team["teamTricode"]
-            tri_away = away_team["teamTricode"]
-
-            request_pred = f"https://nba-api-ash-1-fc1674476d71.herokuapp.com/predict?team1={tri_home}&team2={tri_away}"
-            try:
-                request_pred_1 = requests.get(request_pred).json()['Predicted Winner']
-                
-            except:
-                if home_team_wins> away_team_wins:
-                    request_pred_1 = tri_home
-                else:
-                    request_pred_1 = tri_away
-
-            st.write(f"Predicted Winner: {request_pred_1}")
             st.markdown("---")  # Separator line
+
+                
+            home_team = {"teamTricode": tri_home, "wins": home_team_wins}
+            away_team = {"teamTricode": tri_away, "wins": away_team_wins}
+            display_predicted_winner(home_team, away_team)
+
+
+
+
+
+
