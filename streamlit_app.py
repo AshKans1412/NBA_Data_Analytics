@@ -286,7 +286,7 @@ class NbaScraper:
                     team_id=team, player_id=id,
                     context_measure_simple='FGA',
                     season_nullable=season,
-                    timeout=10 
+                    timeout=60 
                 )
                 df = pd.concat([df, shot_data.get_data_frames()[0]])
         return df
