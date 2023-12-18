@@ -375,7 +375,7 @@ def live_page(source='local'):
     
                     # Print the file name and its contents in Streamlit
                     st.header(f"Post: {file_content_2['Title']}")
-                    st.text_area("Summary", file_content['summary'], height=250)
+                    st.text_area("Summary", file_content['summary'], height=50)
     
                     # Adding style to Upvotes and Author
                     st.markdown(f"<b>Upvotes:</b> {file_content_2['Upvotes']}", unsafe_allow_html=True)
