@@ -17,6 +17,7 @@ from requests.exceptions import RequestException
 from requests.adapters import HTTPAdapter
 from requests.packages.urllib3.util.retry import Retry
 from page_3 import live_page
+from page2 import page_2
 
 # Function to fetch data from the API
 def fetch_data(api_url):
@@ -672,7 +673,8 @@ def main():
         home_page()
         nba_stats_page()
     elif page == 'Player Stats & Comparision':
-        st.write('Player Stats & Comparision')  # Calling the NBA stats page function
+        page_2()
+        #st.write('Player Stats & Comparision')  # Calling the NBA stats page function
     elif page == 'Live Score':
         st.write("Live Score")
         live_page()
