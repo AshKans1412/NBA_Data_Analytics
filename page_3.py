@@ -194,7 +194,7 @@ def live_page(source='local'):
     elif source == 'aws':
         bucket_name = 'ash-dcsc-project'
         folder_path = 'NBA_Live_Data/Current_Matches/'
-        s3, files = read_files_from_local_aws_env(bucket_name, folder_path)
+        s3, files = read_files_from_s3_aws_env(bucket_name, folder_path)
         
     else:
         st.error("Invalid source specified. Please choose 'aws' or 'local'.")
