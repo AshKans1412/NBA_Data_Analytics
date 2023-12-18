@@ -366,7 +366,7 @@ def live_page(source='local'):
                 file_name_2 = file_name.replace("Reddit_Posts_Summarized","Reddit_Posts")
                 
                 obj_2 = s3.get_object(Bucket=bucket_name, Key=file_name_2)
-                file_content_2 = obj_2['Body'].read().decode('utf-8')
+                file_content_2 = json.loads(obj_2['Body'].read().decode('utf-8'))
 
                 # Print the file name and its contents in Streamlit
                 st.write(f"### Post: {file_content_2['Title']}")
