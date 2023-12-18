@@ -301,13 +301,17 @@ def live_page(source='local'):
     
                 
             tri_home = home_team["teamTricode"]
-            away_home = away_team["teamTricode"]
+            tri_away = away_team["teamTricode"]
 
-            request_pred = f"https://nba-api-ash-1-fc1674476d71.herokuapp.com/predict?team1={tri_home}&team2={away_home}"
+            request_pred = f"https://nba-api-ash-1-fc1674476d71.herokuapp.com/predict?team1={tri_home}&team2={tri_away}"
             try:
-                request_pred_1 = requests.get(request_pred).json()
+                request_pred_1 = requests.get(request_pred).json()['Predicted Winner']
+                
             except:
-                request_pred_1 = "Dont know"
+                if home_team_wins> away_team_wins:
+                    request_pred_1 = tri_home
+                else:
+                    request_pred_1 = tri_away
 
             st.write(f"Predicted Winner: {request_pred_1}")
             st.markdown("---")  # Separator line
