@@ -152,158 +152,158 @@ def generate_player_comparison_plots(df, player1, player2):
     #fig3.update_layout(title_text=title)
     #st.plotly_chart(fig3)
 
-
-team_name_mapping = {
-    "ATL": "Atlanta Hawks",
-    "BRK": "Brooklyn Nets",
-    "BOS": "Boston Celtics",
-    "CHO": "Charlotte Hornets",
-    "CHI": "Chicago Bulls",
-    "CLE": "Cleveland Cavaliers",
-    "DAL": "Dallas Mavericks",
-    "DEN": "Denver Nuggets",
-    "DET": "Detroit Pistons",
-    "GSW": "Golden State Warriors",
-    "HOU": "Houston Rockets",
-    "IND": "Indiana Pacers",
-    "LAC": "Los Angeles Clippers",
-    "LAL": "Los Angeles Lakers",
-    "MEM": "Memphis Grizzlies",
-    "MIA": "Miami Heat",
-    "MIL": "Milwaukee Bucks",
-    "MIN": "Minnesota Timberwolves",
-    "NOP": "New Orleans Pelicans",
-    "NYK": "New York Knicks",
-    "OKC": "Oklahoma City Thunder",
-    "ORL": "Orlando Magic",
-    "PHI": "Philadelphia 76ers",
-    "PHO": "Phoenix Suns",
-    "POR": "Portland Trail Blazers",
-    "SAC": "Sacramento Kings",
-    "SAS": "San Antonio Spurs",
-    "TOR": "Toronto Raptors",
-    "UTA": "Utah Jazz",
-    "WAS": "Washington Wizards"
-}
-
-# Streamlit app title
-st.title("Player Stats & Comparison")
-
-# Dropdown for selecting the feature
-feature = st.selectbox(
-    "Select a Feature",
-    ["Player Search and Stats", "Player Comparison"]
-)
-
-# Fetch and preprocess NBA data
-api_url = 'https://nba-api-ash-1-fc1674476d71.herokuapp.com/dataset'
-nba_data = fetch_data(api_url)
-preprocessed_data = preprocess_data(nba_data)
-
-# Function to display player information and generate comparison plots
-def display_player_info_and_compare(player_name, preprocessed_data, other_player_name=None):
-    # Display player information
-    display_player_info(player_name)
-
-    # If the other player's name is also provided, generate comparison plots
-    if other_player_name:
-        generate_player_comparison_plots(preprocessed_data, player_name, other_player_name)
-
-# Function to display player information (same as before)
-def display_player_info(player_name):
-    # API Call to fetch player data
-    response = requests.get(f"https://nba-api-ash-1-fc1674476d71.herokuapp.com/players/{player_name}")
-    response_image = requests.get(f"https://nba-api-ash-1-fc1674476d71.herokuapp.com/get_images/{player_name}")
-
-    if response.status_code == 200:
-        data = response.json()
-        st.write(f"Player Name: {data.get('API_Names', 'N/A')}")
-
-        # Display player image
-        if response_image.status_code == 200:
-            image_url = response_image.json()["image"]
-            img = Image.open(BytesIO(requests.get(image_url).content))
-            st.image(img)
-        else:
-            st.error("Failed to load player image.")
-
-        # Display other player information
-        st.text(f"Currently Plays for: {team_name_mapping.get(data.get('Tm', 'N/A'), 'N/A')}")
-        team_abbreviation = data.get('Tm', None)
-        full_team_name = team_name_mapping.get(team_abbreviation, "N/A")
-        #st.text(f"Currently Plays for: {full_team_name}")
-        if team_abbreviation:
-            team_logo_url = get_team_logo_url(team_abbreviation)
-            st.image(team_logo_url, width=100)
-            
-
-        st.text(f"Birthday: {data.get('birthday', 'N/A')}")
-        st.text(f"Age: {data.get('Age', 'N/A')}")
-        st.text(f"Country: {data.get('country', 'N/A')}")
-        st.text(f"Draft Year: {data.get('draft_year', 'N/A')}")
-        st.text(f"Height: {data.get('height', 'N/A')}")
-        st.text(f"Weight: {data.get('weight', 'N/A')}")
-        st.text(f"School: {data.get('school', 'N/A')}")
-        st.text(f"Position: {data.get('Pos', 'N/A')}")
-        st.text(f"Points per game: {data.get('PTS', 'N/A')}")
-        st.text(f"Assists per game: {data.get('AST', 'N/A')}")
-        st.text(f"Rebounds per game: {data.get('TRB', 'N/A')}")
-        st.text(f"Blocks per game: {data.get('BLK', 'N/A')}")
-        st.text(f"Defensive Rebounds per game: {data.get('DRB', 'N/A')}")
-        st.text(f"Offensive Rebounds per game: {data.get('ORB', 'N/A')}")
-        st.text(f"Total Rebounds per game: {data.get('TRB', 'N/A')}")
-        st.text(f"Field Goal Percentage: {data.get('FG%', 'N/A')}")
-        st.text(f"Two-Point Percentage: {data.get('2P%', 'N/A')}")
-        st.text(f"Three-Point Percentage: {data.get('3P%', 'N/A')}")
-        st.text(f"Free Throw Percentage: {data.get('FT%', 'N/A')}")
-        st.text(f"Minutes per game: {data.get('MP', 'N/A')}")
-        st.text(f"Steals per game: {data.get('STL', 'N/A')}")
-        st.text(f"Turnovers per game: {data.get('TOV', 'N/A')}")
-        # ... [Add other player details here] ...
-
-    else:
-        st.error("Failed to fetch player data.")
-
-# Fetch all player names from the API
-api_player_names = requests.get("https://nba-api-ash-1-fc1674476d71.herokuapp.com/players").json()
-
-# Display based on the selected feature
-if feature == "Player Search and Stats":
-    # Single player search and stats display
-    player_input = st.text_input("Enter the player name:")
-    if player_input:
-        player_name = find_closest_match(player_input, api_player_names)
-        if player_name:
-            display_player_info(player_name.replace(" ", "%20"))
-        else:
-            st.warning("Player not found. Please try again.")
-elif feature == "Player Comparison":
-    # Player comparison display
-    col1, col2 = st.columns(2)
-    with col1:
-        player1_input = st.text_input("Enter the name of the first player:")
-    with col2:
-        player2_input = st.text_input("Enter the name of the second player:")
-
-    if player1_input and player2_input:
-        player1 = find_closest_match(player1_input, api_player_names)
-        player2 = find_closest_match(player2_input, api_player_names)
-
-        if player1 and player2:
-            col1, col2 = st.columns(2)
-            with col1:
-                st.subheader(player1)
-                display_player_info(player1.replace(" ", "%20"))
-
-            with col2:
-                st.subheader(player2)
-                display_player_info(player2.replace(" ", "%20"))
-
-            #st.header("Player Comparison")
-            generate_player_comparison_plots(preprocessed_data, player1, player2)
-        else:
-            st.warning("One or both players not found. Please try again.")
+def page_2():
+    team_name_mapping = {
+        "ATL": "Atlanta Hawks",
+        "BRK": "Brooklyn Nets",
+        "BOS": "Boston Celtics",
+        "CHO": "Charlotte Hornets",
+        "CHI": "Chicago Bulls",
+        "CLE": "Cleveland Cavaliers",
+        "DAL": "Dallas Mavericks",
+        "DEN": "Denver Nuggets",
+        "DET": "Detroit Pistons",
+        "GSW": "Golden State Warriors",
+        "HOU": "Houston Rockets",
+        "IND": "Indiana Pacers",
+        "LAC": "Los Angeles Clippers",
+        "LAL": "Los Angeles Lakers",
+        "MEM": "Memphis Grizzlies",
+        "MIA": "Miami Heat",
+        "MIL": "Milwaukee Bucks",
+        "MIN": "Minnesota Timberwolves",
+        "NOP": "New Orleans Pelicans",
+        "NYK": "New York Knicks",
+        "OKC": "Oklahoma City Thunder",
+        "ORL": "Orlando Magic",
+        "PHI": "Philadelphia 76ers",
+        "PHO": "Phoenix Suns",
+        "POR": "Portland Trail Blazers",
+        "SAC": "Sacramento Kings",
+        "SAS": "San Antonio Spurs",
+        "TOR": "Toronto Raptors",
+        "UTA": "Utah Jazz",
+        "WAS": "Washington Wizards"
+    }
     
+    # Streamlit app title
+    st.title("Player Stats & Comparison")
+    
+    # Dropdown for selecting the feature
+    feature = st.selectbox(
+        "Select a Feature",
+        ["Player Search and Stats", "Player Comparison"]
+    )
+    
+    # Fetch and preprocess NBA data
+    api_url = 'https://nba-api-ash-1-fc1674476d71.herokuapp.com/dataset'
+    nba_data = fetch_data(api_url)
+    preprocessed_data = preprocess_data(nba_data)
+    
+    # Function to display player information and generate comparison plots
+    def display_player_info_and_compare(player_name, preprocessed_data, other_player_name=None):
+        # Display player information
+        display_player_info(player_name)
+    
+        # If the other player's name is also provided, generate comparison plots
+        if other_player_name:
+            generate_player_comparison_plots(preprocessed_data, player_name, other_player_name)
+    
+    # Function to display player information (same as before)
+    def display_player_info(player_name):
+        # API Call to fetch player data
+        response = requests.get(f"https://nba-api-ash-1-fc1674476d71.herokuapp.com/players/{player_name}")
+        response_image = requests.get(f"https://nba-api-ash-1-fc1674476d71.herokuapp.com/get_images/{player_name}")
+    
+        if response.status_code == 200:
+            data = response.json()
+            st.write(f"Player Name: {data.get('API_Names', 'N/A')}")
+    
+            # Display player image
+            if response_image.status_code == 200:
+                image_url = response_image.json()["image"]
+                img = Image.open(BytesIO(requests.get(image_url).content))
+                st.image(img)
+            else:
+                st.error("Failed to load player image.")
+    
+            # Display other player information
+            st.text(f"Currently Plays for: {team_name_mapping.get(data.get('Tm', 'N/A'), 'N/A')}")
+            team_abbreviation = data.get('Tm', None)
+            full_team_name = team_name_mapping.get(team_abbreviation, "N/A")
+            #st.text(f"Currently Plays for: {full_team_name}")
+            if team_abbreviation:
+                team_logo_url = get_team_logo_url(team_abbreviation)
+                st.image(team_logo_url, width=100)
+                
+    
+            st.text(f"Birthday: {data.get('birthday', 'N/A')}")
+            st.text(f"Age: {data.get('Age', 'N/A')}")
+            st.text(f"Country: {data.get('country', 'N/A')}")
+            st.text(f"Draft Year: {data.get('draft_year', 'N/A')}")
+            st.text(f"Height: {data.get('height', 'N/A')}")
+            st.text(f"Weight: {data.get('weight', 'N/A')}")
+            st.text(f"School: {data.get('school', 'N/A')}")
+            st.text(f"Position: {data.get('Pos', 'N/A')}")
+            st.text(f"Points per game: {data.get('PTS', 'N/A')}")
+            st.text(f"Assists per game: {data.get('AST', 'N/A')}")
+            st.text(f"Rebounds per game: {data.get('TRB', 'N/A')}")
+            st.text(f"Blocks per game: {data.get('BLK', 'N/A')}")
+            st.text(f"Defensive Rebounds per game: {data.get('DRB', 'N/A')}")
+            st.text(f"Offensive Rebounds per game: {data.get('ORB', 'N/A')}")
+            st.text(f"Total Rebounds per game: {data.get('TRB', 'N/A')}")
+            st.text(f"Field Goal Percentage: {data.get('FG%', 'N/A')}")
+            st.text(f"Two-Point Percentage: {data.get('2P%', 'N/A')}")
+            st.text(f"Three-Point Percentage: {data.get('3P%', 'N/A')}")
+            st.text(f"Free Throw Percentage: {data.get('FT%', 'N/A')}")
+            st.text(f"Minutes per game: {data.get('MP', 'N/A')}")
+            st.text(f"Steals per game: {data.get('STL', 'N/A')}")
+            st.text(f"Turnovers per game: {data.get('TOV', 'N/A')}")
+            # ... [Add other player details here] ...
+    
+        else:
+            st.error("Failed to fetch player data.")
+    
+    # Fetch all player names from the API
+    api_player_names = requests.get("https://nba-api-ash-1-fc1674476d71.herokuapp.com/players").json()
+    
+    # Display based on the selected feature
+    if feature == "Player Search and Stats":
+        # Single player search and stats display
+        player_input = st.text_input("Enter the player name:")
+        if player_input:
+            player_name = find_closest_match(player_input, api_player_names)
+            if player_name:
+                display_player_info(player_name.replace(" ", "%20"))
+            else:
+                st.warning("Player not found. Please try again.")
+    elif feature == "Player Comparison":
+        # Player comparison display
+        col1, col2 = st.columns(2)
+        with col1:
+            player1_input = st.text_input("Enter the name of the first player:")
+        with col2:
+            player2_input = st.text_input("Enter the name of the second player:")
+    
+        if player1_input and player2_input:
+            player1 = find_closest_match(player1_input, api_player_names)
+            player2 = find_closest_match(player2_input, api_player_names)
+    
+            if player1 and player2:
+                col1, col2 = st.columns(2)
+                with col1:
+                    st.subheader(player1)
+                    display_player_info(player1.replace(" ", "%20"))
+    
+                with col2:
+                    st.subheader(player2)
+                    display_player_info(player2.replace(" ", "%20"))
+    
+                #st.header("Player Comparison")
+                generate_player_comparison_plots(preprocessed_data, player1, player2)
+            else:
+                st.warning("One or both players not found. Please try again.")
+        
 
 
 
