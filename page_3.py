@@ -353,18 +353,19 @@ def live_page(source='local'):
 
     st.markdown("---")
     bucket_name = 'ash-dcsc-project'
-    folder_path = 'NBA_Live_Data/Reddit_Posts/'
-    s3, files = read_files_from_s3(bucket_name, folder_path, aws_access_key_id, aws_secret_access_key)
-    i = 0
-    st.header("Top Posts of Disscussion for this Week")
-    for file_key in files:
-        file_key_2 = file_key.replace("Reddit_Posts", "Reddit_Posts_Summarized")
-        obj = s3.get_object(Bucket=bucket_name, Key=file_key)
-        data_1 = json.loads(obj['Body'].read())
-        obj2 = s3.get_object(Bucket=bucket_name, Key=file_key_2)
-        data_2 = json.loads(obj['Body'].read())
-        st.write(data_1)
-        st.write(data_2)
+    folder_name = 'NBA_Live_Data/Reddit_Posts_Summarized/'
+    response = s3.list_objects_v2(Bucket=bucket_name, Prefix=folder_name)
+    if 'Contents' in response:
+        for item in response['Contents']:
+            file_name = item['Key']
+            if file_name != folder_name:  # To skip the folder itself if it's listed
+                # Read the content of the file
+                obj = s3.get_object(Bucket=bucket_name, Key=file_name)
+                file_content = obj['Body'].read().decode('utf-8')
+
+                # Print the file name and its contents in Streamlit
+                st.write(f"### File: {file_name}")
+                st.text_area("Content", file_content, height=250)
         
 
         
