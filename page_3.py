@@ -363,13 +363,8 @@ def live_page(source='local'):
         data_1 = json.loads(obj['Body'].read().decode('utf-8'))
         obj2 = s3.get_object(Bucket=bucket_name, Key=file_key_2)
         data_2 = json.loads(obj['Body'].read().decode('utf-8'))
-                
-        st.title(f"Post {i} : {data_1['Title']}")
-        st.write(f"Author: {data_2['Author']}")
-        st.write(f"Summarized Text: {data_2['summary']}")
-
-        st.write(f"Upvotes: {data_1['Upvotes']}")
-        
+        st.write(data_1)
+        st.write(data_2)
         
 
         
