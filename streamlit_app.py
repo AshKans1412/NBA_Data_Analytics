@@ -217,19 +217,29 @@ def generate_top_performers_plots(df, category):
     column_name = category_mapping[category]
     top_performers = df[['Player', column_name]].sort_values(by=column_name, ascending=False).head(10)
 
-    sns.set_style("whitegrid")
-    plt.figure(figsize=(20, 18))
+    sns.set_style("white")
+    fig, ax = plt.subplots(figsize=(10, 4))  # Create a figure and a set of subplots
 
     # Plotting the top performers
-    plt.subplot(3, 3, 1)
-    sns.barplot(x=column_name, y='Player', data=top_performers, palette='viridis')
+    sns.barplot(x=column_name, y='Player', data=top_performers, palette='viridis', ax=ax)
     
-    # Centering the title
-    plt.title(f'Top Performers in {category}', loc='center', fontsize=18)
-    plt.tight_layout()
+    # Centering the title and setting font size
+    ax.set_title(f'Top Performers in {category}', loc='center', fontsize=16)
 
-    # Return the Matplotlib figure
-    return plt.gcf()
+    # Setting x and y labels with specified font sizes
+    ax.set_xlabel(category, fontsize=14)
+    ax.set_ylabel('Player', fontsize=14)
+
+    # Annotate each bar with the value
+    for p in ax.patches:
+        ax.annotate(format(p.get_width(), '.1f'),  # Format the number to 1 decimal place
+                    (p.get_width(), p.get_y() + p.get_height() / 2),  # Position
+                    xytext=(5, 0),  # 5 points horizontal offset
+                    textcoords='offset points',  # Offset from the xy value
+                    ha='left', va='center')  # Horizontal alignment and vertical alignment
+
+    plt.tight_layout()
+    return fig 
 
 
 # NbaScraper Class
@@ -587,28 +597,32 @@ def nba_stats_page():
 
 
 def home_page():
-    st.title(" NBA Visualizations ")
+    st.title(" Visualizations ")
     api_url = 'https://nba-api-ash-1-fc1674476d71.herokuapp.com/dataset' 
     nba_data = fetch_data(api_url)
     preprocessed_data = preprocess_data(nba_data)
     # Display buttons for showing original and preprocessed dataframes
-    st.write("## Explore DataFrames")
+    st.write("## Explore the Data")
     if st.button('Show Original DataFrame'):
         st.write("### Original DataFrame")
         st.dataframe(nba_data)  # This will automatically adjust the height
 
-    if st.button('Show Preprocessed DataFrame'):
-        st.write("### Preprocessed DataFrame")
-        st.dataframe(preprocessed_data) 
+    st.markdown("---")
+
+    #if st.button('Show Preprocessed DataFrame'):
+        #st.write("### Preprocessed DataFrame")
+        #st.dataframe(preprocessed_data) 
 
     # Section for Top Performers with dynamically generated buttons
     st.write("## Top Performers in Different Categories")
     st.write("Choose any one category to find out the top performers")
-    selected_category = st.selectbox("Select a Category:", ["Points", "Assists", "Rebounds", "Steals", "Blocks", "FG Percentage", "3P Percentage", "FT Percentage"])
+    selected_category = st.selectbox("Select a Category:", ["Points", "Assists", "Rebounds", "Steals", "Blocks"])#, "FG Percentage", "3P Percentage", "FT Percentage"])
 
     if st.button("Show Top Performers"):
         top_performers_plot = generate_top_performers_plots(nba_data, selected_category)
-        st.pyplot(top_performers_plot, use_container_width=True)
+        st.pyplot(top_performers_plot)#, use_container_width=True)
+
+    st.markdown("---")
 
 
     # Section for Scatter Plot of Players
@@ -617,15 +631,15 @@ def home_page():
     scatter_plot(preprocessed_data)
 
     # Player Comparison Section
-    st.write("## Compare Players Performances")
-    col1, col2 = st.columns(2)
-    with col1:
-        player1 = st.selectbox("Select the first player:", preprocessed_data['Player'].unique(), key='player1')
-    with col2:
-        player2 = st.selectbox("Select the second player:", preprocessed_data['Player'].unique(), key='player2')
+    #st.write("## Compare Players Performances")
+    #col1, col2 = st.columns(2)
+    #with col1:
+        #player1 = st.selectbox("Select the first player:", preprocessed_data['Player'].unique(), key='player1')
+    #with col2:
+        #player2 = st.selectbox("Select the second player:", preprocessed_data['Player'].unique(), key='player2')
 
-    if st.button("Run Player Comparison"):
-        generate_player_comparison_plots(preprocessed_data, player1, player2)
+    #if st.button("Run Player Comparison"):
+        #generate_player_comparison_plots(preprocessed_data, player1, player2)
 
     # Footer with disclaimer
     st.markdown("---")
@@ -633,23 +647,23 @@ def home_page():
 
 
 def main():
-    page = st.sidebar.radio("Explore ", ['Home','Visualizations', 'Stats', 'Live Score'])
+    page = st.sidebar.radio("Navigate", ['Home','Visualizations', 'Player Stats & Comparision', 'Live Score'])
 
     # Content based on page selection
     if page =='Home':
         st.title("Welcome to the World of NBA Analytics")
         st.write(
         """
-        Explore in-depth player statistics, shot charts, and comparison analysis across various NBA Players & Seasons.
+        Explore in-depth player statistics, shot charts, and comparison analysis across the current NBA Players.
         """
         )
-        st.image('https://static01.nyt.com/images/2017/07/12/sports/12SUMMERLEAGUE-web1/12SUMMERLEAGUE-web1-videoSixteenByNineJumbo1600.jpg', use_column_width=True, caption='NBA Analytics') 
+        st.image('https://static01.nyt.com/images/2017/07/12/sports/12SUMMERLEAGUE-web1/12SUMMERLEAGUE-web1-videoSixteenByNineJumbo1600.jpg', use_column_width=True) 
         
     elif page == 'Visualizations':
         home_page()
         nba_stats_page()
-    elif page == 'Stats':
-        st.write('Player Stats')  # Calling the NBA stats page function
+    elif page == 'Player Stats & Comparision':
+        st.write('Player Stats & Comparision')  # Calling the NBA stats page function
     elif page == 'Live Score':
         st.write("Live Score")
         live_page()
