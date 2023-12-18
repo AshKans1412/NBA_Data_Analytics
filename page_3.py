@@ -355,7 +355,7 @@ def live_page(source='local'):
     st.markdown("---")
     bucket_name = 'ash-dcsc-project'
     folder_name = 'NBA_Live_Data/Reddit_Posts_Summarized/'
-    s3 = boto3.client('s3')
+
     
     st.title("Top Discussion on NBA for this week")
     
