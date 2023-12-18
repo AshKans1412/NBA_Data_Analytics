@@ -304,7 +304,10 @@ def live_page(source='local'):
             away_home = away_team["teamTricode"]
 
             request_pred = f"https://nba-api-ash-1-fc1674476d71.herokuapp.com/predict?team1={tri_home}&team2={away_home}"
-            #request_pred_1 = requests.get(request_pred).json()
+            try:
+                request_pred_1 = requests.get(request_pred).json()
+            except:
+                request_pred_1 = "Dont know"
 
             st.write(f"Predicted Winner: {request_pred}")
             st.markdown("---")  # Separator line
