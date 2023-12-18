@@ -161,21 +161,41 @@ def read_files_from_s3(bucket_name, folder_path, aws_access_key_id, aws_secret_a
     files = [item['Key'] for item in response.get('Contents', []) if item['Key'].endswith('.json')]
     return s3, files
 
+
+def read_files_from_s3_aws_env(bucket_name, folder_path):
+    # Initialize Boto3 S3 client
+    s3 = boto3.client(
+        's3'
+    )
+    
+    # List files in the specified S3 bucket directory
+    response = s3.list_objects_v2(Bucket=bucket_name, Prefix=folder_path)
+    files = [item['Key'] for item in response.get('Contents', []) if item['Key'].endswith('.json')]
+    return s3, files
+
+
 def read_files_from_local(local_folder_path):
     # List files in the specified local directory
     files = [f for f in os.listdir(local_folder_path) if f.endswith('.json')]
     return None, files
 
 def live_page(source='local'):
-    if source == 'aws':
+    if source == 'streamlit':
         aws_access_key_id = st.secrets["AWS_Access_key"]
         aws_secret_access_key = st.secrets["Secre_AK"]
         bucket_name = 'ash-dcsc-project'
         folder_path = 'NBA_Live_Data/Current_Matches/'
         s3, files = read_files_from_s3(bucket_name, folder_path, aws_access_key_id, aws_secret_access_key)
+        
     elif source == 'local':
         local_folder_path = 'Sample_Data'
         s3, files = read_files_from_local(local_folder_path)
+        
+    elif source == 'aws':
+        bucket_name = 'ash-dcsc-project'
+        folder_path = 'NBA_Live_Data/Current_Matches/'
+        s3, files = read_files_from_local_aws_env(bucket_name, folder_path)
+        
     else:
         st.error("Invalid source specified. Please choose 'aws' or 'local'.")
         return
@@ -186,7 +206,7 @@ def live_page(source='local'):
 
     for file_key in files:
         # Read file content
-        if source == 'aws':
+        if (source == 'aws') or (source == 'streamlit') :
             obj = s3.get_object(Bucket=bucket_name, Key=file_key)
             match_data = json.loads(obj['Body'].read().decode('utf-8'))
         else:
