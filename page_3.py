@@ -362,12 +362,19 @@ def live_page(source='local'):
                 # Read the content of the file
                 obj = s3.get_object(Bucket=bucket_name, Key=file_name)
                 file_content = obj['Body'].read().decode('utf-8')
+                
+                file_name_2 = file_name.replace("Reddit_Posts_Summarized","Reddit_Posts")
+                
+                obj_2 = s3.get_object(Bucket=bucket_name, Key=file_name_2)
+                file_content_2 = obj['Body'].read().decode('utf-8')
 
                 # Print the file name and its contents in Streamlit
-                st.write(f"### File: {file_name}")
-                st.text_area("Content", file_content, height=250)
-                st.write(file_content["summary"])
-        
+                st.write(f"### Post: {file_content_2["Title"]}")
+                st.text_area("Summary", file_content, height=250)
+                st.write(f"Upvotes: {file_content_2["Upvotes"]}")
+                st.write(f"Author: {file_content_2["Author"]}")
+
+
 
         
 
