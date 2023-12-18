@@ -648,6 +648,15 @@ def home_page():
 
 def main():
     page = st.sidebar.radio("Navigate", ['Home','Visualizations', 'Player Stats & Comparision', 'Live Score'])
+    # Setup the sidebar
+    with st.sidebar: 
+        st.image('https://raw.githubusercontent.com/Kaushiknb11/Basketball_Analytics/main/hoopshub.png')
+        st.title('HoopsHub: NBA Insights Platform')
+        st.markdown("""Developed by:  
+    - Sashank Gangadharabhotla  
+    - Kaushik Narasimha Bukkapatnam  
+    - Mohammed Junaid Shaik  
+    - Sriram Reddy Arabelli""")
 
     # Content based on page selection
     if page =='Home':
