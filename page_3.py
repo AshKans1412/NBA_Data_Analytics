@@ -360,9 +360,9 @@ def live_page(source='local'):
     for file_key in files:
         file_key_2 = file_key.replace("Reddit_Posts", "Reddit_Posts_Summarized")
         obj = s3.get_object(Bucket=bucket_name, Key=file_key)
-        data_1 = json.loads(obj['Body'].read().decode('utf-8'))
+        data_1 = json.loads(obj['Body'].read())
         obj2 = s3.get_object(Bucket=bucket_name, Key=file_key_2)
-        data_2 = json.loads(obj['Body'].read().decode('utf-8'))
+        data_2 = json.loads(obj['Body'].read())
         st.write(data_1)
         st.write(data_2)
         
