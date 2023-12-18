@@ -20,38 +20,7 @@ def get_team_logo_url(team_abbreviation):
     github_url = f"https://raw.githubusercontent.com/Kaushiknb11/Basketball_Analytics/main/Teams/{team_abbreviation}.png"
     return github_url
 
-team_name_mapping = {
-    "ATL": "Atlanta Hawks",
-    "BRK": "Brooklyn Nets",
-    "BOS": "Boston Celtics",
-    "CHO": "Charlotte Hornets",
-    "CHI": "Chicago Bulls",
-    "CLE": "Cleveland Cavaliers",
-    "DAL": "Dallas Mavericks",
-    "DEN": "Denver Nuggets",
-    "DET": "Detroit Pistons",
-    "GSW": "Golden State Warriors",
-    "HOU": "Houston Rockets",
-    "IND": "Indiana Pacers",
-    "LAC": "Los Angeles Clippers",
-    "LAL": "Los Angeles Lakers",
-    "MEM": "Memphis Grizzlies",
-    "MIA": "Miami Heat",
-    "MIL": "Milwaukee Bucks",
-    "MIN": "Minnesota Timberwolves",
-    "NOP": "New Orleans Pelicans",
-    "NYK": "New York Knicks",
-    "OKC": "Oklahoma City Thunder",
-    "ORL": "Orlando Magic",
-    "PHI": "Philadelphia 76ers",
-    "PHO": "Phoenix Suns",
-    "POR": "Portland Trail Blazers",
-    "SAC": "Sacramento Kings",
-    "SAS": "San Antonio Spurs",
-    "TOR": "Toronto Raptors",
-    "UTA": "Utah Jazz",
-    "WAS": "Washington Wizards"
-}
+
 
 # Function to fetch data from the API
 def fetch_data(api_url):
@@ -184,7 +153,38 @@ def generate_player_comparison_plots(df, player1, player2):
     #st.plotly_chart(fig3)
 
 
-
+team_name_mapping = {
+    "ATL": "Atlanta Hawks",
+    "BRK": "Brooklyn Nets",
+    "BOS": "Boston Celtics",
+    "CHO": "Charlotte Hornets",
+    "CHI": "Chicago Bulls",
+    "CLE": "Cleveland Cavaliers",
+    "DAL": "Dallas Mavericks",
+    "DEN": "Denver Nuggets",
+    "DET": "Detroit Pistons",
+    "GSW": "Golden State Warriors",
+    "HOU": "Houston Rockets",
+    "IND": "Indiana Pacers",
+    "LAC": "Los Angeles Clippers",
+    "LAL": "Los Angeles Lakers",
+    "MEM": "Memphis Grizzlies",
+    "MIA": "Miami Heat",
+    "MIL": "Milwaukee Bucks",
+    "MIN": "Minnesota Timberwolves",
+    "NOP": "New Orleans Pelicans",
+    "NYK": "New York Knicks",
+    "OKC": "Oklahoma City Thunder",
+    "ORL": "Orlando Magic",
+    "PHI": "Philadelphia 76ers",
+    "PHO": "Phoenix Suns",
+    "POR": "Portland Trail Blazers",
+    "SAC": "Sacramento Kings",
+    "SAS": "San Antonio Spurs",
+    "TOR": "Toronto Raptors",
+    "UTA": "Utah Jazz",
+    "WAS": "Washington Wizards"
+}
 
 # Streamlit app title
 st.title("Player Stats & Comparison")
