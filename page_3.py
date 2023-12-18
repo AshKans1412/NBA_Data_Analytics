@@ -366,6 +366,7 @@ def live_page(source='local'):
                 # Print the file name and its contents in Streamlit
                 st.write(f"### File: {file_name}")
                 st.text_area("Content", file_content, height=250)
+                st.write(file_content["summary"])
         
 
         
