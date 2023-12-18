@@ -351,6 +351,12 @@ def live_page(source='local'):
             display_predicted_winner(home_team, away_team)
 
 
+    st.markdown("---")
+    bucket_name = 'ash-dcsc-project'
+    folder_path = 'NBA_Live_Data/Reddit_Posts/'
+    s3, files = read_files_from_s3_aws_env(bucket_name, folder_path)
+    for file_key in files:
+        st.write(file_key)
 
 
 
