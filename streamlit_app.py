@@ -605,7 +605,7 @@ def home_page():
     # Display buttons for showing original and preprocessed dataframes
     st.write("## Explore the Data")
     if st.button('Show Original DataFrame'):
-        st.write("### Original DataFrame")
+        st.write("### The Data")
         st.dataframe(nba_data)  # This will automatically adjust the height
 
     st.markdown("---")
