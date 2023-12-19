@@ -1,4 +1,4 @@
-# Welcome to Streamlit Application !
+# Welcome to Streamlit NBA Application !
 --------
 Edit `/streamlit_app.py` to customize this app to your heart's desire. :heart:
 
