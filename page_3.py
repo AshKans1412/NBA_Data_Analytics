@@ -133,7 +133,10 @@ def get_period_scores(team_data):
 
 def draw_line_chart(period_scores, team_name):
     # Create a line chart for the team's performance across periods
-    periods = ['Period 1', 'Period 2', 'Period 3', 'Period 4']
+    if len(period_scores) == 4 :
+        periods = ['Period 1', 'Period 2', 'Period 3', 'Period 4']
+    else:
+        periods = ['Period 1', 'Period 2', 'Period 3', 'Period 4',"Overtime"]
     fig = px.line(x=periods, y=period_scores, markers=True, title=f'Performance Across Periods: {team_name}')
     fig.update_layout(xaxis_title="Period", yaxis_title="Score", width = 300, height = 300)
     return fig
