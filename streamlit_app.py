@@ -728,7 +728,7 @@ def main():
         AWS S3 Bucket
         """
         )
-        st.image('https://raw.githubusercontent.com/Kaushiknb11/Basketball_Analytics/main/hoopshub.png')
+        st.image('https://raw.githubusercontent.com/Kaushiknb11/Airflow_NBA/main/assets/S3.jpeg')
         st.markdown("---")
         st.write(
         """
