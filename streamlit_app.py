@@ -661,14 +661,83 @@ def main():
 
     # Content based on page selection
     if page =='Home':
-        st.title("Welcome to the World of NBA Analytics")
+        st.title("Welcome to the World of Basketball")
+        st.markdown("---")
+
         st.write(
         """
-        Explore in-depth player statistics, shot charts, and comparison analysis across the current NBA Players.
+        Discover a comprehensive view of the NBA with HoopsHub: delve into current player and season statistics, visualize data through shot charts, compare players in detail, and stay updated with daily match scores.
         """
         )
         st.image('https://static01.nyt.com/images/2017/07/12/sports/12SUMMERLEAGUE-web1/12SUMMERLEAGUE-web1-videoSixteenByNineJumbo1600.jpg', use_column_width=True) 
-        
+        st.markdown("---")
+
+        st.header(
+        """
+        Overview:
+        """
+        )
+        st.write(
+        """
+        HoopsHub: NBA Insights Platform provides real-time updates on live NBA scores and daily matches, with frequent refreshes for the latest information. The application also boasts a sophisticated visualization suite to showcase insightful analyses, complemented by detailed player statistics and comprehensive comparison features, encapsulating all the essentials for NBA fans and analysts in one dynamic platform.
+        """
+        )
+        st.markdown("---")
+
+        st.header(
+        """
+        Data Source:
+        """
+        )
+        st.write(
+        """
+        The primary data source is a custom-built NBA Stats API by our team named "ash-nba-api". This API is meticulously designed to fetch the latest NBA statistics for the 2023-2024 NBA season. The API, developed using Flask and hosted on Heroku, stands out for its automated process of daily data scraping from a basketball reference website. This ensures that the data is current and comprehensive, covering a wide array of player statistics and game details. The API's robust endpoints facilitate seamless retrieval of player-specific data and overall game insights, further enhancing the analytical capabilities of the application.
+        """
+        )
+        st.markdown("Please refer to the [ash_nba_api](https://github.com/AshKans1412/NBA-Analysis-API) for more information.")
+        st.markdown("---")
+
+        st.header(
+        """
+        Architecture Diagram:
+        """
+        )
+        st.image('https://raw.githubusercontent.com/Kaushiknb11/Basketball_Analytics/main/hoopshub.png')
+        st.write(
+        """
+        Explain the architecture a little.
+        """
+        )
+        st.markdown("---")
+
+        st.header(
+        """
+        Gallery:
+        """
+        )
+        st.markdown("---")
+        st.write(
+        """
+        Airflow for NBA Data ETL
+        """
+        )
+        st.image('https://raw.githubusercontent.com/Kaushiknb11/Airflow_NBA/main/assets/Screen%20Shot%202023-12-18%20at%2012.19.52%20PM.png')
+        st.markdown("---")
+        st.write(
+        """
+        AWS S3 Bucket
+        """
+        )
+        st.image('https://raw.githubusercontent.com/Kaushiknb11/Basketball_Analytics/main/hoopshub.png')
+        st.markdown("---")
+        st.write(
+        """
+        RDS - Postgres
+        """
+        )
+        st.image('https://raw.githubusercontent.com/Kaushiknb11/Airflow_NBA/main/assets/Screen%20Shot%202023-12-17%20at%2012.42.29%20PM.png')
+        st.markdown("---")
+
     elif page == 'Visualizations':
         home_page()
         nba_stats_page()
