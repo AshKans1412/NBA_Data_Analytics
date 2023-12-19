@@ -702,7 +702,7 @@ def main():
         Architecture Diagram:
         """
         )
-        st.image('https://raw.githubusercontent.com/Kaushiknb11/Basketball_Analytics/main/hoopshub.png')
+        st.image('https://raw.githubusercontent.com/Kaushiknb11/Airflow_NBA/main/assets/Architecture_Diagram.png')
         st.write(
         """
         Explain the architecture a little.
