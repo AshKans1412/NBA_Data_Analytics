@@ -722,25 +722,61 @@ def main():
         st.markdown("---")
         st.write(
         """
-        Airflow for NBA Data ETL
+        **AWS Lambda**
         """
         )
-        st.image('https://raw.githubusercontent.com/Kaushiknb11/Airflow_NBA/main/assets/Screen%20Shot%202023-12-18%20at%2012.19.52%20PM.png')
+        st.image('https://raw.githubusercontent.com/Kaushiknb11/Airflow_NBA/main/assets/AWS_Lambda.jpeg')
         st.markdown("---")
         st.write(
         """
-        AWS S3 Bucket
+        **Amazon EventBridge**
+        """
+        )
+        st.image('https://raw.githubusercontent.com/Kaushiknb11/Airflow_NBA/main/assets/Amazon_EventBridge.jpeg')
+        st.markdown("---")
+        st.write(
+        """
+        **AWS S3 Bucket**
         """
         )
         st.image('https://raw.githubusercontent.com/Kaushiknb11/Airflow_NBA/main/assets/S3.jpeg')
         st.markdown("---")
         st.write(
         """
-        RDS - Postgres
+        **Heroku - NBA Analysis API**
+        """
+        )
+        st.image('https://raw.githubusercontent.com/Kaushiknb11/Airflow_NBA/main/assets/Heroku.jpeg')
+        st.markdown("---")
+        st.write(
+        """
+        **AWS EC2 Instances**
+        """
+        )
+        st.image('https://raw.githubusercontent.com/Kaushiknb11/Airflow_NBA/main/assets/EC2_Instances.jpeg')
+        st.markdown("---")
+        st.write(
+        """
+        **Jenkins Server**
+        """
+        )
+        st.image('https://raw.githubusercontent.com/Kaushiknb11/Airflow_NBA/main/assets/Jenkins_Server.jpeg')
+        st.markdown("---")
+        st.write(
+        """
+        **Airflow for NBA Data ETL**
+        """
+        )
+        st.image('https://raw.githubusercontent.com/Kaushiknb11/Airflow_NBA/main/assets/Screen%20Shot%202023-12-18%20at%2012.19.52%20PM.png')
+        st.markdown("---")
+        st.write(
+        """
+        **RDS - Postgres**
         """
         )
         st.image('https://raw.githubusercontent.com/Kaushiknb11/Airflow_NBA/main/assets/Screen%20Shot%202023-12-17%20at%2012.42.29%20PM.png')
         st.markdown("---")
+
 
     elif page == 'Visualizations':
         home_page()
