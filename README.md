@@ -1,5 +1,8 @@
 # HoopsHub: NBA Insights Platform
 
+![DALL·E](https://github.com/AshKans1412/NBA_Data_Analytics/assets/71004480/7a9f14b1-229a-416e-b09c-2550176ec2b9)
+
+
 ## Welcome to the World of Basketball
 
 Welcome to HoopsHub, the comprehensive platform for NBA enthusiasts, analysts, and fans. HoopsHub provides a real-time view into the world of the NBA, offering current player statistics, season insights, shot chart visualizations, detailed player comparisons, and daily match updates.
