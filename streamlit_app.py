@@ -686,6 +686,20 @@ def main():
 
         st.header(
         """
+        Link to Application:
+        """
+        )
+        st.write(
+            """
+            Primary Instance Link: [http://174.129.97.188:8501/](http://174.129.97.188:8501/)  
+
+            Secondary Instance Link: [https://ash-nba-1.streamlit.app/](https://ash-nba-1.streamlit.app/)
+            """
+        )
+        st.markdown("---")
+
+        st.header(
+        """
         Data Source:
         """
         )
@@ -713,6 +727,23 @@ def main():
         HoopsHub's primary front-end instance is hosted on AWS EC2, fully containerized with Docker to ensure a robust and scalable user experience. This deployment leverages the comprehensive data collated from S3 buckets and the REST API, offering users real-time NBA match scores, trending Reddit discussions, and in-depth player statistics. In the event of increased traffic or downtime, the architecture includes a secondary, backup instance deployed on Streamlit Cloud. This strategic setup allows for immediate redirection to the backup, maintaining uninterrupted service and high availability of the HoopsHub platform.
         """)
         st.markdown("---")
+
+        st.header(
+        """
+        GitHub Code Repositories:
+        """
+        )
+        st.write(
+        """
+        NBA Analysis API: [https://github.com/AshKans1412/NBA-Analysis-API](https://github.com/AshKans1412/NBA-Analysis-API)  
+
+        Airflow: [https://github.com/Kaushiknb11/Airflow_NBA](https://github.com/Kaushiknb11/Airflow_NBA) 
+
+        NBA Data Analytics: [https://github.com/AshKans1412/NBA_Data_Analytics](https://github.com/AshKans1412/NBA_Data_Analytics) 
+        """
+        )
+        st.markdown("---")
+
 
         st.header(
         """
