@@ -832,7 +832,7 @@ def main():
         #st.write('Player Stats & Comparision')  # Calling the NBA stats page function
     elif page == 'Live Score':
         st.write("Live Score")
-        live_page("aws")
+        live_page("streamlit")
 
 if __name__ == "__main__":
     st.set_page_config(layout="wide")
