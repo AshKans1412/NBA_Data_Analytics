@@ -708,7 +708,7 @@ def main():
 
         The application's backend employs a custom REST API, built with Flask and hosted on Heroku, that facilitates on-demand data retrieval for the front-end. This API also feeds into a robust CI/CD pipeline managed through Jenkins on AWS EC2, ensuring continuous integration and deployment.
 
-        For historical data management and future analysis, Apache Airflow orchestrates daily data uploads from the REST API to Amazon RDS, creating a repository of NBA statistics over time. Concurrently, this data is also made available in a separate S3 bucket for read and save operations.
+        For historical data management and analysis, Apache Airflow orchestrates daily data uploads from the REST API to Amazon RDS, creating a repository of NBA statistics over time. Concurrently, this data is also made available in a separate S3 bucket for read and save operations.
 
         HoopsHub's primary front-end instance is hosted on AWS EC2, fully containerized with Docker to ensure a robust and scalable user experience. This deployment leverages the comprehensive data collated from S3 buckets and the REST API, offering users real-time NBA match scores, trending Reddit discussions, and in-depth player statistics. In the event of increased traffic or downtime, the architecture includes a secondary, backup instance deployed on Streamlit Cloud. This strategic setup allows for immediate redirection to the backup, maintaining uninterrupted service and high availability of the HoopsHub platform.
         """)
