@@ -651,7 +651,9 @@ def main():
     page = st.sidebar.radio("Navigate", ['Home','Visualizations', 'Player Stats & Comparision', 'Live Score'])
     # Setup the sidebar
     with st.sidebar: 
-        st.image('https://raw.githubusercontent.com/Kaushiknb11/Basketball_Analytics/main/hoopshub.png')
+        #st.image('https://raw.githubusercontent.com/Kaushiknb11/Basketball_Analytics/main/hoopshub.png')
+        st.image('https://github.com/AshKans1412/NBA_Data_Analytics/assets/71004480/7a9f14b1-229a-416e-b09c-2550176ec2b9')
+
         st.title('HoopsHub: NBA Insights Platform')
         st.markdown("""Developed by:  
     - Sashank Gangadharabhotla  
