@@ -705,17 +705,27 @@ def main():
 
         st.header(
         """
-        Data Source:
+        Data Sources and Integration:
         """
         )
-        st.write(
-        """
-        The primary data source is a custom-built NBA Stats API by our team named "ash-nba-api". This API is meticulously designed to fetch the latest NBA statistics for the 2023-2024 NBA season. The API, developed using Flask and hosted on Heroku, stands out for its automated process of daily data scraping from a basketball reference website. This ensures that the data is current and comprehensive, covering a wide array of player statistics and game details. The API's robust endpoints facilitate seamless retrieval of player-specific data and overall game insights, further enhancing the analytical capabilities of the application.
-        """
-        )
-        st.markdown("Please refer to the [ash_nba_api](https://github.com/AshKans1412/NBA-Analysis-API) for more information.")
-        st.markdown("---")
+        st.write("""
+        ### 
 
+        **Curated dataset from multiple sources for comprehensive NBA analytics.**
+
+        #### Live Game Data
+        - **nba_api**: Provides real-time data for live NBA matches, capturing scores, game dynamics, and player performance.
+
+        #### Community Engagement Insights
+        - **Reddit Insights**: Analyzes top NBA discussions and fan sentiments, offering insights into the basketball community's pulse.
+
+        #### Player Performance Metrics
+        - **Basketball Reference Site**: The main source for detailed player statistics. Data is web-scraped and transformed to provide analytical depth.
+        - **Custom REST API Development**: Enhances data accessibility and integration, enabling HoopsHub to seamlessly retrieve and display player metrics.
+        """)
+        st.markdown("Please refer to the [ash_nba_api](https://github.com/AshKans1412/NBA-Analysis-API) for more information on the REST API.")
+        st.markdown("---")
+        
         st.header(
         """
         Architecture Diagram:
