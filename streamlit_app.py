@@ -696,6 +696,11 @@ def main():
             Secondary Instance Link: [https://ash-nba-1.streamlit.app/](https://ash-nba-1.streamlit.app/)
             """
         )
+        st.write(
+            """
+            HoopsHub's primary front-end instance is hosted on AWS EC2, fully containerized with Docker to ensure a robust and scalable user experience. In the event of increased traffic or downtime, the architecture includes a secondary, backup instance deployed on Streamlit Cloud. This strategic setup allows for immediate redirection to the backup, maintaining uninterrupted service and high availability of the HoopsHub platform.
+            """
+        )
         st.markdown("---")
 
         st.header(
