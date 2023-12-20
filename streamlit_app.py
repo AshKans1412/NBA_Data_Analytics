@@ -723,7 +723,7 @@ def main():
         - **Basketball Reference Site**: The main source for detailed player statistics. Data is web-scraped and transformed to provide analytical depth.
         - **Custom REST API Development**: Enhances data accessibility and integration, enabling HoopsHub to seamlessly retrieve and display player metrics.
         """)
-        st.markdown("Please refer to the [ash_nba_api](https://github.com/AshKans1412/NBA-Analysis-API) for more information on the REST API.")
+        st.markdown("Please refer to the [NBA-Analysis-API](https://github.com/AshKans1412/NBA-Analysis-API) for more information on the REST API.")
         st.markdown("---")
         
         st.header(
