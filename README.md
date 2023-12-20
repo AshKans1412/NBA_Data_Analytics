@@ -89,4 +89,6 @@ HoopsHub leverages a diverse array of data sources including nba_api for live NB
 ![Airflow for NBA Data ETL](https://raw.githubusercontent.com/Kaushiknb11/Airflow_NBA/main/assets/Screen%20Shot%202023-12-18%20at%2012.19.52%20PM.png)
 
 ### RDS - Postgres
-![RDS - Postgres](https://raw.githubusercontent.com/Kaushiknb11/Airflow_NBA/main/assets
+![RDS - Postgres](https://raw.githubusercontent.com/Kaushiknb11/Airflow_NBA/main/assets/Screen%20Shot%202023-12-17%20at%2012.42.29%20PM.png)
+
+---
