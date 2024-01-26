@@ -17,20 +17,9 @@ from requests.exceptions import RequestException
 from requests.adapters import HTTPAdapter
 from requests.packages.urllib3.util.retry import Retry
 from page_3 import live_page
-from page2 import page_2
+from page2 import page_2, fetch_data
 
-# Function to fetch data from the API
-def fetch_data(api_url):
-    response = requests.get(api_url)
-    
-    if response.status_code == 200:
-        data = response.json()
-        data = pd.read_json(data)
-        df = pd.DataFrame(data) 
-        return df
-    else:
-        st.error(f"Error fetching data from the API. Status code: {response.status_code}")
-        return None
+
 
 # Function to preprocess data
 def preprocess_data(df):
