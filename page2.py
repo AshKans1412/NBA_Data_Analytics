@@ -271,7 +271,7 @@ def page_2():
 
     nba_data = pd.read_csv("./Sample_Data/NBA_2024_per_game.csv")
     players = nba_data['Player'].unique().tolist()
-    api_player_names = json.dumps(players)
+    api_player_names = players
     
     # Display based on the selected feature
     if feature == "Player Search and Stats":
