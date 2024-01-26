@@ -266,7 +266,12 @@ def page_2():
             st.error("Failed to fetch player data.")
     
     # Fetch all player names from the API
-    api_player_names = requests.get("https://nba-api-ash-1-fc1674476d71.herokuapp.com/players").json()
+    
+    #api_player_names = requests.get("https://nba-api-ash-1-fc1674476d71.herokuapp.com/players").json()
+
+    nba_data = pd.read_csv("./Sample_Data/NBA_2024_per_game.csv")
+    players = nba_data['Player'].unique().tolist()
+    api_player_names = jsonify(players)
     
     # Display based on the selected feature
     if feature == "Player Search and Stats":
