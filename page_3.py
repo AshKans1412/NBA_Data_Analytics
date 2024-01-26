@@ -119,7 +119,7 @@ def get_player_image(Name):
         image_url = response_2.json()["image"]
     
     except:
-        image_data = pd.read_csv("./Sample_Data/images_data.csv")
+        images_data = pd.read_csv("./Sample_Data/images_data.csv")
         player_data = images_data[images_data['API_Names'] == player_name_encoded].playerid.values[0]
         xxx = "https://raw.githubusercontent.com/AshKans1412/NBA-Analysis-API/main/Assests/img/" + str(player_data) + ".png"
         image_url = json.dumps({"image": xxx })
