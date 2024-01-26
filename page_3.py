@@ -88,7 +88,13 @@ def draw_radial_chart(leader_data, title):
 
 def get_player_image(Name):
 # List of all players from the API
-    api_player_names = requests.get("https://nba-api-ash-1-fc1674476d71.herokuapp.com/players").json()
+    
+    #api_player_names = requests.get("https://nba-api-ash-1-fc1674476d71.herokuapp.com/players").json()
+
+    nba_data = pd.read_csv("./Sample_Data/NBA_2024_per_game.csv")
+    players = nba_data['Player'].unique().tolist()
+    api_player_names = jsonify(players)
+    
     
     # Get player name from the user
     user_input = Name
@@ -105,12 +111,18 @@ def get_player_image(Name):
     closest_match = find_closest_match(user_input, api_player_names)
     # Replace spaces with "%20" for URL encoding
     player_name_encoded = closest_match.replace(" ", "%20") if closest_match else None
-    
-    # API endpoint
-    api_url_2 = f"https://nba-api-ash-1-fc1674476d71.herokuapp.com/get_images/{player_name_encoded}"
-    response_2 = requests.get(api_url_2)
-    image_url = response_2.json()["image"]
 
+    try:
+    # API endpoint
+        api_url_2 = f"https://nba-api-ash-1-fc1674476d71.herokuapp.com/get_images/{player_name_encoded}"
+        response_2 = requests.get(api_url_2)
+        image_url = response_2.json()["image"]
+    
+    except:
+        image_data = pd.read_csv("./Sample_Data/images_data.csv")
+        player_data = images_data[images_data['API_Names'] == player_name_encoded].playerid.values[0]
+        xxx = "https://raw.githubusercontent.com/AshKans1412/NBA-Analysis-API/main/Assests/img/" + str(player_data) + ".png"
+        image_url = jsonify({"image": xxx })
     return image_url
 
 
