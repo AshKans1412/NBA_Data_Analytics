@@ -93,7 +93,7 @@ def get_player_image(Name):
 
     nba_data = pd.read_csv("./Sample_Data/NBA_2024_per_game.csv")
     players = nba_data['Player'].unique().tolist()
-    api_player_names = jsonify(players)
+    api_player_names = json.dumps(players)
     
     
     # Get player name from the user
@@ -122,7 +122,7 @@ def get_player_image(Name):
         image_data = pd.read_csv("./Sample_Data/images_data.csv")
         player_data = images_data[images_data['API_Names'] == player_name_encoded].playerid.values[0]
         xxx = "https://raw.githubusercontent.com/AshKans1412/NBA-Analysis-API/main/Assests/img/" + str(player_data) + ".png"
-        image_url = jsonify({"image": xxx })
+        image_url = json.dumps({"image": xxx })
     return image_url
 
 
