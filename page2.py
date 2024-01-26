@@ -32,8 +32,9 @@ def fetch_data(api_url):
         df = pd.DataFrame(data) 
         return df
     else:
-        st.error(f"Error fetching data from the API. Status code: {response.status_code}")
-        return None
+        df = pd.read_csv("./Sample_Data/NBA_2024_per_game.csv")
+        #st.error(f"Error fetching data from the API. Status code: {response.status_code}")
+        return df
 
 # Function to preprocess data
 def preprocess_data(df):
