@@ -114,14 +114,17 @@ def get_player_image(Name):
 
     try:
     # API endpoint
-        api_url_2 = f"https://nba-api-ash-1-fc1674476d71.herokuapp.com/get_images/{player_name_encoded}"
-        response_2 = requests.get(api_url_2)
-        image_url = response_2.json()["image"]
-    
-    except:
+        #api_url_2 = f"https://nba-api-ash-1-fc1674476d71.herokuapp.com/get_images/{player_name_encoded}"
+        #response_2 = requests.get(api_url_2)
+        #image_url = response_2.json()["image"]
+
         images_data = pd.read_csv("./Sample_Data/images_data.csv")
         player_data = images_data[images_data['API_Names'] == player_name_encoded].playerid.values[0]
         xxx = "https://raw.githubusercontent.com/AshKans1412/NBA-Analysis-API/main/Assests/img/" + str(player_data) + ".png"
+        image_url = json.dumps({"image": xxx })
+    
+    except:
+        xxx = "https://raw.githubusercontent.com/AshKans1412/NBA-Analysis-API/main/Assests/img/default.png"
         image_url = json.dumps({"image": xxx })
     return image_url
 
