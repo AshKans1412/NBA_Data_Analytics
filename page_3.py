@@ -130,7 +130,7 @@ def get_player_image(Name):
 
 
 def plot_image_from_url(image_url):
-    image_url = json(image_url)
+    
     response = requests.get(image_url)
     #response.raise_for_status()  # Raise an error for bad status codes
 
