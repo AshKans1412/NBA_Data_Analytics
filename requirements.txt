@@ -10,3 +10,4 @@ matplotlib
 Pillow 
 requests 
 Flask
+jsonify
