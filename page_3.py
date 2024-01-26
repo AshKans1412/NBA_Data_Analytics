@@ -12,7 +12,7 @@ import plotly.express as px
 from PIL import Image
 import matplotlib.pyplot as plt
 from botocore.exceptions import NoCredentialsError
-
+import pandas as pd
 
 # Function to calculate countdown or game status
 def get_game_status(game_time_utc, game_end_time_et):
