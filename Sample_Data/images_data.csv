@@ -1,0 +1,481 @@
+playerid,position,height,weight,birthday,country,school,draft_year,API_Names
+1630173,Forward,6-8,225,1999-09-19,Nigeria,Memphis,2020,Precious Achiuwa
+1628389,Center-Forward,6-9,255,1997-07-18,USA,Kentucky,2017,Bam Adebayo
+1630534,Guard,6-5,215,2000-04-20,USA,Kansas,2022,Ochai Agbaji
+1630583,Forward-Center,7-0,215,2001-01-10,Spain,Loyola-Maryland,2021,Santi Aldama
+1629638,Guard,6-5,205,1998-09-02,Canada,Virginia Tech,2019,Nickeil Alexander-Walker
+1628960,Guard,6-4,198,1995-10-08,USA,Duke,2018,Grayson Allen
+1628386,Center,6-9,243,1998-04-21,USA,Texas,2017,Jarrett Allen
+1630631,Guard,6-0,179,1998-04-12,USA,Georgia Tech,2021,Jose Alvarado
+203937,Forward-Guard,6-9,230,1993-09-20,USA,UCLA,2014,Kyle Anderson
+203507,Forward,7-0,243,1994-12-06,Greece,Filathlitikos,2013,Giannis Antetokounmpo
+1628961,Forward,6-10,200,1997-11-20,Greece,University of Dayton,2018,Giannis Antetokounmpo
+203648,Forward,6-7,219,1992-07-18,Greece,Panathinaikos,2014,Thanasis Antetokounmpo
+1630175,Guard,6-3,185,2000-05-15,USA,North Carolina,2020,Cole Anthony
+1628384,Forward,6-7,232,1997-07-17,United Kingdom,Indiana,2017,OG Anunoby
+1627853,Guard,6-3,195,1994-03-26,USA,Villanova,2017,Ryan Arcidiacono
+1630166,Forward,6-9,210,2001-01-03,Israel,Maccabi Tel Aviv,2020,Deni Avdija
+1629028,Center,7-0,250,1998-07-23,Bahamas,Arizona,2018,Deandre Ayton
+1628962,Center-Forward,6-11,270,1999-09-17,Nigeria,Kansas,2020,Udoka Azubuike
+1628963,Forward,6-10,235,1999-03-14,USA,Duke,2018,Marvin Bagley III
+1631116,Forward,6-9,220,2002-11-18,USA,Wisconsin-Milwaukee,2022,Patrick Baldwin Jr.
+1630163,Guard,6-7,180,2001-08-22,USA,Illawarra,2020,LaMelo Ball
+1628964,Center,7-0,231,1998-05-12,USA,Texas,2018,Mo Bamba
+1631094,Forward,6-10,250,2002-11-12,USA,Duke,2022,Paolo Banchero
+1630217,Guard,6-5,215,1998-06-25,USA,TCU,2020,Desmond Bane
+1630625,Forward,6-7,204,1999-11-07,Canada,Nebraska,2021,Dalano Banton
+203084,Forward,6-8,225,1992-05-30,USA,North Carolina,2012,Harrison Barnes
+1630567,Forward,6-8,225,2001-08-01,USA,Florida State,2021,Scottie Barnes
+1629628,Forward-Guard,6-6,214,2000-06-14,Canada,Duke,2019,RJ Barrett
+1629646,Center-Forward,6-9,230,2000-10-28,Nigeria,Western Kentucky,2021,Charles Bassey
+1628966,Forward,6-8,229,1996-01-23,USA,Ohio State,2018,Keita Bates-Diop
+201587,Guard-Forward,6-8,230,1988-12-14,France,Le Mans,2008,Nicolas Batum
+1629647,Forward,6-9,216,2000-06-12,USA,Princeton HS (OH),2019,Amari Bailey
+203078,Guard,6-4,207,1993-06-28,USA,Florida,2012,Bradley Beal
+1627736,Guard,6-4,187,1996-11-26,USA,Florida State,2016,Malik Beasley
+1630699,Forward,6-7,199,2000-10-12,USA,NBA G League Ignite,2022,MarJon Beauchamp
+202722,Forward,6-10,225,1992-11-12,Latvia,Baskonia,2011,Dāvis Bertāns
+201976,Guard,6-2,180,1988-07-12,USA,Arkansas,2009,Patrick Beverley
+1630180,Forward,6-7,215,1999-04-09,USA,Villanova,2020,Saddiq Bey
+1629048,Center-Forward,6-11,250,1999-07-20,Georgia,Mega Basket,2019,Goga Bitadze
+202687,Center,6-8,255,1992-08-28,DRC,Baloncesto Fuenlabrada,2011,Bismack Biyombo
+203992,Guard,6-5,225,1992-08-18,Serbia,Fenerbahce,2014,Bogdan Bogdanović
+202711,Forward,6-7,226,1989-04-18,Croatia,Fenerbahce,2011,Bogdan Bogdanović
+1629626,Center-Forward,7-2,220,1999-11-16,Sudan,Oregon,2019,Bol Bol
+1626164,Guard,6-5,206,1996-10-30,USA,Kentucky,2015,Devin Booker
+1630527,Guard,6-6,188,2001-11-28,USA,Kentucky,2021,Troy Brown Jr.
+1628449,Forward-Center,6-9,200,1993-01-11,Saint Lucia,Oregon,2017,Chris Boucher
+1631123,Guard,6-2,180,1999-06-27,USA,San Francisco,2022,Jamaree Bouyea
+1631103,Forward,6-4,180,2003-05-12,USA,Ohio State,2022,Malaki Branham
+1629714,Forward,6-5,250,1996-06-07,USA,College of Charleston,2019,Jared Butler
+1631128,Guard,6-6,220,2001-04-17,USA,Kansas,2022,Christian Braun
+1628969,Guard-Forward,6-6,209,1996-08-30,USA,Villanova,2018,Mikal Bridges
+1629052,Forward-Guard,6-7,210,1998-06-20,Canada,Syracuse,2019,Oshae Brissett
+1627763,Guard,6-4,229,1992-12-11,USA,Virginia,2016,Malcolm Brogdon
+1628415,Guard-Forward,6-6,225,1996-01-22,Canada,Oregon,2017,Dillon Brooks
+1628971,Guard-Forward,6-4,202,1996-08-15,USA,Miami,2018,Bruce Brown
+1627759,Guard-Forward,6-6,223,1996-10-24,USA,California,2016,Jaylen Brown
+1631112,Guard,6-7,205,2003-05-11,USA,Baylor,2022,Kobe Brown
+1629650,Center,7-2,245,1999-10-13,USA,UCLA,2019,Moses Brown
+1628425,Guard-Forward,6-5,219,1995-02-10,USA,Southern Methodist,2017,Jaylen Brown
+1630535,Forward,6-7,206,2001-09-01,USA,Texas,2021,Bruce Brown
+1628972,Guard-Forward,6-7,215,1999-07-28,USA,Oregon,2018,Troy Brown Jr.
+1628973,Guard,6-2,190,1996-08-31,USA,Villanova,2018,Jalen Brunson
+1628418,Center-Forward,6-10,248,1997-07-31,USA,Indiana,2017,Thomas Bryant
+203493,Guard-Forward,6-6,205,1991-03-16,USA,North Carolina,2013,Reggie Bullock
+202692,Guard,6-6,214,1991-07-20,USA,Colorado,2011,Alec Burks
+1629126,Guard-Forward,6-4,240,1994-01-31,USA,Iowa State,2018,Dejounte Murray
+1630215,Guard,6-3,193,2000-08-25,USA,Baylor,2021,Jared Butler
+202710,Forward,6-7,230,1989-09-14,USA,Marquette,2011,Jimmy Butler
+1631219,Forward,7-0,190,2002-12-04,USA,Florida State,2022,Ron Harper Jr.
+1631288,Forward,6-6,191,1999-03-20,USA,Oakland,2022,Jamal Cain
+203484,Guard,6-5,204,1993-02-18,USA,Georgia,2013,Kentavious Caldwell-Pope
+203991,Center,6-10,256,1994-05-18,Switzerland,Elan Chalon,2014,Clint Capela
+1630176,Center,6-10,270,2001-02-25,USA,Duke,2020,Ron Harper Jr.
+1628975,Guard,6-1,200,1995-09-14,USA,West Virginia,2018,Jevon Carter
+1628976,Center-Forward,6-10,270,1999-04-16,USA,Duke,2018,Wendell Carter Jr.
+203487,Guard,6-5,190,1991-10-10,USA,Syracuse,2013,Ziaire Williams
+1627936,Guard,6-5,186,1994-02-28,USA,Texas A&M,2017,Alex Caruso
+1630577,Forward,6-7,217,2001-06-29,USA,St. John's,2022,Julian Champagnie
+1630551,Guard-Forward,6-6,206,2001-06-29,USA,Pittsburgh,2021,Julian Champagnie
+1631108,Guard,6-5,190,2003-02-10,USA,Michigan State,2022,Max Christie
+1630528,Guard,6-4,215,2001-12-08,USA,Arizona State,2021,Chris Boucher
+1629634,Forward,6-8,215,1996-09-19,Canada,Gonzaga,2019,Brandon Miller
+203903,Guard,6-5,194,1992-06-07,USA,Missouri,2014,Jordan Clarkson
+1629651,Center,6-11,215,1999-04-17,USA,Georgia,2019,Nic Claxton
+1629599,Guard-Forward,6-7,210,1997-06-17,USA,Minnesota,2019,Amir Coffey
+1628381,Forward-Center,6-9,226,1997-09-23,USA,Wake Forest,2017,John Collins
+1628380,Forward-Center,6-11,250,1997-11-19,USA,Gonzaga,2017,Zach Collins
+201144,Guard,6-1,175,1987-10-11,USA,Ohio State,2007,Mike Conley
+1626192,Guard,6-5,209,1993-01-06,USA,Notre Dame,2015,Pat Connaughton
+203496,Forward,6-7,209,1990-12-14,USA,Tennessee State,2013,Robert Covington
+1628470,Forward,6-7,221,1990-12-19,USA,South Carolina Upstate,2017,Torrey Craig
+203109,Forward,6-6,235,1990-07-06,USA,Marquette,2012,Jae Crowder
+1629633,Guard-Forward,6-6,195,1999-02-20,USA,Texas Tech,2019,Jarrett Allen
+1630595,Guard,6-7,220,2001-09-25,USA,Oklahoma State,2021,Cade Cunningham
+203552,Guard,6-1,185,1990-08-23,USA,Duke,2013,Seth Curry
+201939,Guard,6-2,185,1988-03-14,USA,Davidson,2009,Stephen Curry
+1630700,Guard,6-7,199,2003-03-17,Australia,NBA G League Ignite,2022,Dyson Daniels
+203076,Forward-Center,6-10,253,1993-03-11,USA,Kentucky,2012,Anthony Davis
+1631098,Guard,6-4,195,2002-02-27,USA,Wisconsin,2022,Johnny Davis
+1629056,Guard,6-4,201,1997-05-16,USA,Mississippi,2019,Terance Mann
+1631120,Guard,6-1,195,2002-10-03,USA,Alabama,2022,Johnny Davis
+1630620,Forward,6-7,245,1999-10-20,USA,Louisiana State,2022,Darius Garland
+201942,Guard-Forward,6-6,220,1989-08-07,USA,Southern California,2009,DeMar DeRozan
+1628978,Guard,6-4,203,1997-01-31,USA,Villanova,2018,Donte DiVincenzo
+1631217,Forward,6-10,210,2002-01-21,France,Michigan,2022,Moussa Diabaté
+1631172,Forward,6-9,185,2003-05-21,France,New Zealand Breakers,2022,Ousmane Dieng
+203915,Guard,6-5,215,1993-04-06,USA,Colorado,2014,Spencer Dinwiddie
+1629029,Forward-Guard,6-7,230,1999-02-28,Slovenia,Real Madrid,2018,Luka Dončić
+1628416,Guard,6-4,180,1996-02-18,USA,Oregon,2017,Kyle Lowry
+1629652,Guard,6-4,220,1999-04-19,Canada,Arizona State,2019,Luguentz Dort
+1630245,Guard,6-5,200,2000-01-17,USA,Illinois,2021,Ayo Dosunmu
+1629653,Guard,6-1,185,1999-08-02,USA,Kansas,2020,Kevon Looney
+201609,Guard,6-4,190,1986-05-06,Slovenia,Union Olimpija,2008,Gradey Dick
+203083,Center,6-11,279,1993-08-10,USA,Connecticut,2012,Andre Drummond
+1630537,Guard,6-5,190,1997-06-13,Dominican Republic,Oregon,2021,Chris Duarte
+1627739,Guard,6-3,205,1994-03-18,USA,Providence,2016,Kris Dunn
+201142,Forward,6-10,240,1988-09-29,USA,Texas,2007,Kevin Durant
+1631105,Center,6-11,250,2003-11-18,USA,Memphis,2022,Jalen Duren
+1631106,Forward,6-8,215,2001-05-10,USA,Louisiana State,2022,Tari Eason
+1630162,Guard,6-4,225,2001-08-05,USA,Georgia,2020,Anthony Edwards
+1630556,Forward,6-7,203,2000-08-09,USA,Pepperdine,2021,Kessler Edwards
+1631165,Guard,6-3,175,2000-01-08,USA,Alabama,2022,Keon Ellis
+203954,Center-Forward,7-0,280,1994-03-16,Cameroon,Kansas,2014,Joel Embiid
+1629234,Forward-Center,6-10,245,1997-02-01,USA,Oregon State,2018,Drew Eubanks
+202324,Forward,6-9,265,1991-07-15,USA,Georgia Tech,2010,Derrick Rose
+1628981,Forward-Center,6-10,240,1998-08-15,Angola,Maryland,2019,Bruno Fernando
+1627827,Forward,6-7,220,1993-05-04,USA,Florida,2016,Dorian Finney-Smith
+1630201,Guard,6-1,175,1998-05-09,USA,San Diego State,2020,Malachi Flynn
+1631323,Forward,6-7,209,1995-12-09,Italy,Baskonia,2022,Simone Fontecchio
+1627854,Guard,6-2,205,1993-07-23,USA,Michigan State,2016,Trent Forrest
+1630235,Guard,6-4,210,1998-06-12,USA,Florida State,2020,Trent Forrest
+1630701,Forward,6-8,250,2003-01-16,USA,NBA G League Ignite,2022,Michael Porter Jr.
+203095,Guard-Forward,6-6,205,1992-10-29,France,Poitiers Basket 86,2012,Evan Fournier
+1628368,Guard,6-3,185,1997-12-20,USA,Kentucky,2017,De'Aaron Fox
+1628365,Guard,6-4,209,1998-05-29,USA,Washington,2017,Markelle Fultz
+1629655,Forward-Center,6-10,234,1998-10-01,USA,Arkansas,2019,Daniel Gafford
+1629636,Guard,6-1,192,2000-01-26,USA,Vanderbilt,2019,Darius Garland
+1630568,Center,6-10,243,1998-12-27,USA,Iowa,2021,Luka Garza
+200752,Forward-Guard,6-8,250,1986-08-17,USA,Connecticut,2006,Rudy Gobert
+202331,Forward,6-8,220,1990-05-02,USA,Fresno State,2010,Paul George
+201959,Forward,6-9,232,1985-06-24,USA,Southern California,2009,Tari Eason
+1630581,Guard,6-8,216,2002-10-10,Australia,NBA Global Academy,2021,Josh Giddey
+1628983,Guard,6-6,195,1998-07-12,Canada,Kentucky,2018,Shai Gilgeous-Alexander
+1630264,Forward,6-8,230,1992-10-17,USA,Virginia,2020,Anthony Gill
+1631367,Guard,5-9,160,1998-07-14,USA,Richmond,2022,Jacob Gilyard
+203497,Center,7-1,258,1992-06-26,France,Cholet,2013,Rudy Gobert
+1630692,Guard,6-3,200,1998-10-23,USA,St. Louis,2021,Jordan Goodwin
+203932,Forward,6-8,235,1995-09-16,USA,Arizona,2014,Aaron Gordon
+201569,Guard,6-3,215,1988-12-25,USA,Indiana,2008,Eric Gordon
+1628984,Guard,6-1,195,1995-02-22,USA,Kansas,2018,Devonte' Graham
+203924,Forward,6-8,210,1994-03-12,USA,Syracuse,2014,Jerami Grant
+1631260,Guard,6-5,190,1999-09-27,USA,Northern Iowa,2022,A.J. Green
+201980,Guard,6-6,215,1987-06-22,USA,North Carolina,2009,Danny Green
+203110,Forward,6-6,230,1990-03-04,USA,Michigan State,2012,Draymond Green
+203210,Forward-Center,6-9,227,1990-06-21,USA,Alabama,2014,Jalen Green
+1630224,Guard,6-4,186,2002-02-09,USA,NBA G League Ignite,2021,Jalen Green
+1629750,Guard,6-5,205,1993-07-23,USA,Radford,2019,Jalen Green
+201145,Forward,6-8,235,1986-08-28,USA,Georgetown,2007,Jeff Green
+1630182,Guard,6-7,200,2000-11-16,Australia,Arizona,2020,Josh Green
+1631100,Forward,6-6,220,2003-08-25,USA,Duke,2022,AJ Griffin
+201933,Forward,6-9,250,1989-03-16,USA,Oklahoma,2009,AJ Griffin
+1629656,Guard,6-5,210,2000-05-08,USA,Houston,2021,Quentin Grimes
+1629060,Forward,6-8,230,1998-02-08,Japan,Gonzaga,2019,Rui Hachimura
+1630169,Guard,6-5,185,2000-02-29,USA,Iowa State,2020,Tyrese Haliburton
+1631160,Guard,6-7,215,2002-01-14,USA,Saint Joseph's,2022,Jordan Miller
+203501,Guard-Forward,6-5,205,1992-03-16,USA,Michigan,2013,Tim Hardaway Jr.
+201935,Guard,6-5,220,1989-08-26,USA,Arizona State,2009,James Harden
+1630702,Guard,6-3,198,2002-07-05,USA,NBA G League Ignite,2022,Jaden Hardy
+1631199,Forward,6-5,245,2000-04-12,USA,Rutgers,2022,Ron Harper Jr.
+203914,Guard,6-4,210,1994-09-14,USA,Michigan State,2014,Gary Harris
+203925,Guard-Forward,6-6,220,1991-09-06,USA,Virginia,2014,Joe Harris
+1630284,Guard,6-6,216,1997-06-24,USA,Stephen F. Austin,2022,Joe Harris
+202699,Forward,6-7,226,1992-07-15,USA,Tennessee,2011,Tobias Harris
+1628404,Guard,6-4,215,1995-03-06,USA,Villanova,2017,Josh Hart
+1628392,Center-Forward,7-0,250,1998-05-05,Germany,Zalgiris,2017,Isaiah Hartenstein
+1630573,Forward,6-7,217,1997-12-08,USA,Virginia,2021,Sam Hauser
+1629637,Center-Forward,7-0,220,2000-05-23,USA,Texas,2019,Jaxson Hayes
+1630165,Guard,6-5,195,2001-07-27,France,Ratiopharm Ulm,2020,Killian Hayes
+202330,Forward,6-7,225,1990-03-23,USA,Butler,2010,Gordon Hayward
+1629639,Guard,6-5,195,2000-01-20,USA,Kentucky,2019,Tyler Herro
+1627741,Guard,6-4,220,1992-12-17,Bahamas,Oklahoma,2016,Buddy Hield
+1629312,Forward,6-5,220,1996-12-09,USA,Wheeling Jesuit,2018,Haywood Highsmith
+201588,Guard,6-4,188,1986-05-04,USA,Indiana-Purdue Indianapolis,2008,Georges Niang
+1630792,Forward,6-6,220,1995-10-26,USA,Illinois,2021,Malcolm Cazalon
+1628988,Guard,6-0,185,1996-09-30,USA,UCLA,2018,Aaron Holiday
+201950,Guard,6-5,205,1990-06-12,USA,UCLA,2009,Jrue Holiday
+203200,Forward-Guard,6-6,180,1989-04-05,USA,Washington,2012,Justin Holiday
+1626158,Forward,6-8,235,1993-10-15,USA,Bowling Green,2015,Richaun Holmes
+201143,Center-Forward,6-9,240,1986-06-03,Dominican Republic,Florida,2007,Al Horford
+1629659,Guard,6-4,234,2000-11-25,USA,Iowa State,2019,Talen Horton-Tucker
+1627863,Forward-Guard,6-6,220,1993-06-07,USA,Texas A&M,2016,Danuel House Jr.
+1631216,Guard,6-8,205,2003-01-09,Canada,Michigan,2022,Caleb Houstan
+1628989,Guard-Forward,6-7,198,1998-08-27,USA,Maryland,2018,Kevin Huerter
+1629631,Forward-Guard,6-8,221,1997-12-02,USA,Virginia,2019,De'Andre Hunter
+1630538,Guard,6-2,169,2000-09-14,USA,Virginia Commonwealth,2021,Bones Hyland
+2738,Guard-Forward,6-6,215,1984-01-28,USA,Arizona,2004,DeAndre Jordan
+204060,Forward-Guard,6-9,220,1987-10-02,Australia,Maccabi Tel Aviv,2014,Joe Ingles
+1627742,Forward,6-8,190,1997-09-02,USA,Duke,2016,Brandon Ingram
+202681,Guard,6-2,195,1992-03-23,Australia,Duke,2011,Kyrie Irving
+1628371,Forward,6-10,230,1997-10-03,USA,Florida State,2017,Jonathan Isaac
+1631093,Guard,6-4,195,2002-02-13,USA,Purdue,2022,Jaden Ivey
+1628402,Guard,6-3,205,1998-05-04,USA,Duke,2017,Jaren Jackson Jr.
+1630543,Forward,6-9,205,2002-01-10,USA,Kentucky,2021,Isaiah Jackson
+1628382,Forward,6-8,220,1995-03-28,USA,North Carolina,2017,Isaiah Jackson
+1631245,Guard,6-5,173,1998-09-15,USA,Texas A&M,2022,Peyton Watson
+202704,Guard,6-2,208,1990-04-16,USA,Boston College,2011,Reggie Jackson
+1628991,Forward-Center,6-10,242,1999-09-15,USA,Michigan State,2018,Jaren Jackson Jr.
+2544,Forward,6-9,250,1984-12-30,USA,St. Vincent-St. Mary HS (OH),2003,LeBron James
+1629610,Guard-Forward,6-5,222,1997-08-30,USA,Tulsa,2019,DaQuan Jeffries
+1629660,Guard-Forward,6-5,195,1997-07-08,USA,Virginia,2019,Ty Jerome
+1630198,Guard,6-3,165,1999-07-02,USA,Arkansas,2020,Isaiah Joe
+1628993,Forward,6-8,212,1996-04-22,USA,Missouri State,2018,Jalen Johnson
+1629661,Forward,6-8,210,1996-03-03,USA,North Carolina,2019,Cameron Johnson
+1630552,Forward,6-8,219,2001-12-18,USA,Duke,2021,Jalen Johnson
+201949,Forward,6-7,240,1987-02-20,USA,Wake Forest,2009,Jalen Johnson
+1629640,Forward-Guard,6-5,220,1999-10-11,USA,Kentucky,2019,Keldon Johnson
+1630553,Guard,6-3,185,2002-03-10,USA,Tennessee,2021,Keldon Johnson
+1626169,Forward-Guard,6-6,242,1996-05-29,USA,Arizona,2015,Jalen Johnson
+203999,Center,6-11,284,1995-02-19,Serbia,Mega Basket,2014,Nikola Jokić
+1630637,Guard,6-0,174,1997-12-23,USA,Louisville,2021,Colby Jones
+1627745,Center,6-11,245,1995-06-30,USA,Vanderbilt,2016,Damian Jones
+1630529,Forward,6-7,206,1998-10-06,USA,Alabama,2021,Herbert Jones
+1630539,Center-Forward,6-11,221,2001-01-19,Bahamas,Texas,2021,Damian Jones
+1630200,Guard,6-1,185,2000-01-08,USA,Duke,2020,Tre Jones
+1626145,Guard,6-2,196,1996-05-10,USA,Duke,2015,Tyus Jones
+1627884,Forward,6-6,210,1997-02-15,USA,UNLV,2016,Derrick Jones Jr.
+201599,Center,6-11,265,1988-07-21,USA,Texas A&M,2008,DeAndre Jordan
+202709,Guard,6-3,200,1991-08-20,Canada,Texas,2011,Cory Joseph
+1631107,Forward,6-10,205,2003-06-09,Serbia,Mega Basket,2022,Nikola Jović
+1630548,Guard,6-6,209,2001-03-17,USA,UCLA,2022,Johnny Davis
+1628379,Guard,6-5,206,1996-06-24,USA,Duke,2017,Luke Kennard
+1631117,Center,7-0,245,2001-07-26,USA,Auburn,2022,Walker Kessler
+1630296,Forward,6-8,225,1997-02-14,USA,Virginia,2021,Braxton Key
+1630557,Forward,6-6,224,1999-03-03,USA,Gonzaga,2021,Corey Kispert
+1628467,Forward,6-10,240,1992-01-29,Germany,Bayern Munich,2017,Maxi Kleber
+1630233,Forward-Center,6-8,253,1997-09-20,USA,William & Mary,2020,Jonathan Kuminga
+1628995,Forward,6-7,215,1999-08-11,USA,Kentucky,2018,Kevin Knox
+1631132,Center,7-0,230,2000-06-20,Cameroon,Arizona,2022,Christian Wood
+1629723,Guard,6-5,210,1996-03-22,USA,Indiana-Purdue Fort Wayne,2019,John Konchar
+1627788,Guard-Forward,6-7,202,1997-07-24,Turkey,Anadolu Efes,2016,Furkan Korkmaz
+1628436,Center-Forward,7-2,250,1995-07-15,USA,Vanderbilt,2017,Luke Kornet
+1630228,Forward,6-7,225,2002-10-06,DRC,NBA G League Ignite,2021,Jonathan Kuminga
+1628398,Forward,6-9,221,1995-07-24,USA,Utah,2017,Kyle Kuzma
+1631222,Forward,6-7,235,2001-11-03,USA,Wake Forest,2022,Jake LaRavia
+203897,Guard,6-5,200,1995-03-10,USA,UCLA,2014,Zach LaVine
+1630237,Forward,6-6,227,1998-01-20,USA,Vermont,2020,Anthony Davis
+1629111,Center,6-11,255,1995-10-25,Australia,St. Mary's,2021,Jock Landale
+1630639,Guard,6-6,179,2000-07-15,Canada,South Carolina,2022,P.J. Washington
+1627747,Guard,6-6,205,1994-08-25,USA,Michigan,2016,Caris LeVert
+1627814,Guard-Forward,6-5,210,1992-10-21,USA,Drexel,2017,Draymond Green
+1630240,Guard,6-2,183,1999-06-23,USA,Vanderbilt,2020,Saben Lee
+203458,Center,7-2,250,1993-06-16,Ukraine,Maryland,2013,Alex Len
+202695,Forward,6-7,225,1991-06-29,USA,San Diego State,2011,Kawhi Leonard
+1630184,Guard,6-1,170,2001-04-06,USA,Alabama,2020,Kira Lewis Jr.
+1630604,Forward,6-6,240,2000-12-18,USA,Ohio State,2022,E.J. Liddell
+203081,Guard,6-2,195,1990-07-15,USA,Weber State,2012,Damian Lillard
+1629642,Forward-Guard,6-5,220,2000-02-11,USA,North Carolina,2019,Nassir Little
+1630587,Forward,6-6,232,1998-07-28,USA,Michigan,2021,Isaiah Livers
+1631254,Forward,6-6,275,2002-08-14,USA,Louisiana Tech,2022,Kenneth Lofton Jr.
+1626172,Forward,6-9,222,1996-02-06,USA,UCLA,2015,Kevon Looney
+201572,Center,7-1,282,1988-04-01,USA,Stanford,2008,Brook Lopez
+201577,Center,7-0,281,1988-04-01,USA,Stanford,2008,Robin Lopez
+201567,Forward-Center,6-8,251,1988-09-07,USA,UCLA,2008,Kevin Love
+200768,Guard,6-0,196,1986-03-25,USA,Villanova,2006,Kyle Lowry
+1626168,Forward,6-9,234,1995-11-05,Canada,Kentucky,2015,Tre Jones
+1630177,Guard,6-5,175,2001-06-12,France,Asvel,2020,Théo Maledon
+1630572,Forward-Center,6-10,240,1999-05-23,Georgia,Seton Hall,2021,Sandro Mamukelashvili
+1629611,Guard-Forward,6-5,215,1996-10-18,USA,Florida State,2019,Terance Mann
+1630544,Guard,6-3,178,2001-02-03,USA,Florida,2021,Tre Mann
+1628374,Forward-Center,7-0,240,1997-05-22,Finland,Arizona,2017,Lauri Markkanen
+1630230,Forward,6-7,220,1998-01-24,USA,Xavier,2020,Naji Marshall
+1628997,Forward,6-5,205,1995-09-28,USA,Nevada,2019,Caleb Martin
+1628998,Forward,6-6,205,1995-09-28,USA,Nevada,2019,KJ Martin
+1631213,Guard,6-6,215,1999-03-07,USA,Connecticut,2022,Tyrese Haliburton
+1630231,Forward,6-7,215,2001-01-06,USA,IMG Academy (FL),2020,KJ Martin
+1629726,Guard,6-6,215,1996-10-24,USA,Lipscomb,2019,Garrison Mathews
+1631097,Guard-Forward,6-5,210,2002-06-19,Canada,Arizona,2022,Bennedict Mathurin
+202083,Guard,6-5,220,1986-10-14,USA,Marquette,2009,Wesley Matthews
+1630178,Guard,6-2,200,2000-11-04,USA,Kentucky,2020,Tyrese Maxey
+1630219,Guard,6-4,205,1997-09-05,USA,Louisiana State,2020,Skylar Mays
+1630540,Guard,6-2,195,2000-09-08,USA,West Virginia,2021,Miles McBride
+203468,Guard,6-3,190,1991-09-19,USA,Lehigh,2013,CJ McCollum
+204456,Guard,6-1,190,1992-03-25,USA,Arizona,2015,T.J. McConnell
+1630183,Forward,6-9,185,2000-09-29,USA,Washington,2020,Jaden McDaniels
+1629667,Forward-Center,6-9,205,1998-01-31,USA,San Diego State,2019,Jalen McDaniels
+203926,Forward,6-6,225,1992-01-03,USA,Creighton,2014,Doug McDermott
+201580,Center-Forward,7-0,270,1988-01-19,USA,Nevada,2008,JaVale McGee
+1631121,Guard,6-6,175,2002-11-08,USA,Nebraska,2022,Bryce McGowens
+1629162,Guard,6-0,185,1996-04-09,USA,Southern California,2019,Jordan McLaughlin
+1629001,Guard,6-2,200,1998-05-28,USA,Southern California,2018,De'Anthony Melton
+1630241,Guard,6-4,205,1996-05-15,USA,Utah State,2020,Sam Merrill
+1629002,Forward-Center,6-9,225,1997-03-22,USA,Southern California,2018,Chimezie Metu
+203114,Forward,6-7,222,1991-08-12,USA,Texas A&M,2012,Khris Middleton
+1629003,Guard-Forward,6-5,205,1996-09-26,USA,Southern Methodist,2018,Shake Milton
+1631303,Forward,6-7,210,1999-03-26,USA,Providence,2022,Justin Minaya
+1631169,Forward,6-8,205,2002-11-25,USA,Memphis,2022,Josh Minott
+1630558,Guard,6-0,202,1998-09-05,USA,Baylor,2021,Davion Mitchell
+1628378,Guard,6-1,215,1996-09-07,USA,Louisville,2017,Donovan Mitchell
+1630596,Center,6-11,215,2001-06-18,USA,Southern California,2021,Evan Mobley
+1630600,Forward,6-8,238,1999-09-24,USA,Southern California,2022,Isaiah Mobley
+1631320,Forward,6-5,223,1995-12-24,Nigeria,Cal-Davis,2022,Chuma Okeke
+1628370,Guard,6-3,200,1998-02-04,USA,Kentucky,2017,Malik Monk
+1630541,Guard,6-5,211,2002-05-31,USA,Arkansas,2021,Moses Moody
+1631111,Guard,6-5,215,2001-09-18,USA,Duke,2022,Wendell Carter Jr.
+1629630,Guard,6-2,174,1999-08-10,USA,Murray State,2019,Jerami Grant
+202693,Forward,6-9,245,1989-09-02,USA,Kansas,2011,Markieff Morris
+1628420,Guard,6-2,183,1995-06-27,USA,Iowa State,2017,Markieff Morris
+202694,Forward,6-8,218,1989-09-02,USA,Kansas,2011,Marcus Morris
+1627749,Guard,6-5,180,1996-09-19,USA,Washington,2016,Dejounte Murray
+1627750,Guard,6-4,215,1997-02-23,Canada,Kentucky,2016,Jamal Murray
+1631099,Forward,6-8,225,2000-08-19,USA,Iowa,2022,Keegan Murray
+203488,Forward-Center,6-11,240,1991-07-01,USA,Bucknell,2013,Mike Muscala
+1629004,Guard-Forward,6-7,205,1997-06-10,Ukraine,Kansas,2018,Svi Mykhailiuk
+1626204,Forward-Center,6-8,245,1993-01-01,USA,Wyoming,2015,Larry Nance Jr.
+1629614,Guard-Forward,6-3,191,2000-01-16,Canada,Gonzaga,2022,Andrew Nembhard
+1630174,Guard-Forward,6-5,215,1999-10-16,USA,Vanderbilt,2020,Aaron Nesmith
+203526,Guard,6-2,180,1992-05-19,Brazil,Murcia,2013,Paul George
+1627777,Forward,6-7,230,1993-06-17,USA,Iowa State,2016,Georges Niang
+1630192,Forward-Center,6-9,240,2001-01-09,USA,Arizona,2020,Zeke Nnaji
+1629669,Guard,6-4,201,1999-07-09,USA,Washington,2019,Jaylen Brown
+1629134,Guard,6-3,190,1995-08-03,USA,Oakland,2018,Kris Dunn
+203994,Center,7-0,290,1994-08-23,Bosnia and Herzegovina,Cedevita,2014,Jusuf Nurkić
+1629670,Forward,6-9,225,1998-09-09,USA,Louisville,2020,Jordan Nwora
+1626220,Forward,6-6,226,1993-06-05,USA,Baylor,2017,Royce O'Neale
+1629643,Forward,6-8,229,1998-08-18,USA,Auburn,2019,Chuma Okeke
+1629006,Guard,6-4,213,1998-09-01,Nigeria,Georgia Tech,2018,Josh Okogie
+1630168,Forward-Center,6-9,240,2000-12-11,USA,Southern California,2020,Onyeka Okongwu
+1630171,Forward-Guard,6-5,225,2001-01-26,USA,Auburn,2020,Isaac Okoro
+203482,Forward-Center,6-11,240,1991-04-19,Canada,Gonzaga,2013,Kelly Olynyk
+1630647,Forward,6-6,235,1997-02-14,Nigeria,Oregon,2021,Eugene Omoruyi
+1626224,Forward,6-7,230,1995-04-08,Turkey,Anadolu Efes,2015,Cedi Osman
+1626162,Forward-Guard,6-6,203,1995-12-09,USA,Kansas,2015,Kelly Oubre Jr.
+101108,Guard,6-0,175,1985-05-06,USA,Wake Forest,2005,Chris Paul
+1626166,Guard,6-1,183,1994-08-08,USA,Murray State,2015,Cameron Payne
+1627780,Guard,6-2,195,1992-12-01,USA,Oregon State,2016,Gary Payton II
+1629033,Guard-Forward,6-7,212,1995-11-05,USA,North Carolina,2018,Jerome Robinson
+203486,Forward-Center,7-0,254,1990-03-05,USA,Duke,2013,Mason Plumlee
+1627751,Center,7-1,245,1995-10-15,Austria,Utah,2016,Jakob Poeltl
+1630197,Forward,7-0,210,2001-12-26,Serbia,Olympiacos,2020,Aleksej Pokusevski
+1629673,Guard,6-4,194,1999-06-19,USA,Michigan,2019,Jordan Poole
+1629645,Guard-Forward,6-4,203,2000-05-04,USA,Southern California,2019,Craig Porter Jr.
+1629008,Forward,6-10,218,1998-06-29,USA,Missouri,2018,Michael Porter Jr.
+203490,Forward,6-8,198,1993-06-03,USA,Georgetown,2013,Otto Porter Jr.
+1626171,Forward,6-11,250,1995-02-10,USA,Arkansas,2015,Bobby Portis
+204001,Forward-Center,7-3,240,1995-08-02,Latvia,Cajasol Sevilla,2015,Kristaps Porziņģis
+1630695,Center,6-8,248,1998-04-06,USA,Wisconsin,2021,Michael Porter Jr.
+203939,Forward-Center,6-10,240,1991-07-20,Canada,Stanford,2014,Dwight Powell
+1626181,Guard,6-4,215,1993-05-25,USA,UCLA,2015,Norman Powell
+1630554,Guard,6-3,181,1999-08-10,USA,Ohio,2021,Jaxson Hayes
+1630563,Guard,6-6,189,2002-12-24,Canada,Alabama,2021,Josh Minott
+1627752,Forward,6-6,218,1994-03-22,USA,Baylor,2016,Taurean Prince
+1630202,Guard,6-1,195,1998-01-28,USA,Oregon,2020,Payton Pritchard
+1629674,Center,7-0,248,1999-07-13,Portugal,Utah State,2021,Neemias Queta
+1630193,Guard,6-2,190,1999-06-17,USA,Kentucky,2020,Immanuel Quickley
+1631311,Guard,6-4,208,2000-11-16,USA,Memphis,2022,Lester Quinones
+203944,Forward-Center,6-8,250,1994-11-29,USA,Kentucky,2014,Julius Randle
+1630559,Guard,6-5,197,1998-05-29,USA,Oklahoma,2021,Austin Reaves
+1629629,Forward-Guard,6-7,217,1999-09-01,USA,Duke,2019,Cam Reddish
+1628432,Guard,6-5,206,1995-06-11,USA,Miami,2017,Paul Reed
+1630194,Forward,6-9,210,1999-06-14,USA,DePaul,2020,Paul Reed
+1629675,Center-Forward,6-9,264,1999-08-26,USA,Louisiana State,2019,Naz Reid
+1631197,Guard,6-6,210,1999-08-27,USA,Seton Hall,2022,Jared Rhoden
+1630208,Center,7-0,245,1997-11-29,Jamaica,Kentucky,2020,Nick Richards
+1626196,Guard,6-6,200,1993-09-15,USA,Tennessee,2015,Josh Richardson
+203085,Guard,6-4,200,1992-08-01,USA,Duke,2012,Austin Reaves
+1629130,Forward,6-7,215,1994-04-22,USA,Michigan,2018,Duncan Robinson
+1629011,Center-Forward,7-0,240,1998-04-01,USA,Western Kentucky,2018,Mitchell Robinson
+1631115,Center,6-10,235,2000-07-10,USA,Fresno State,2022,Orlando Robinson
+1630526,Forward,6-8,240,2000-11-03,USA,Villanova,2021,Jeremiah Robinson-Earl
+1629676,Forward,6-8,230,1998-02-03,USA,Nebraska,2019,Isaiah Mobley
+1631223,Forward,6-4,255,2001-03-27,USA,Colorado State,2022,David Roddy
+1631157,Guard,6-3,180,2002-07-03,USA,Toledo,2022,Ryan Rollins
+201565,Guard,6-3,200,1988-10-04,USA,Memphis,2008,Derrick Rose
+203082,Guard-Forward,6-7,206,1991-02-05,USA,Washington,2012,Derrick Rose
+1626179,Guard,6-1,190,1994-03-17,USA,Louisville,2015,Terry Rozier
+1626156,Guard,6-4,193,1996-02-23,USA,Ohio State,2015,D'Angelo Russell
+1630346,Forward,6-6,215,1997-04-17,USA,Tennessee-Chattanooga,2021,Matt Ryan
+1627734,Forward-Center,7-1,240,1996-05-03,Lithuania,Gonzaga,2016,Domantas Sabonis
+1629677,Forward,6-10,227,2000-01-09,Croatia,Union Olimpija,2019,Luka Šamanić
+203967,Forward-Center,6-10,225,1994-04-08,Croatia,Anadolu Efes,2014,Dario Šarić
+1630846,Center,6-11,240,1999-02-20,France,Kentucky,2021,Olivier Sarr
+1630648,Guard,6-6,200,1998-06-13,USA,San Diego State,2021,Jordan McLaughlin
+1629678,Forward,6-5,241,1997-03-30,United Kingdom,Tennessee,2019,Admiral Schofield
+203471,Guard,6-1,172,1993-09-15,Germany,Braunschweig,2013,Dennis Schröder
+1631220,Guard,6-5,180,2000-05-26,USA,North Carolina State,2022,Dereon Seabron
+1630578,Center,6-11,243,2002-07-25,Turkey,Besiktas,2021,Alperen Şengün
+1629012,Guard,6-2,190,1999-01-04,USA,Alabama,2018,Collin Sexton
+1629013,Guard,6-4,190,1997-03-13,USA,Wichita State,2018,Landry Shamet
+1630549,Center,6-9,265,2001-11-06,USA,North Carolina,2021,Day'Ron Sharpe
+1631101,Guard,6-5,200,2003-05-30,Canada,Kentucky,2022,Shaedon Sharpe
+1627783,Forward,6-8,230,1994-04-02,Cameroon,New Mexico State,2016,Pascal Siakam
+1629735,Forward,6-8,234,1996-09-19,Gabon,South Carolina,2019,Chris Paul
+1627732,Guard-Forward,6-10,240,1996-07-20,Australia,Louisiana State,2016,Ben Simmons
+1628424,Guard,6-5,180,1997-07-04,USA,Arizona,2017,Ben Simmons
+1629014,Guard,6-3,181,1999-06-08,USA,Edgewater HS (FL),2018,Anfernee Simons
+1630579,Center,6-10,250,1998-10-20,USA,Texas,2021,Jericho Sims
+203935,Guard,6-4,220,1994-03-06,USA,Oklahoma State,2014,Marcus Smart
+1630696,Guard,6-3,203,1997-12-30,USA,Missouri,2022,Dru Smith
+202397,Guard,6-0,175,1988-07-05,USA,Wake Forest,2010,Ish Smith
+1630188,Forward-Center,6-9,215,2000-03-16,USA,Maryland,2020,Jalen Smith
+1628372,Guard,6-2,205,1997-11-25,USA,North Carolina State,2017,Dennis Smith Jr.
+1631095,Forward,6-11,220,2003-05-13,USA,Auburn,2022,Jabari Smith Jr.
+1631110,Forward,6-8,230,2003-05-20,Poland,Baylor,2022,Jeremy Sochan
+1630531,Guard,6-4,202,2002-09-25,USA,Tennessee,2021,Jaden Springer
+1630205,Forward,6-6,230,1997-07-09,USA,Penn State,2020,Lamar Stevens
+1630191,Forward-Center,6-8,250,2001-05-22,USA,Washington,2020,Isaiah Stewart
+1629622,Guard-Forward,6-5,215,1996-03-28,USA,DePaul,2019,Max Strus
+1630591,Guard,6-5,205,2001-06-03,USA,Gonzaga,2021,Jalen Suggs
+1631306,Forward,6-9,220,1999-05-08,USA,Syracuse,2022,Cole Swider
+1630256,Forward,6-5,230,1995-10-28,USA,Ohio State,2020,Jae'Sean Tate
+1628369,Forward-Guard,6-8,210,1998-03-03,USA,Duke,2017,Jayson Tatum
+1630678,Forward,6-4,230,1999-09-23,USA,Austin Peay,2021,Terry Taylor
+202066,Guard-Forward,6-6,195,1986-05-08,USA,Louisiana State,2009,Garrett Temple
+1631207,Forward,6-7,195,2002-07-12,USA,Arizona,2022,Dalen Terry
+1628464,Forward-Center,6-8,245,1992-04-04,Germany,Brose Bamberg,2017,Daniel Theis
+1630560,Guard,6-3,210,2001-10-13,Japan,Louisiana State,2021,Cam Thomas
+202691,Guard,6-6,220,1990-02-08,USA,Washington State,2011,Klay Thompson
+202684,Center-Forward,6-9,254,1991-03-13,Canada,Texas-Austin,2011,Tristan Thompson
+1630550,Forward,6-9,203,2002-08-26,USA,Auburn,2021,JT Thor
+1629680,Guard-Forward,6-5,201,1997-03-04,USA,Washington,2019,Matisse Thybulle
+1630214,Forward,6-7,245,1999-01-12,USA,Michigan State,2020,Xavier Tillman Sr.
+1630225,Forward,6-9,219,2001-10-17,USA,NBA G League Ignite,2021,Isaiah Joe
+1630167,Forward,6-9,220,1998-03-04,USA,Dayton,2020,Obi Toppin
+1626157,Center-Forward,7-0,248,1995-11-15,USA,Kentucky,2015,Karl-Anthony Towns
+1629018,Guard-Forward,6-5,209,1999-01-18,USA,Duke,2018,Gary Trent Jr.
+200782,Forward,6-5,245,1985-05-05,USA,Texas,2006,P.J. Tucker
+1626167,Center-Forward,6-11,250,1996-03-24,USA,Texas,2015,Myles Turner
+1630649,Guard,6-6,210,1999-04-12,USA,Arkansas,2022,Stanley Umude
+202685,Center,6-11,265,1992-05-06,Lithuania,Lietuvos rytas Vilnius,2011,Jonas Valančiūnas
+1627832,Guard,6-0,197,1994-02-25,USA,Wichita State,2016,Fred VanVleet
+1629020,Forward,6-8,214,1999-04-03,USA,Kentucky,2018,Fred VanVleet
+1630170,Guard-Forward,6-5,200,2000-08-23,USA,Florida State,2020,Devin Vassell
+1629216,Guard,6-2,200,1996-06-14,USA,California-Santa Barbara,2019,Gabe Vincent
+202696,Center,6-10,260,1990-10-24,Montenegro,Southern California,2011,Nikola Vučević
+1629731,Forward-Center,6-9,228,1996-11-20,USA,Kansas State,2019,Dean Wade
+1630532,Forward,6-10,220,2001-08-27,Germany,Michigan,2021,Franz Wagner
+1629021,Forward-Center,6-11,245,1997-04-26,Germany,Michigan,2018,Moritz Wagner
+1630688,Forward,6-5,250,1994-09-12,USA,Baylor,2021,Ish Wainright
+1631133,Forward,6-7,200,2002-07-30,USA,Colorado,2022,Jabari Walker
+202689,Guard,6-0,184,1990-05-08,USA,Connecticut,2011,Jabari Walker
+1629022,Guard-Forward,6-4,204,1998-12-14,USA,Miami,2018,Lonnie Walker IV
+202322,Guard,6-3,210,1990-09-06,USA,Kentucky,2010,John Collins
+203933,Forward,6-8,220,1993-09-05,USA,North Carolina State,2014,A.J. Green
+1629023,Forward,6-7,230,1998-08-23,USA,Kentucky,2019,P.J. Washington
+1630613,Guard,6-2,197,2000-03-24,Germany,Ohio State,2021,TyTy Washington Jr.
+1631102,Guard,6-3,195,2001-11-15,USA,Kentucky,2022,TyTy Washington Jr.
+1629139,Guard-Forward,6-8,215,1994-10-13,Japan,George Washington,2018,Yuta Watanabe
+1630322,Forward,6-6,210,1997-07-28,USA,Oklahoma State,2021,Lindy Waters III
+1630570,Forward,6-8,237,2000-11-09,USA,Louisiana State,2021,Trendon Watford
+1631212,Guard,6-7,200,2002-09-11,USA,UCLA,2022,Peyton Watson
+1631104,Guard,6-4,185,2003-03-16,USA,Notre Dame,2022,Blake Wesley
+201566,Guard,6-3,200,1988-11-12,USA,UCLA,2008,Russell Westbrook
+1629632,Guard,6-5,195,2000-02-16,USA,North Carolina,2019,Coby White
+1628401,Guard,6-4,190,1994-07-02,USA,Colorado,2017,Derrick White
+1631298,Forward,6-7,225,1997-08-05,Australia,Duke,2022,Derrick White
+1630598,Guard,6-5,190,1999-01-02,USA,Maryland,2021,Aaron Wiggins
+203952,Forward,6-7,197,1995-02-23,Canada,Kansas,2014,Andrew Wiggins
+1629623,Guard,6-1,189,1998-03-28,Canada,Iowa State,2019,Lindell Wigginton
+1631214,Guard,6-4,210,1999-06-19,USA,Wake Forest,2022,Jalen Williams
+1631495,Guard,6-6,190,2001-09-06,USA,UNLV,2022,Jalen Williams
+1629684,Forward,6-6,236,1998-11-30,USA,Tennessee,2019,Grant Williams
+1631114,Guard-Forward,6-5,211,2001-04-14,USA,Santa Clara,2022,Jalen Williams
+1631119,Forward,6-9,240,2002-06-29,USA,Arkansas,2022,Jaylin Williams
+1631466,Guard,6-5,205,1999-02-12,USA,Buffalo,2022,Jeenathan Williams
+1629026,Guard-Forward,6-6,210,1994-12-02,USA,TCU,2018,Kenrich Williams
+1631109,Center,7-0,240,2001-12-16,USA,Duke,2022,Mark Williams
+1630172,Forward,6-7,215,2001-08-26,USA,Florida State,2020,Patrick Williams
+1630533,Forward,6-9,185,2001-09-12,USA,Stanford,2021,Ziaire Williams
+1629057,Center-Forward,6-9,237,1997-10-17,USA,Texas A&M,2018,Robert Williams
+1631246,Guard,6-4,205,2000-08-30,USA,Virginia Commonwealth,2022,Vince Williams Jr.
+1629627,Forward,6-6,284,2000-07-06,USA,Duke,2019,Zion Williamson
+1629685,Guard-Forward,6-7,196,1996-09-22,USA,Belmont,2019,Dylan Windler
+1630164,Center,7-0,240,2001-03-31,USA,Memphis,2020,James Wiseman
+1626174,Forward,6-9,214,1995-09-27,USA,UNLV,2015,Christian Wood
+1626153,Guard,6-5,185,1992-04-26,USA,Utah,2015,Delon Wright
+201152,Forward,6-8,235,1988-06-21,USA,Georgia Tech,2007,Thaddeus Young
+1629027,Guard,6-1,164,1998-09-19,USA,Oklahoma,2018,Trae Young
+1630209,Center,6-11,275,1998-06-19,Turkey,Georgetown,2020,Omer Yurtseven
+203469,Forward-Center,6-11,240,1992-10-05,USA,Indiana,2013,Cody Zeller
+1627826,Center,7-0,240,1997-03-18,Croatia,Mega Basket,2016,Ivica Zubac
